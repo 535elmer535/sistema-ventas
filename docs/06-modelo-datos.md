@@ -53,7 +53,7 @@
 - total: número decimal
 - estado_pago: texto (pendiente / pagado / anticipo_cobrado)
 
-### detalle_venta
+### detalle_ventas
 
 - id_detalle: identificador (clave primaria)
 - id_venta: clave foránea -> ventas
