@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de muebles</title>
+</head>
+<body>
+
+    <button id="mostrar-muebles">Mostrar muebles</button>
+<ul id="lista"></ul>
+
+<script>
+  const muebles = [
+  "Ropero de melamina",
+  "Escritorio",
+  "Centro de TV",
+  "Mesa de noche"
+];
+
+const boton = document.querySelector("#mostrar-muebles");
+const lista = document.querySelector("#lista");
+
+boton.addEventListener("click", () => {
+ const elementos = muebles.map((nombre) => `<li>${nombre}</li>`);
+lista.innerHTML = elementos.join("");
+});
+</script>
+</body>
+</html>
+
