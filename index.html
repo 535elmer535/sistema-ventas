@@ -9,6 +9,35 @@
 <body>
   <h1>Sistema de Ventas - Muebles de Melamina</h1>
 
+<section>
+  <h2>Consultar existencia de muebles</h2>
+
+  <table id="tabla-productos">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Existencia</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpo-productos"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Clientes</h2>
+
+  <table id="tabla-clientes">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpo-clientes"></tbody>
+  </table>
+</section>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/app.js"></script>
