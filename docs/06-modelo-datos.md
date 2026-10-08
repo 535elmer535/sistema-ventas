@@ -71,6 +71,9 @@
 - color_melamina: texto
 - estado_taller: texto (pendiente / en_taller / listo / entregado)
 - fecha_entrega_estimada: fecha
+- cantidad: número entero, obligatorio.
+- precio_unitario: número decimal, obligatorio; precio acordado por unidad.
+- subtotal: número decimal, obligatorio; cantidad × precio_unitario.
 
 ### pagos
 

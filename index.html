@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,38 +8,237 @@
 <body>
   <h1>Sistema de Ventas - Muebles de Melamina</h1>
 
-<section>
-  <h2>Consultar existencia de muebles</h2>
+  <section>
+    <h2>Consultar existencia de muebles</h2>
 
-  <table id="tabla-productos">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Existencia</th>
-      </tr>
-    </thead>
-    <tbody id="cuerpo-productos"></tbody>
-  </table>
-</section>
+    <table id="tabla-productos">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Existencia</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo-productos"></tbody>
+    </table>
+  </section>
 
-<section>
-  <h2>Clientes</h2>
+  <section>
+    <h2>Registrar venta de muebles en stock</h2>
 
-  <table id="tabla-clientes">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Teléfono</th>
-      </tr>
-    </thead>
-    <tbody id="cuerpo-clientes"></tbody>
-  </table>
-</section>
+    <form id="form-venta">
+      <label>Producto:
+        <select id="campo-producto"></select>
+      </label>
+
+      <label>Cantidad:
+        <input type="number" id="campo-cantidad"
+               min="1" step="1" value="1">
+      </label>
+
+      <button type="button" id="agregar-mueble">
+        Agregar mueble
+      </button>
+
+      <h3>Muebles seleccionados</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mueble</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-detalle-stock">
+          <tr>
+            <td colspan="5">Todavía no agregaste muebles.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Total: Bs <span id="total-venta">0.00</span></p>
+
+      <button type="submit" id="confirmar-venta" disabled>
+        Registrar venta
+      </button>
+    </form>
+
+    <p id="mensaje-venta" role="status"></p>
+  </section>
+
+  <section>
+    <h2>Registrar pedido a medida</h2>
+
+    <p>
+      Los muebles de este pedido se fabricarán a medida;
+      no se toman del stock de exhibición.
+    </p>
+
+    <form id="form-pedido">
+      <label>Cliente:
+        <select id="campo-cliente-pedido" required>
+          <option value="">Selecciona un cliente</option>
+        </select>
+      </label>
+
+      <p>
+        Si el cliente es nuevo, regístralo en el formulario
+        de clientes de esta página.
+      </p>
+
+      <fieldset>
+        <legend>Datos del mueble a medida</legend>
+
+        <p>
+          <label>Descripción:
+            <input type="text" id="campo-descripcion-pedido"
+                   placeholder="Ropero de tres puertas y dos cajones">
+          </label>
+        </p>
+
+        <p>
+          <label>Alto (cm):
+            <input type="number" id="campo-alto-pedido"
+                   min="0.1" step="0.1">
+          </label>
+
+          <label>Ancho (cm):
+            <input type="number" id="campo-ancho-pedido"
+                   min="0.1" step="0.1">
+          </label>
+
+          <label>Profundidad (cm):
+            <input type="number" id="campo-profundidad-pedido"
+                   min="0.1" step="0.1">
+          </label>
+        </p>
+
+        <p>
+          <label>Color de melamina:
+            <input type="text" id="campo-color-pedido"
+                   placeholder="Blanco mate">
+          </label>
+
+          <label>Cantidad:
+            <input type="number" id="campo-cantidad-pedido"
+                   min="1" step="1" value="1">
+          </label>
+
+          <label>Precio acordado por unidad (Bs):
+            <input type="number" id="campo-precio-pedido"
+                   min="0.01" step="0.01">
+          </label>
+        </p>
+
+        <p>
+          <label>Fecha estimada de entrega:
+            <input type="date" id="campo-fecha-pedido">
+          </label>
+        </p>
+
+        <button type="button" id="agregar-mueble-pedido" disabled>
+          Agregar mueble a medida
+        </button>
+      </fieldset>
+
+      <h3>Muebles del pedido</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mueble</th>
+            <th>Medidas (alto × ancho × profundidad, cm)</th>
+            <th>Color</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Subtotal</th>
+            <th>Entrega estimada</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-detalle-pedido">
+          <tr>
+            <td colspan="8">
+              Todavía no agregaste muebles a medida.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Total acordado: Bs <span id="total-pedido">0.00</span>
+      </p>
+
+      <p>
+        <label>Monto recibido al registrar (anticipo o pago completo, Bs):
+          <input type="number" id="campo-anticipo-pedido"
+                 min="0" step="0.01" value="0" required>
+        </label>
+      </p>
+
+      <p>
+        <label>Método del cobro:
+          <select id="campo-metodo-pedido">
+            <option value="efectivo">Efectivo</option>
+            <option value="QR">QR</option>
+            <option value="transferencia">Transferencia</option>
+          </select>
+        </label>
+      </p>
+
+      <p>
+        Saldo pendiente: Bs <span id="saldo-pedido">0.00</span>
+      </p>
+
+      <p>
+        Con monto recibido cero se registra el pedido sin crear un pago.
+      </p>
+
+      <button type="submit" id="confirmar-pedido" disabled>
+        Registrar pedido a medida
+      </button>
+    </form>
+
+    <p id="mensaje-pedido" role="status"></p>
+  </section>
+
+  <section>
+    <h2>Clientes</h2>
+
+    <table id="tabla-clientes">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo-clientes"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Registrar cliente</h2>
+
+    <form id="form-cliente">
+      <label>Nombre:
+        <input type="text" id="campo-nombre-cliente" required>
+      </label>
+
+      <label>Teléfono:
+        <input type="tel" id="campo-contacto-cliente" required>
+      </label>
+
+      <button type="submit">Registrar cliente</button>
+    </form>
+
+    <p id="mensaje-cliente" role="status"></p>
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
-
