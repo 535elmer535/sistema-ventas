@@ -63,6 +63,7 @@ function renderizarMueblesSeleccionados() {
   actualizarBotonesVenta();
 }
 
+let usuarioEsAdministrador = false;
 async function cargarProductos() {
   const cuerpoTabla = document.querySelector("#cuerpo-productos");
   cuerpoTabla.innerHTML = '<tr><td colspan="3">Cargando productos...</td></tr>';
@@ -85,10 +86,12 @@ async function cargarProductos() {
                     data-id="${escaparHTML(producto.id_producto)}">
               Editar
             </button>
-            <button type="button" class="btn-eliminar"
-                    data-id="${escaparHTML(producto.id_producto)}">
-              Eliminar
-            </button>
+            ${usuarioEsAdministrador ? `
+  <button type="button" class="btn-eliminar"
+    data-id="${escaparHTML(producto.id_producto)}">
+    Eliminar
+  </button>
+` : ""}
           </td>
         </tr>
       `).join("");
@@ -123,10 +126,12 @@ async function probarClientes() {
             data-id="${escaparHTML(cliente.id_cliente)}">
       Editar
     </button>
-    <button type="button" class="btn-eliminar-cliente"
-            data-id="${escaparHTML(cliente.id_cliente)}">
-      Eliminar
-    </button>
+    ${usuarioEsAdministrador ? `
+  <button type="button" class="btn-eliminar-cliente"
+    data-id="${escaparHTML(cliente.id_cliente)}">
+    Eliminar
+  </button>
+` : ""}
   </td>
 </tr>
 
@@ -996,7 +1001,7 @@ document.querySelector("#form-cambiar-password")
 async function mostrarSaludoUsuario() {
   const saludo = document.querySelector("#saludo-usuario");
   saludo.textContent = "Bienvenido";
-
+usuarioEsAdministrador = false;
   try {
     const { data: { session }, error: errorSesion } =
       await clientesupabase.auth.getSession();
@@ -1006,12 +1011,12 @@ async function mostrarSaludoUsuario() {
 
     const { data: usuario, error } = await clientesupabase
       .from("usuarios")
-      .select("nombre")
-      .eq("correo", session.user.email)
+      .select("nombre, rol")
+      .eq("id_auth", session.user.id)
       .maybeSingle();
 
     if (error) throw error;
-
+     usuarioEsAdministrador = usuario?.rol === "administrador";
     saludo.textContent =
       `Bienvenido, ${usuario?.nombre || session.user.email}`;
   } catch (error) {
