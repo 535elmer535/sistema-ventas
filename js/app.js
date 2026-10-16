@@ -1,5 +1,5 @@
 
-// Guía 12, desafío 3.8: varios muebles de stock en una venta.
+
 // Ampliación propia: pedidos a medida y cobro inicial. No descuenta stock.
 // Los guardados son separados: no constituyen una transacción atómica.
 let productosCache = [];
@@ -63,7 +63,7 @@ function renderizarMueblesSeleccionados() {
   actualizarBotonesVenta();
 }
 
-async function iniciar() {
+async function cargarProductos() {
   const cuerpoTabla = document.querySelector("#cuerpo-productos");
   cuerpoTabla.innerHTML = '<tr><td colspan="3">Cargando productos...</td></tr>';
   productosCache = [];
@@ -76,10 +76,20 @@ async function iniciar() {
     cuerpoTabla.innerHTML = data.length === 0
       ? '<tr><td colspan="3">Todavía no hay productos registrados.</td></tr>'
       : data.map((producto) => `
-        <tr>
+               <tr>
           <td>${escaparHTML(producto.nombre)}</td>
           <td>${escaparHTML(producto.precio)}</td>
           <td>${escaparHTML(producto.existencia)}</td>
+          <td>
+            <button type="button" class="btn-editar"
+                    data-id="${escaparHTML(producto.id_producto)}">
+              Editar
+            </button>
+            <button type="button" class="btn-eliminar"
+                    data-id="${escaparHTML(producto.id_producto)}">
+              Eliminar
+            </button>
+          </td>
         </tr>
       `).join("");
   } catch (error) {
@@ -90,7 +100,7 @@ async function iniciar() {
 
 async function probarClientes() {
   const cuerpo = document.querySelector("#cuerpo-clientes");
-  cuerpo.innerHTML = '<tr><td colspan="2">Cargando clientes...</td></tr>';
+  cuerpo.innerHTML = '<tr><td colspan="3">Cargando clientes...</td></tr>';
   const clienteAnterior = document.querySelector("#campo-cliente-pedido").value;
   clientesCache = [];
   llenarSelectClientes([]);
@@ -103,13 +113,27 @@ async function probarClientes() {
       document.querySelector("#campo-cliente-pedido").value = clienteAnterior;
     }
     cuerpo.innerHTML = data.length === 0
-      ? '<tr><td colspan="2">Todavía no hay clientes registrados.</td></tr>'
+      ? '<tr><td colspan="3">Todavía no hay clientes registrados.</td></tr>'
       : data.map((cliente) => `
-        <tr><td>${escaparHTML(cliente.nombre)}</td><td>${escaparHTML(cliente.contacto)}</td></tr>
+       <tr>
+  <td>${escaparHTML(cliente.nombre)}</td>
+  <td>${escaparHTML(cliente.contacto)}</td>
+  <td>
+    <button type="button" class="btn-editar-cliente"
+            data-id="${escaparHTML(cliente.id_cliente)}">
+      Editar
+    </button>
+    <button type="button" class="btn-eliminar-cliente"
+            data-id="${escaparHTML(cliente.id_cliente)}">
+      Eliminar
+    </button>
+  </td>
+</tr>
+
       `).join("");
   } catch (error) {
     console.error("Error al leer clientes:", error);
-    cuerpo.innerHTML = '<tr><td colspan="2">No se pudo cargar el listado de clientes.</td></tr>';
+    cuerpo.innerHTML = '<tr><td colspan="3">No se pudo cargar el listado de clientes.</td></tr>';
   }
 }
 
@@ -129,9 +153,9 @@ document.querySelector("#agregar-mueble").addEventListener("click", () => {
   const nuevaCantidad = (existente?.cantidad ?? 0) + cantidad;
   const totalActual = mueblesSeleccionados.reduce((s, m) => s + m.precioCentavos * m.cantidad, 0);
   if (!Number.isFinite(precio) || precio <= 0 || !Number.isSafeInteger(precioCentavos) ||
-      precioCentavos <= 0 || !Number.isSafeInteger(nuevaCantidad) ||
-      !Number.isSafeInteger(precioCentavos * nuevaCantidad) ||
-      !Number.isSafeInteger(totalActual + precioCentavos * cantidad)) {
+    precioCentavos <= 0 || !Number.isSafeInteger(nuevaCantidad) ||
+    !Number.isSafeInteger(precioCentavos * nuevaCantidad) ||
+    !Number.isSafeInteger(totalActual + precioCentavos * cantidad)) {
     mensaje.textContent = "El precio o la cantidad exceden los valores admitidos.";
     return;
   }
@@ -404,8 +428,10 @@ document.querySelector("#form-pedido").addEventListener("submit", async (event) 
   try {
     // Primero pendiente: el estado solo cambia cuando el pago se confirma.
     const { data: venta, error: errorVenta } = await clientesupabase.from("ventas")
-      .insert({ id_usuario: 1, id_cliente: idCliente, tipo_venta: "pedido_medida",
-        total: total / 100, estado_pago: "pendiente" })
+      .insert({
+        id_usuario: 1, id_cliente: idCliente, tipo_venta: "pedido_medida",
+        total: total / 100, estado_pago: "pendiente"
+      })
       .select().single();
     if (errorVenta) throw errorVenta;
     idVenta = venta.id_venta;
@@ -454,5 +480,541 @@ document.querySelector("#form-pedido").addEventListener("submit", async (event) 
 document.querySelector("#campo-fecha-pedido").min = hoyEnBolivia();
 renderizarMueblesSeleccionados();
 renderizarPedido();
+
+
+// Guía 13: mostrar los datos del producto para editar.
+document.querySelector("#cuerpo-productos")
+  .addEventListener("click", (event) => {
+    const boton = event.target.closest(".btn-editar");
+    if (!boton) return;
+
+    const id = Number(boton.dataset.id);
+    const producto = productosCache.find(
+      (p) => Number(p.id_producto) === id
+    );
+
+    if (!producto) {
+      document.querySelector("#mensaje-producto").textContent =
+        "No se encontró el producto. Actualiza la página.";
+      return;
+    }
+
+    document.querySelector("#editar-id").value =
+      producto.id_producto;
+    document.querySelector("#editar-precio").value =
+      producto.precio;
+    document.querySelector("#editar-existencia").value =
+      producto.existencia;
+
+    document.querySelector("#panel-edicion").style.display =
+      "block";
+    document.querySelector("#mensaje-producto").textContent =
+      `Editando: ${producto.nombre}`;
+  });
+
+// Guía 13: guardar los cambios del producto.
+document.querySelector("#form-editar-producto")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formulario = event.currentTarget;
+    const boton = formulario.querySelector('button[type="submit"]');
+    const mensaje = document.querySelector("#mensaje-producto");
+
+    if (boton.disabled) return;
+
+    const id = Number(document.querySelector("#editar-id").value);
+    const precioCentavos = importeEnCentavos(
+      document.querySelector("#editar-precio").value
+    );
+    const textoExistencia =
+      document.querySelector("#editar-existencia").value.trim();
+    const existencia = Number(textoExistencia);
+
+    if (!Number.isSafeInteger(id) || id <= 0 ||
+      precioCentavos === null || precioCentavos <= 0 ||
+      textoExistencia === "" ||
+      !Number.isSafeInteger(existencia) || existencia < 0) {
+      mensaje.textContent =
+        "Revisa el precio y la existencia: el precio debe ser positivo y la existencia un entero de cero o más.";
+      return;
+    }
+
+    boton.disabled = true;
+    mensaje.textContent = "Guardando cambios...";
+
+    try {
+      const precio = precioCentavos / 100;
+
+      const { error } = await clientesupabase
+        .from("productos")
+        .update({ precio, existencia })
+        .eq("id_producto", id)
+        .select("id_producto")
+        .single();
+
+      if (error) throw error;
+
+      document.querySelector("#panel-edicion").style.display =
+        "none";
+      formulario.reset();
+      await cargarProductos();
+      resaltarFilaEditada("#cuerpo-productos", id);
+      mensaje.textContent = "Producto actualizado correctamente.";
+    } catch (error) {
+      console.error("Error al actualizar producto:", error);
+      mensaje.textContent =
+        "No se pudo confirmar el cambio. Revisa el producto en Supabase. " +
+        error.message;
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+// Guía 13: eliminar producto con confirmación.
+document.querySelector("#cuerpo-productos")
+  .addEventListener("click", async (event) => {
+    const boton = event.target.closest(".btn-eliminar");
+    if (!boton || boton.disabled) return;
+
+    const id = Number(boton.dataset.id);
+    const producto = productosCache.find(
+      (p) => Number(p.id_producto) === id
+    );
+    const mensaje = document.querySelector("#mensaje-producto");
+
+    if (!producto) {
+      mensaje.textContent = "No se encontró el producto.";
+      return;
+    }
+
+    const confirmado = window.confirm(
+      `¿Eliminar "${producto.nombre}"? Esta acción no se puede deshacer.`
+    );
+    if (!confirmado) return;
+
+    boton.disabled = true;
+    mensaje.textContent = "Eliminando producto...";
+
+    try {
+      const { error } = await clientesupabase
+        .from("productos")
+        .delete()
+        .eq("id_producto", id)
+        .select("id_producto")
+        .single();
+
+      if (error) throw error;
+
+      if (Number(document.querySelector("#editar-id").value) === id) {
+        document.querySelector("#panel-edicion").style.display =
+          "none";
+        document.querySelector("#form-editar-producto").reset();
+      }
+
+      await cargarProductos();
+      mensaje.textContent =
+        `Producto "${producto.nombre}" eliminado correctamente.`;
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      mensaje.textContent = error.code === "23503"
+        ? "No se puede eliminar: el producto tiene registros relacionados."
+        : "No se pudo confirmar la eliminación. Revisa Supabase. " +
+        error.message;
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+// Guía 13: mostrar los datos del cliente para editar.
+document.querySelector("#cuerpo-clientes")
+  .addEventListener("click", (event) => {
+    const boton = event.target.closest(".btn-editar-cliente");
+    if (!boton) return;
+
+    const id = Number(boton.dataset.id);
+    const cliente = clientesCache.find(
+      (c) => Number(c.id_cliente) === id
+    );
+
+    const mensaje =
+      document.querySelector("#mensaje-edicion-cliente");
+
+    if (!cliente) {
+      mensaje.textContent =
+        "No se encontró el cliente. Actualiza la página.";
+      return;
+    }
+
+    document.querySelector("#editar-id-cliente").value =
+      cliente.id_cliente;
+    document.querySelector("#editar-nombre-cliente").value =
+      cliente.nombre;
+    document.querySelector("#editar-contacto-cliente").value =
+      cliente.contacto;
+
+    document.querySelector("#panel-edicion-cliente")
+      .style.display = "block";
+
+    mensaje.textContent = `Editando: ${cliente.nombre}`;
+  });
+
+// Guía 13: guardar los cambios del cliente.
+document.querySelector("#form-editar-cliente")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formulario = event.currentTarget;
+    const boton = formulario.querySelector('button[type="submit"]');
+    const mensaje =
+      document.querySelector("#mensaje-edicion-cliente");
+
+    if (boton.disabled) return;
+
+    const id = Number(
+      document.querySelector("#editar-id-cliente").value
+    );
+    const nombre =
+      document.querySelector("#editar-nombre-cliente").value.trim();
+    const contacto =
+      document.querySelector("#editar-contacto-cliente").value.trim();
+
+    if (!Number.isSafeInteger(id) || id <= 0 ||
+      !nombre || !contacto) {
+      mensaje.textContent = "Completa el nombre y el teléfono.";
+      return;
+    }
+
+    boton.disabled = true;
+    mensaje.textContent = "Guardando cambios...";
+
+    try {
+      const { error } = await clientesupabase
+        .from("clientes")
+        .update({ nombre, contacto })
+        .eq("id_cliente", id)
+        .select("id_cliente")
+        .single();
+
+      if (error) throw error;
+
+      document.querySelector("#panel-edicion-cliente")
+        .style.display = "none";
+      formulario.reset();
+      await probarClientes();
+      resaltarFilaEditada("#cuerpo-clientes", id);
+      mensaje.textContent = "Cliente actualizado correctamente.";
+    } catch (error) {
+      console.error("Error al actualizar cliente:", error);
+      mensaje.textContent =
+        "No se pudo confirmar el cambio. Revisa Supabase. " +
+        error.message;
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+// Guía 13: eliminar cliente con confirmación.
+document.querySelector("#cuerpo-clientes")
+  .addEventListener("click", async (event) => {
+    const boton = event.target.closest(".btn-eliminar-cliente");
+    if (!boton || boton.disabled) return;
+
+    const id = Number(boton.dataset.id);
+    const cliente = clientesCache.find(
+      (c) => Number(c.id_cliente) === id
+    );
+    const mensaje =
+      document.querySelector("#mensaje-edicion-cliente");
+
+    if (!Number.isSafeInteger(id) || id <= 0 || !cliente) {
+      mensaje.textContent = "No se encontró el cliente.";
+      return;
+    }
+
+    const confirmado = window.confirm(
+      `¿Eliminar al cliente "${cliente.nombre}"? Esta acción no se puede deshacer.`
+    );
+    if (!confirmado) return;
+
+    boton.disabled = true;
+    mensaje.textContent = "Eliminando cliente...";
+
+    try {
+      const { error } = await clientesupabase
+        .from("clientes")
+        .delete()
+        .eq("id_cliente", id)
+        .select("id_cliente")
+        .single();
+
+      if (error) throw error;
+
+      if (
+        Number(document.querySelector("#editar-id-cliente").value)
+        === id
+      ) {
+        document.querySelector("#panel-edicion-cliente")
+          .style.display = "none";
+        document.querySelector("#form-editar-cliente").reset();
+      }
+
+      await probarClientes();
+      mensaje.textContent =
+        `Cliente "${cliente.nombre}" eliminado correctamente.`;
+    } catch (error) {
+      console.error("Error al eliminar cliente:", error);
+      mensaje.textContent = error.code === "23503"
+        ? "No se puede eliminar: el cliente tiene registros relacionados."
+        : "No se pudo confirmar la eliminación. Revisa Supabase. " +
+        error.message;
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+// Guía 13, punto 3.8: cancelar edición de producto.
+document.querySelector("#cancelar-edicion-producto")
+  .addEventListener("click", () => {
+    const formulario = document.querySelector("#form-editar-producto");
+
+    if (formulario.querySelector('button[type="submit"]').disabled) {
+      return;
+    }
+
+    formulario.reset();
+    document.querySelector("#editar-id").value = "";
+    document.querySelector("#panel-edicion").style.display = "none";
+    document.querySelector("#mensaje-producto").textContent =
+      "Edición cancelada. No se guardaron cambios.";
+  });
+
+// Cancelar edición de cliente.
+document.querySelector("#cancelar-edicion-cliente")
+  .addEventListener("click", () => {
+    const formulario = document.querySelector("#form-editar-cliente");
+
+    if (formulario.querySelector('button[type="submit"]').disabled) {
+      return;
+    }
+
+    formulario.reset();
+    document.querySelector("#editar-id-cliente").value = "";
+    document.querySelector("#panel-edicion-cliente").style.display =
+      "none";
+    document.querySelector("#mensaje-edicion-cliente").textContent =
+      "Edición cancelada. No se guardaron cambios.";
+  });
+
+// Guía 13, punto 3.8: resaltar la fila actualizada.
+function resaltarFilaEditada(selectorTabla, id) {
+  const boton = document.querySelector(
+    `${selectorTabla} button[data-id="${id}"]`
+  );
+  const fila = boton?.closest("tr");
+  if (!fila) return;
+
+  fila.animate(
+    [
+      { backgroundColor: "#c8f7c5" },
+      { backgroundColor: "#c8f7c5" }
+    ],
+    { duration: 1000 }
+  );
+}
+
+// Guía 14: mostrar el sistema y cargar sus datos.
+async function mostrarApp() {
+
+  document.querySelector("#seccion-login").style.display = "none";
+  document.querySelector("#seccion-app").style.display = "block";
+
+  await mostrarSaludoUsuario();
+  await cargarProductos();
+  await probarClientes();
+}
+
+// Mostrar el formulario de inicio de sesión.
+function mostrarLogin() {
+  document.querySelector("#seccion-app").style.display = "none";
+  document.querySelector("#seccion-login").style.display = "block";
+}
+
+// Guía 14: comprobar la sesión al abrir la página.
+async function iniciar() {
+  try {
+    const {
+      data: { session },
+      error
+    } = await clientesupabase.auth.getSession();
+
+    if (error) throw error;
+
+    if (session) {
+      await mostrarApp();
+    } else {
+      mostrarLogin();
+    }
+  } catch (error) {
+    console.error("Error al comprobar la sesión:", error);
+    mostrarLogin();
+    document.querySelector("#mensaje-login").textContent =
+      "No se pudo comprobar la sesión. Actualiza la página.";
+  }
+}
+
 iniciar();
-probarClientes();
+
+// Guía 14: cerrar la sesión en este navegador.
+document.querySelector("#btn-logout")
+  .addEventListener("click", async () => {
+    const boton = document.querySelector("#btn-logout");
+    if (boton.disabled) return;
+
+    boton.disabled = true;
+
+    try {
+      const { error } = await clientesupabase.auth.signOut({
+        scope: "local"
+      });
+
+      if (error) throw error;
+
+      // Recargar también limpia los formularios y listas temporales.
+      location.reload();
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+      window.alert(
+        "No se pudo cerrar la sesión. Inténtalo nuevamente."
+      );
+      boton.disabled = false;
+    }
+  });
+
+// Guía 14: iniciar sesión.
+document.querySelector("#form-login")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formulario = event.currentTarget;
+    const boton = formulario.querySelector('button[type="submit"]');
+    const mensaje = document.querySelector("#mensaje-login");
+
+    if (boton.disabled) return;
+
+    const email =
+      document.querySelector("#login-email").value.trim();
+    const password =
+      document.querySelector("#login-password").value;
+
+    if (!email || !password) {
+      mensaje.textContent = "Completa el correo y la contraseña.";
+      return;
+    }
+
+    boton.disabled = true;
+    mensaje.textContent = "Iniciando sesión...";
+
+    try {
+      const { error } =
+        await clientesupabase.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) {
+        mensaje.textContent =
+          "No se pudo iniciar sesión. Revisa el correo y la contraseña.";
+        return;
+      }
+
+      formulario.reset();
+      mensaje.textContent = "";
+      await mostrarApp();
+    } catch (error) {
+      console.error("Error durante el inicio de sesión:", error);
+      mensaje.textContent =
+        "Ocurrió un problema de conexión. Inténtalo nuevamente.";
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+
+  // Guía 14: cambiar la contraseña del usuario actual.
+document.querySelector("#form-cambiar-password")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formulario = event.currentTarget;
+    const boton = formulario.querySelector('button[type="submit"]');
+    const mensaje = document.querySelector("#mensaje-password");
+
+    if (boton.disabled) return;
+
+    const nueva =
+      document.querySelector("#nueva-password").value;
+    const confirmacion =
+      document.querySelector("#confirmar-password").value;
+
+    if (nueva.length < 12) {
+      mensaje.textContent =
+        "La contraseña debe tener al menos 12 caracteres.";
+      return;
+    }
+
+    if (nueva !== confirmacion) {
+      mensaje.textContent = "Las contraseñas no coinciden.";
+      return;
+    }
+
+    boton.disabled = true;
+    mensaje.textContent = "Cambiando contraseña...";
+
+    try {
+      const { error } = await clientesupabase.auth.updateUser({
+        password: nueva
+      });
+
+      if (error) {
+        mensaje.textContent =
+          "No se pudo cambiar la contraseña: " + error.message;
+        return;
+      }
+
+      formulario.reset();
+      mensaje.textContent =
+        "Contraseña actualizada correctamente. Ya puedes probar el ingreso con la nueva.";
+    } catch {
+      mensaje.textContent =
+        "No se pudo confirmar el cambio. Comprueba tu conexión.";
+    } finally {
+      boton.disabled = false;
+    }
+  });
+
+async function mostrarSaludoUsuario() {
+  const saludo = document.querySelector("#saludo-usuario");
+  saludo.textContent = "Bienvenido";
+
+  try {
+    const { data: { session }, error: errorSesion } =
+      await clientesupabase.auth.getSession();
+
+    if (errorSesion) throw errorSesion;
+    if (!session) return;
+
+    const { data: usuario, error } = await clientesupabase
+      .from("usuarios")
+      .select("nombre")
+      .eq("correo", session.user.email)
+      .maybeSingle();
+
+    if (error) throw error;
+
+    saludo.textContent =
+      `Bienvenido, ${usuario?.nombre || session.user.email}`;
+  } catch (error) {
+    console.error("No se pudo cargar el saludo:", error);
+  }
+}
