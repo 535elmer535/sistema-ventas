@@ -837,6 +837,8 @@ async function mostrarApp() {
   await mostrarSaludoUsuario();
   await cargarProductos();
   await probarClientes();
+  await cargarResumenVentas();
+await cargarProductosVendidos();
 }
 
 // Mostrar el formulario de inicio de sesión.
@@ -1023,3 +1025,144 @@ usuarioEsAdministrador = false;
     console.error("No se pudo cargar el saludo:", error);
   }
 }
+
+async function cargarResumenVentas() {
+  const contenedor = document.querySelector("#resumen-ventas");
+  const desde = document.querySelector("#ventas-desde").value;
+  const hasta = document.querySelector("#ventas-hasta").value;
+
+  if (desde && hasta && desde > hasta) {
+    contenedor.textContent = "La fecha Desde no puede ser posterior a Hasta.";
+    return;
+  }
+
+  contenedor.textContent = "Cargando ventas...";
+
+  try {
+    let consulta = clientesupabase
+      .from("ventas")
+      .select("*, detalle_ventas(*, productos(*))")
+      .order("fecha_venta", { ascending: false });
+
+    if (desde) {
+      consulta = consulta.gte(
+        "fecha_venta",
+        `${desde}T00:00:00-04:00`
+      );
+    }
+
+    if (hasta) {
+      const diaSiguiente = new Date(`${hasta}T00:00:00-04:00`);
+      diaSiguiente.setUTCDate(diaSiguiente.getUTCDate() + 1);
+
+      consulta = consulta.lt(
+        "fecha_venta",
+        diaSiguiente.toISOString()
+      );
+    }
+
+    const { data: ventas, error } = await consulta;
+    if (error) throw error;
+
+    const totalCentavos = ventas.reduce(
+      (suma, venta) => suma + Math.round(Number(venta.total) * 100),
+      0
+    );
+
+    const listado = ventas.map((venta) => {
+      const fecha = new Date(venta.fecha_venta).toLocaleDateString(
+        "es-BO",
+        { timeZone: "America/La_Paz" }
+      );
+
+      return `
+        <li>
+          Venta ${escaparHTML(venta.id_venta)} —
+          ${escaparHTML(fecha)} —
+          Bs ${Number(venta.total).toFixed(2)}
+        </li>
+      `;
+    }).join("");
+
+    contenedor.innerHTML = `
+      <p>Cantidad de ventas: ${ventas.length}</p>
+      <p><strong>Total vendido: Bs ${(totalCentavos / 100).toFixed(2)}</strong></p>
+      <p>Este total corresponde al valor de las ventas, incluidos
+      los pedidos a medida; no indica cuánto dinero se ha cobrado.</p>
+      ${ventas.length ? `<ul>${listado}</ul>` : "<p>No hay ventas para estas fechas.</p>"}
+    `;
+  } catch (error) {
+    console.error("Error al consultar el resumen:", error);
+    contenedor.textContent = "No se pudo cargar el reporte de ventas.";
+  }
+}
+
+document.querySelector("#btn-filtrar-ventas")
+  .addEventListener("click", cargarResumenVentas);
+
+  async function cargarProductosVendidos() {
+  const contenedor = document.querySelector("#productos-vendidos");
+  contenedor.textContent = "Consultando muebles vendidos...";
+
+  try {
+    const { data: detalles, error } = await clientesupabase
+      .from("detalle_ventas")
+      .select("id_producto, cantidad, productos(nombre)");
+
+    if (error) throw error;
+
+    const agrupados = new Map();
+
+    for (const detalle of detalles) {
+      const id = detalle.id_producto;
+
+      if (!agrupados.has(id)) {
+        agrupados.set(id, {
+          nombre: detalle.productos?.nombre || "Producto sin nombre",
+          cantidad: 0
+        });
+      }
+
+      agrupados.get(id).cantidad += Number(detalle.cantidad);
+    }
+
+    const productos = [...agrupados.values()].sort(
+      (a, b) => b.cantidad - a.cantidad ||
+        a.nombre.localeCompare(b.nombre, "es")
+    );
+
+    if (productos.length === 0) {
+      contenedor.textContent = "Todavía no hay muebles de catálogo vendidos.";
+      return;
+    }
+
+    const mayorCantidad = productos[0].cantidad;
+
+    const masVendidos = productos
+      .filter((producto) => producto.cantidad === mayorCantidad)
+      .map((producto) => escaparHTML(producto.nombre))
+      .join(", ");
+
+    contenedor.innerHTML = `
+      <p>
+        <strong>Mayor cantidad vendida:</strong>
+        ${masVendidos} — ${mayorCantidad} unidades por mueble.
+      </p>
+
+      <ul>
+        ${productos.map((producto) => `
+          <li>
+            ${escaparHTML(producto.nombre)}:
+            ${producto.cantidad} unidades
+          </li>
+        `).join("")}
+      </ul>
+    `;
+  } catch (error) {
+    console.error("Error al consultar los muebles vendidos:", error);
+    contenedor.textContent = "No se pudo cargar el reporte de muebles.";
+  }
+}
+
+document.querySelector("#btn-productos-vendidos")
+  .addEventListener("click", cargarProductosVendidos);

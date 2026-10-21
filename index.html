@@ -331,7 +331,27 @@
 
       <p id="mensaje-cliente" role="status"></p>
     </section>
+<section id="seccion-reportes">
+  <h2>Reporte de ventas</h2>
+<label for="ventas-desde">Desde:</label>
+<input type="date" id="ventas-desde">
 
+<label for="ventas-hasta">Hasta:</label>
+<input type="date" id="ventas-hasta">
+
+<button type="button" id="btn-filtrar-ventas">
+  Consultar ventas
+</button>
+  <div id="resumen-ventas"></div>
+  <h3>Muebles de catálogo más vendidos</h3>
+<p>Unidades vendidas en todo el historial, sin filtro de fechas.</p>
+
+<button type="button" id="btn-productos-vendidos">
+  Consultar muebles más vendidos
+</button>
+
+<div id="productos-vendidos"></div>
+</section>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
