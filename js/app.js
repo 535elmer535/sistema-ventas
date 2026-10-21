@@ -141,17 +141,56 @@ async function probarClientes() {
     cuerpo.innerHTML = '<tr><td colspan="3">No se pudo cargar el listado de clientes.</td></tr>';
   }
 }
+function manejarError(
+  error,
+  selector = "#mensaje-venta",
+  texto = "Ocurrió un problema al guardar. Intenta de nuevo."
+) {
+  console.error("Error en la operación:", error);
+  document.querySelector(selector).textContent = texto;
+}
+function validarVenta({ idProducto, cantidad }) {
+  const errores = [];
+
+  if (
+    !Number.isSafeInteger(idProducto) ||
+    idProducto <= 0 ||
+    !productosCache.some(
+      (producto) => Number(producto.id_producto) === idProducto
+    )
+  ) {
+    errores.push("Selecciona un producto válido.");
+  }
+
+  if (!Number.isFinite(cantidad) || cantidad <= 0) {
+    errores.push("La cantidad debe ser mayor a cero.");
+  } else if (!Number.isSafeInteger(cantidad)) {
+    errores.push("La cantidad debe ser un número entero dentro del rango permitido.");
+  }
+
+  return errores;
+}
 
 document.querySelector("#agregar-mueble").addEventListener("click", () => {
   if (guardandoVenta || ventaPorRevisar) return;
   const mensaje = document.querySelector("#mensaje-venta");
   const idProducto = Number(document.querySelector("#campo-producto").value);
   const cantidad = Number(document.querySelector("#campo-cantidad").value);
-  const producto = productosCache.find((p) => Number(p.id_producto) === idProducto);
-  if (!producto || !Number.isSafeInteger(idProducto) || !Number.isSafeInteger(cantidad) || cantidad <= 0) {
-    mensaje.textContent = "Selecciona un producto y escribe una cantidad entera mayor que cero.";
+  
+  mensaje.textContent = "";
+
+
+  const errores = validarVenta({ idProducto, cantidad });
+
+  if (errores.length > 0) {
+    mensaje.textContent = errores.join(" ");
     return;
   }
+
+  const producto = productosCache.find(
+    (p) => Number(p.id_producto) === idProducto
+  );
+
   const precio = Number(producto.precio);
   const precioCentavos = Math.round(precio * 100);
   const existente = mueblesSeleccionados.find((m) => m.id_producto === idProducto);
@@ -172,6 +211,7 @@ document.querySelector("#agregar-mueble").addEventListener("click", () => {
   if (existente) existente.cantidad = nuevaCantidad;
   else mueblesSeleccionados.push({ id_producto: idProducto, nombre: producto.nombre, cantidad, precioCentavos });
   document.querySelector("#campo-cantidad").value = "1";
+    
   mensaje.textContent = "Mueble agregado a la lista. Todavía no se guardó la venta.";
   renderizarMueblesSeleccionados();
 });
@@ -187,12 +227,57 @@ document.querySelector("#cuerpo-detalle-stock").addEventListener("click", (event
 });
 
 document.querySelector("#form-venta").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (guardandoVenta || ventaPorRevisar || mueblesSeleccionados.length === 0) return;
+   event.preventDefault();
+
+  if (guardandoVenta || ventaPorRevisar) return;
+
   const formulario = event.currentTarget;
   const mensaje = document.querySelector("#mensaje-venta");
   const lineas = mueblesSeleccionados.map((m) => ({ ...m }));
-  const totalCentavos = lineas.reduce((s, m) => s + m.precioCentavos * m.cantidad, 0);
+  const errores = [];
+
+  if (lineas.length === 0) {
+    errores.push("Agrega al menos un mueble antes de registrar la venta.");
+  }
+
+  for (const [indice, mueble] of lineas.entries()) {
+    const erroresMueble = validarVenta({
+      idProducto: mueble.id_producto,
+      cantidad: mueble.cantidad
+    });
+
+    errores.push(
+      ...erroresMueble.map(
+        (error) => `Mueble ${indice + 1}: ${error}`
+      )
+    );
+
+    if (
+      !Number.isSafeInteger(mueble.precioCentavos) ||
+      mueble.precioCentavos <= 0
+    ) {
+      errores.push(`Mueble ${indice + 1}: el precio no es válido.`);
+    }
+  }
+
+  const totalCentavos = lineas.reduce(
+    (suma, mueble) => suma + mueble.precioCentavos * mueble.cantidad,
+    0
+  );
+
+  if (
+    lineas.length > 0 &&
+    (!Number.isSafeInteger(totalCentavos) || totalCentavos <= 0)
+  ) {
+    errores.push("El total de la venta no es válido.");
+  }
+
+  if (errores.length > 0) {
+    mensaje.textContent = errores.join(" ");
+    
+    return;
+  }
+
   guardandoVenta = true;
   actualizarBotonesVenta();
   mensaje.textContent = "Guardando venta...";
@@ -215,12 +300,14 @@ document.querySelector("#form-venta").addEventListener("submit", async (event) =
     formulario.reset();
     renderizarMueblesSeleccionados();
     mensaje.textContent = `Venta ${idVenta} registrada correctamente con ${lineas.length} muebles diferentes.`;
-  } catch (error) {
-    console.error("Error durante el guardado de la venta:", error);
+    } catch (error) {
     ventaPorRevisar = true;
-    mensaje.textContent = idVenta === null
+
+    const texto = idVenta === null
       ? "No se confirmó el resultado. Revisa ventas y detalle_ventas antes de reintentar. El envío quedó bloqueado en esta página."
       : `La venta ${idVenta} se guardó, pero no se confirmó su detalle. Revisa ambas tablas antes de reintentar. El envío quedó bloqueado en esta página.`;
+
+    manejarError(error, "#mensaje-venta", texto);
   } finally {
     guardandoVenta = false;
     actualizarBotonesVenta();
@@ -517,6 +604,20 @@ document.querySelector("#cuerpo-productos")
       `Editando: ${producto.nombre}`;
   });
 
+function validarEdicionProducto({ precio, existencia }) {
+  const errores = [];
+
+  if (!Number.isFinite(precio) || precio <= 0) {
+    errores.push("El precio debe ser mayor a cero.");
+  }
+
+  if (!Number.isSafeInteger(existencia) || existencia < 0) {
+    errores.push("La existencia debe ser un número entero de cero o más.");
+  }
+
+  return errores;
+}
+
 // Guía 13: guardar los cambios del producto.
 document.querySelector("#form-editar-producto")
   .addEventListener("submit", async (event) => {
@@ -534,14 +635,22 @@ document.querySelector("#form-editar-producto")
     );
     const textoExistencia =
       document.querySelector("#editar-existencia").value.trim();
-    const existencia = Number(textoExistencia);
 
-    if (!Number.isSafeInteger(id) || id <= 0 ||
-      precioCentavos === null || precioCentavos <= 0 ||
-      textoExistencia === "" ||
-      !Number.isSafeInteger(existencia) || existencia < 0) {
-      mensaje.textContent =
-        "Revisa el precio y la existencia: el precio debe ser positivo y la existencia un entero de cero o más.";
+      const existencia = textoExistencia === ""
+      ? NaN
+      : Number(textoExistencia);
+
+    const errores = validarEdicionProducto({
+      precio: precioCentavos === null ? NaN : precioCentavos / 100,
+      existencia
+    });
+
+    if (!Number.isSafeInteger(id) || id <= 0) {
+      errores.push("Selecciona un producto válido para editar.");
+    }
+
+    if (errores.length > 0) {
+      mensaje.textContent = errores.join(" ");
       return;
     }
 
@@ -566,11 +675,14 @@ document.querySelector("#form-editar-producto")
       await cargarProductos();
       resaltarFilaEditada("#cuerpo-productos", id);
       mensaje.textContent = "Producto actualizado correctamente.";
-    } catch (error) {
-      console.error("Error al actualizar producto:", error);
-      mensaje.textContent =
-        "No se pudo confirmar el cambio. Revisa el producto en Supabase. " +
-        error.message;
+
+        } catch (error) {
+      manejarError(
+        error,
+        "#mensaje-producto",
+        "No se pudo confirmar el cambio. Revisa el producto en Supabase antes de reintentar."
+      );
+
     } finally {
       boton.disabled = false;
     }
@@ -620,12 +732,14 @@ document.querySelector("#cuerpo-productos")
       await cargarProductos();
       mensaje.textContent =
         `Producto "${producto.nombre}" eliminado correctamente.`;
+        
     } catch (error) {
-      console.error("Error al eliminar producto:", error);
-      mensaje.textContent = error.code === "23503"
+      const texto = error.code === "23503"
         ? "No se puede eliminar: el producto tiene registros relacionados."
-        : "No se pudo confirmar la eliminación. Revisa Supabase. " +
-        error.message;
+        : "No se pudo confirmar la eliminación. Revisa el producto en Supabase antes de reintentar.";
+
+      manejarError(error, "#mensaje-producto", texto);
+
     } finally {
       boton.disabled = false;
     }
