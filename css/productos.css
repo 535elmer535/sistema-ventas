@@ -1,0 +1,12 @@
+/* Inventario: ancho natural de tabla con espacio acotado para edición. */
+#seccion-app .vista-panel > .mod-productos { max-width: min(100%, 1050px); }
+#seccion-app #tabla-productos { width: max-content; margin-inline: auto; }
+#seccion-app #tabla-productos td:nth-child(2) { font-weight: 600; }
+#seccion-app #panel-edicion { max-width: 600px; margin: 22px auto 0; border-radius: 18px; box-shadow: var(--inset); padding: 22px; }
+#seccion-app #form-editar-producto { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 8px 20px; }
+#seccion-app #form-editar-producto label { width: 150px; }
+
+/* Inventario MUEBLEX: encabezados cálidos y edición en tarjeta interior. */
+#seccion-app .mod-productos #panel-edicion { background: #f8f0e3; border: 1px solid #e6d7bf; box-shadow: none; }
+#seccion-app .mod-productos #tabla-productos td:nth-child(2) { color: #39583d; }
+#seccion-app .mod-productos #tabla-productos td:nth-child(3) { font-weight: 600; }

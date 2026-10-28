@@ -1,0 +1,40 @@
+/* Estructura lateral neumórfica; todos los estilos se limitan al panel interno. */
+#seccion-app { padding: 28px 32px 60px 284px; }
+#seccion-app[style*="display: block"], #seccion-app[style*="display:block"] { display: block !important; }
+#seccion-app .barra-lateral { position: fixed; inset: 20px auto 20px 20px; width: 232px; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; border-radius: 24px; background: var(--bg); box-shadow: var(--raised); border: 1px solid #ffffff99; }
+#seccion-app .marca-panel { display: flex; align-items: center; gap: 12px; padding: 0 8px; }
+#seccion-app .marca-simbolo { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; color: var(--accent); box-shadow: var(--small-raised); font-weight: 800; }
+#seccion-app .marca-panel strong { font-size: 14px; letter-spacing: .06em; }
+#seccion-app .marca-panel small { display: block; font-size: 10px; font-weight: 400; color: #636b76; letter-spacing: 0; }
+#seccion-app .barra-lateral nav { display: grid; gap: 12px; }
+#seccion-app .barra-lateral nav button { display: flex; align-items: center; gap: 14px; text-align: left; min-height: 48px; font-size: 14px; }
+#seccion-app .barra-lateral nav i { width: 20px; text-align: center; }
+#seccion-app .barra-lateral nav [aria-current="page"] { box-shadow: var(--inset); color: var(--accent); border-color: transparent; }
+#seccion-app #btn-logout { margin-top: auto; width: 100%; }
+#seccion-app #contenido-panel { max-width: 1400px; margin: auto; min-width: 0; }
+#seccion-app .cabecera-panel { margin: 0 0 28px; }
+#seccion-app #saludo-usuario { font-size: clamp(18px, 2vw, 25px); }
+#seccion-app .titulo-seccion { font-size: 14px; color: #636b76; margin: 6px 0 0; }
+#seccion-app .vista-panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; justify-items: center; }
+#seccion-app .vista-panel > :where(.modulo) { grid-column: 1 / -1; width: fit-content; max-width: 100%; justify-self: center; }
+#seccion-app .vista-panel > .bienvenida { width: min(100%, 900px); padding: clamp(24px, 3vw, 40px); }
+#seccion-app .bienvenida h1 { font-size: clamp(25px, 3vw, 38px); line-height: 1.25; margin: 14px 0; }
+#seccion-app .etiqueta-inicio { font-size: 10px; font-weight: 600; letter-spacing: .15em; color: var(--accent); }
+#seccion-app .accesos-inicio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 26px; }
+#seccion-app .accesos-inicio button { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 70px; }
+@media (max-width: 900px) {
+  #seccion-app { padding: 20px 20px 48px 232px; }
+  #seccion-app .barra-lateral { left: 14px; width: 196px; padding: 22px 12px; }
+  #seccion-app .accesos-inicio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  #seccion-app { padding: 14px 14px 40px; }
+  #seccion-app .barra-lateral { position: static; width: 100%; margin-bottom: 26px; gap: 20px; padding: 20px; }
+  #seccion-app .barra-lateral nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  #seccion-app .barra-lateral nav button { padding: 10px; gap: 8px; font-size: 12px; }
+  #seccion-app #btn-logout { margin-top: 0; }
+  #seccion-app .accesos-inicio { gap: 14px; }
+}
+
+#seccion-app .bienvenida > p { max-width: 64ch; }
+@media (max-width: 380px) { #seccion-app .accesos-inicio { grid-template-columns: minmax(0, 1fr); } }

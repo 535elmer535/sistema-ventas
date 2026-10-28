@@ -1,0 +1,580 @@
+
+
+.pantalla-login, .pantalla-login * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.pantalla-login {
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+.pantalla-login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    overflow: hidden;
+}
+
+
+
+/* =========================
+       LOGIN WRAPPER
+========================= */
+
+
+
+.pantalla-login .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+
+/* =========================
+      FLIP PERSPECTIVE
+========================= */
+
+
+
+.pantalla-login .flip-scene {
+    width: 520px;
+    height: 520px;
+    perspective: 1800px;
+}
+
+
+
+.pantalla-login .flip-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .9s cubic-bezier(.22,1,.36,1);
+    transform-style: preserve-3d;
+}
+
+
+
+.pantalla-login .flip-scene.flipped .flip-card {
+    transform: rotateY(180deg);
+}
+
+
+
+/* =========================
+      NEUMORPHIC CIRCLE (shared by both faces)
+========================= */
+
+
+
+.pantalla-login .glass-circle {
+    position: absolute;
+    inset: 0;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    box-shadow:
+        -22px -22px 44px #ffffff,
+        22px 22px 50px #c3c3c3,
+        -1px -1px 1px rgba(255,255,255,.5) inset;
+    z-index: 5;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+
+.pantalla-login .glass-circle.back {
+    transform: rotateY(180deg);
+}
+
+
+
+
+/* =========================
+       INNER RING
+========================= */
+
+
+
+.pantalla-login .glass-circle::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+        inset 3px 3px 9px rgba(163, 163, 163, 0.18),
+        inset -3px -3px 9px rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+}
+
+
+
+
+
+/* =========================
+        LOGIN / SIGNUP FORM
+========================= */
+
+
+
+.pantalla-login .login-form {
+    position: relative;
+    width: 290px;
+    z-index: 10;
+}
+
+
+
+/* =========================
+          TITLE
+========================= */
+
+
+
+.pantalla-login .login-form h1 {
+    color: #4a4a4a;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    margin-bottom: 4px;
+    text-align: center;
+    text-shadow:
+        1px 1px 1px rgba(255, 255, 255, 0.9),
+        -2px -2px 1px rgba(163, 163, 163, 0.25);
+}
+
+
+
+.pantalla-login .login-form .subtitle {
+    text-align: center;
+    color: #9a9a9a;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .3px;
+    margin-bottom: 28px;
+}
+
+
+
+/* =========================
+        INPUT BOX
+========================= */
+
+
+
+.pantalla-login .input-box {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+
+
+/* =========================
+          ICON
+========================= */
+
+
+
+.pantalla-login .input-box i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #909090;
+    font-size: 15px;
+    z-index: 2;
+    transition: color .35s ease;
+}
+
+
+
+/* =========================
+          INPUT
+========================= */
+
+
+
+.pantalla-login .input-box input {
+    width: 100%;
+    height: 46px;
+    padding: 0 18px 0 45px;
+    border: none;
+    outline: none;
+    background: #e8e8e8;
+    color: #4a4a4a;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: .2px;
+    border-radius: 12px;
+    box-shadow:
+        inset -6px -6px 10px rgba(255,255,255,.95),
+        inset 6px 6px 10px rgba(184,190,204,.45);
+    transition: box-shadow .4s cubic-bezier(.22,1,.36,1), transform .4s cubic-bezier(.22,1,.36,1);
+}
+
+
+
+/* =========================
+       PLACEHOLDER
+========================= */
+
+
+
+.pantalla-login .input-box input::placeholder {
+    color: #a3a3a3;
+    font-weight: 400;
+}
+
+
+
+/* =========================
+       FOCUS — premium glow, no clunky border ring
+========================= */
+
+
+
+.pantalla-login .input-box input:focus {
+    transform: translateY(-2px);
+    box-shadow:
+    inset 3px 3px 6px rgba(120,10,10,.35),
+    inset -3px -3px 6px rgba(212, 55, 55, 0.25);
+}
+
+
+
+.pantalla-login .input-box input:focus + i, .pantalla-login .input-box:focus-within i {
+    color: #a10f0f;
+}
+
+
+
+/* =========================
+       FORGOT PASSWORD / REMEMBER
+========================= */
+
+
+
+.pantalla-login .forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -1px;
+    margin-bottom: 30px;
+   
+}
+
+
+
+.pantalla-login .remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #929191;
+}
+
+
+
+/* tiny neumorphic toggle */
+
+
+.pantalla-login .switch {
+    position: relative;
+    width: 32px;
+    height: 18px;
+    border-radius: 20px;
+    background: #e8e8e8;
+    box-shadow:
+        inset 3px 3px 6px rgba(184,190,204,.5),
+        inset -3px -3px 6px rgba(255,255,255,.9);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+
+
+.pantalla-login .switch::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+    transition: left .25s ease, background .25s ease;
+}
+
+
+
+.pantalla-login .switch.on {
+    box-shadow:
+        inset 3px 3px 6px rgba(120,10,10,.35),
+        inset -3px -3px 6px rgba(212,175,55,.25);
+}
+
+
+
+.pantalla-login .switch.on::after {
+    left: 16px;
+    background: #a10f0f;
+}
+
+
+
+.pantalla-login .forgot a {
+    font-size: 12px;
+    color: #929191;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+
+
+.pantalla-login .forgot a:hover {
+    color: #a10f0f;
+}
+
+
+
+
+
+/* =========================
+          BUTTON
+========================= */
+
+
+
+.pantalla-login .login-form button {
+    position: relative;
+    width: 290px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #838383;
+    background: #e8e8e8;
+    box-shadow:
+        -7px -7px 12px #f8f8f8,
+         7px 7px 12px #c8c8c8;
+    transition: color .4s ease, background .4s ease, box-shadow .4s ease, transform .25s ease;
+}
+
+
+
+/* premium sheen sweep on hover */
+
+
+.pantalla-login .login-form button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+}
+
+
+
+.pantalla-login .login-form button:hover::before {
+    left: 130%;
+}
+
+
+
+/* =========================
+          HOVER
+========================= */
+
+
+
+.pantalla-login .login-form button:hover {
+    transform: translateY(-2px);
+    color: #f5e9c8;
+    background: linear-gradient(155deg, #b21414 0%, #7c0d0d 100%);
+    box-shadow:
+        0 10px 22px rgba(120, 10, 10, 0.35),
+        -5px -5px 15px rgba(255, 255, 255, 0.6),
+        inset 0 1px 1px rgba(255,255,255,.25);
+}
+
+
+
+/* =========================
+          ACTIVE
+========================= */
+
+
+
+.pantalla-login .login-form button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow:
+        inset 5px 5px 10px rgba(60, 5, 5, 0.4),
+        inset -5px -5px 10px rgba(212, 175, 55, 0.2);
+}
+
+
+
+.pantalla-login .login-form .signup-text {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 12px;
+    color: #9a9a9a;
+}
+
+
+
+.pantalla-login .login-form .signup-text a {
+    color: #a10f0f;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+/* =========================
+        RESPONSIVE
+========================= */
+
+
+
+@media  (max-width: 600px) {
+    
+.pantalla-login .flip-scene { width: 390px; height: 390px; }
+
+    
+.pantalla-login .glass-circle { width: 390px; height: 390px; }
+
+    
+.pantalla-login .login-form { width: 220px; }
+
+    
+.pantalla-login .login-form h1 { font-size: 34px; }
+
+    
+.pantalla-login .login-form .subtitle { margin-bottom: 20px; }
+
+    
+.pantalla-login .input-box { margin-bottom: 14px; }
+
+    
+.pantalla-login .input-box input { height: 42px; font-size: 13px; padding-left: 40px; }
+
+    
+.pantalla-login .input-box i { left: 14px; font-size: 14px; }
+
+    
+.pantalla-login .forgot { margin-bottom: 22px; }
+
+    
+.pantalla-login .forgot a { font-size: 11px; }
+
+    
+.pantalla-login .login-form button { width: 215px; height: 44px; font-size: 13.5px; }
+
+}
+
+
+
+@media  (max-width: 420px) {
+    
+.pantalla-login .flip-scene { width: 330px; height: 330px; }
+
+    
+.pantalla-login .glass-circle { width: 330px; height: 330px; }
+
+    
+.pantalla-login .login-form { width: 185px; }
+
+    
+.pantalla-login .login-form h1 { font-size: 27px; }
+
+    
+.pantalla-login .login-form .subtitle { font-size: 11px; margin-bottom: 16px; }
+
+    
+.pantalla-login .input-box { margin-bottom: 12px; }
+
+    
+.pantalla-login .input-box input { height: 38px; font-size: 11px; padding-left: 34px; }
+
+    
+.pantalla-login .input-box i { left: 11px; font-size: 12px; }
+
+    
+.pantalla-login .forgot { margin-bottom: 18px; }
+
+    
+.pantalla-login .forgot a { font-size: 9px; }
+
+    
+.pantalla-login .login-form button { width: 180px; height: 40px; font-size: 12px; border-radius: 10px; }
+
+}
+
+
+
+/* Integración: área de acceso aislada del sistema de ventas. */
+.pantalla-login {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: #e8e8e8;
+  overflow: auto;
+}
+.pantalla-login *, .pantalla-login *::before, .pantalla-login *::after { box-sizing: border-box; }
+.pantalla-login .login-wrapper { min-height: 100vh; padding: 24px 8px; }
+.pantalla-login .flip-scene { flex: 0 0 auto; }
+.pantalla-login .login-form { margin: 0; }
+.pantalla-login .input-box { display: block; }
+.pantalla-login .forgot { gap: 8px; }
+.pantalla-login .forgot a { text-align: right; }
+.pantalla-login .signup-text a { cursor: pointer; }
+.pantalla-login .mensaje-login { color: #8f2424; text-align: center; font-size: 11px; line-height: 1.35; margin: 12px 0 0; min-height: 0; }
+.pantalla-login .mensaje-login:empty { display: none; }
+.pantalla-login .login-form button:disabled { cursor: wait; opacity: .7; }
+@media (max-width: 420px) {
+ .pantalla-login .forgot { margin-bottom: 12px; }
+ .pantalla-login .remember { gap: 4px; font-size: 9px; }
+ .pantalla-login .switch { transform: scale(.78); transform-origin: left center; margin-right: -5px; }
+ .pantalla-login .signup-text { margin-top: 12px; }
+}
+
+/* Accesibilidad y comportamiento real de Recordarme. */
+.pantalla-login .remember { cursor: pointer; }
+.pantalla-login .remember input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.pantalla-login .remember input:focus-visible + .switch { outline: 2px solid #9a1111; outline-offset: 3px; }
+.pantalla-login .remember input:checked + .switch { box-shadow: inset 3px 3px 6px rgba(120,10,10,.35), inset -3px -3px 6px rgba(212,175,55,.25); }
+.pantalla-login .remember input:checked + .switch::after { left: 16px; background: #a10f0f; }
+.pantalla-login .remember input:not(:checked) + .switch::after { left: 2px; background: #e8e8e8; }

@@ -1,0 +1,23 @@
+/* Buscador: accesible por teclado, resultados independientes de los formularios. */
+#seccion-app .solo-lectores { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#seccion-app #form-buscador { display: flex; align-items: center; gap: 10px; flex: 1; width: 100%; max-width: none; min-width: 0; margin: 0; padding: 6px 8px 6px 16px; background: #fffdf9; border: 1px solid #d9caba; border-radius: 12px; box-shadow: 0 4px 20px #62492c09; }
+#seccion-app #form-buscador > i { color: #715b43; }
+#seccion-app #busqueda-global { width: 100%; flex: 1; min-width: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: 8px 0; font-size: 14px; }
+#seccion-app #form-buscador button { flex: 0 0 auto; background: #345145; color: #fffaf0; box-shadow: none; border: 0; min-height: 36px; font-size: 12px; margin: 0; }
+#seccion-app .ayuda-buscador { color: #726859; font-size: 11px; margin: 8px 0; }
+#seccion-app #resultados-buscador { background: #fffaf3; border: 1px solid #e2d4c1; border-radius: 16px; padding: 18px; margin: 18px 0; max-height: 65vh; overflow: auto; box-shadow: 0 12px 28px #614b3020; }
+#seccion-app .cabecera-resultados { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+#seccion-app .cabecera-resultados h2 { margin: 0; font-size: 20px; }
+#seccion-app #estado-buscador { font-size: 13px; }
+#seccion-app #lista-resultados { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+#seccion-app .grupo-busqueda { min-width: 0; }
+#seccion-app .grupo-busqueda h3 { font-size: 15px; color: #536b59; }
+#seccion-app .grupo-busqueda > p { font-size: 13px; }
+#seccion-app .resultado-busqueda { padding: 14px 0; border-bottom: 1px solid #e4d8c8; overflow-wrap: anywhere; }
+#seccion-app .resultado-busqueda strong { font-size: 14px; }
+#seccion-app .resultado-busqueda p { font-size: 12px; margin: 6px 0; }
+#seccion-app .resultado-busqueda button, #seccion-app #cerrar-buscador { font-size: 12px; min-height: 36px; box-shadow: none; background: #eee5d8; border-color: #e2d5c3; }
+#seccion-app .grupo-busqueda small { font-size: 11px; color: #766754; }
+@media (max-width: 1100px) { #seccion-app #lista-resultados { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 900px) { #seccion-app #form-buscador { flex: auto; } }
+@media (max-width: 380px) { #seccion-app #form-buscador { gap: 6px; padding-left: 10px; } #seccion-app #form-buscador button { padding-inline: 10px; } }

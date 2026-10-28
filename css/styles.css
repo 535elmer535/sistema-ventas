@@ -1,0 +1,125 @@
+/* SISTEMA DE MELAMINA · BASE SOFT UI · Solo pantalla interna */
+#seccion-app {
+  --bg: #e8e8e8; --text: #363b43; --muted: #777f89; --accent: #a73434;
+  --raised: 9px 9px 20px #c8c8c8, -9px -9px 20px #ffffff;
+  --small-raised: 4px 4px 10px #c9c9c9, -4px -4px 10px #ffffff;
+  --inset: inset 4px 4px 9px #c9c9c9, inset -4px -4px 9px #ffffff;
+  box-sizing: border-box; min-height: 100vh; width: 100%; background: var(--bg);
+  color: var(--text); font: 400 16px/1.6 'Poppins', sans-serif;
+  padding: 32px clamp(16px, 4.5vw, 76px) 74px;
+  grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px;
+  align-content: start; max-width: none;
+}
+#seccion-app *, #seccion-app *::before, #seccion-app *::after {box-sizing: border-box;}
+#seccion-app[style*="display: block"],#seccion-app[style*="display:block"] {display: grid !important;}
+#seccion-app #btn-logout {grid-column: 10/-1; grid-row:1; justify-self:end; align-self:center;}
+#seccion-app #saludo-usuario {grid-column:1/10; grid-row:1; align-self:center; font-size:clamp(18px,2.2vw,25px);font-weight:700; margin:0;}
+#seccion-app #saludo-usuario::before {content:'MELAMINA · PANEL DE GESTIÓN';display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.17em;line-height:2.5;}
+#seccion-app .modulo {min-width:0;grid-column:span 6;border-radius:25px;padding:clamp(22px,2.2vw,30px);background:var(--bg);box-shadow:var(--raised);border:1px solid rgba(255,255,255,.55);}
+#seccion-app .modulo h2 {margin:0 0 19px;font-size:clamp(19px,2vw,26px);letter-spacing:-.03em;line-height:1.3;font-weight:700;}
+#seccion-app .modulo h2::after {content:''; display:block;width:46px;height:3px;border-radius:4px;background:var(--accent);opacity:.7;margin-top:13px;}
+#seccion-app .modulo h3 {font-size:17px;font-weight:600;margin:30px 0 14px;}
+#seccion-app p {margin: 13px 0;color:var(--text);}
+#seccion-app .modulo > p:not([id]) {color:#636b76;font-size:15px;}
+#seccion-app form {min-width:0;}
+#seccion-app form label {display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;margin:5px 9px 13px 0;font-size:13px;font-weight:500;}
+#seccion-app input:not([type="hidden"]),#seccion-app select,#seccion-app textarea {font:inherit;font-size:13px;color:var(--text);border:1px solid rgba(255,255,255,.7);background:#e8e8e8;min-height:43px;padding:10px 15px;border-radius:12px;box-shadow:var(--inset);max-width:100%; min-width:130px; outline:none;transition:box-shadow .2s ease;}
+#seccion-app input[type="date"] {min-width:170px;}
+#seccion-app input:focus-visible,#seccion-app select:focus-visible,#seccion-app textarea:focus-visible {outline:2px solid #a95b5b;outline-offset:2px;}
+#seccion-app button {font:600 14px/1.4 'Poppins',sans-serif;letter-spacing:.01em;background:var(--bg);color:#51555d;border:1px solid #f4f4f4;border-radius:12px;min-height:41px; padding:10px 18px;box-shadow:var(--small-raised);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,color .15s ease;}
+#seccion-app button:not(:disabled):hover {transform:translateY(-2px);color:var(--accent);}
+#seccion-app button:not(:disabled):active {transform:translateY(1px);box-shadow:var(--inset);}
+#seccion-app button:focus-visible {outline:2px solid var(--accent);outline-offset:3px;}
+#seccion-app button:disabled {opacity:.48;box-shadow:none;cursor:not-allowed;}
+#seccion-app table {display:block;max-width:100%;overflow-x:auto;border-collapse:separate;border-spacing:0 7px;white-space:nowrap;font-size:13px;margin:12px 0 20px;}
+#seccion-app th {color:#6b727c;text-align:left;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:12px 15px;}
+#seccion-app td {padding:12px 15px;background:#ededed;vertical-align:middle;}
+#seccion-app tbody tr td:first-child {border-radius:12px 0 0 12px;}
+#seccion-app tbody tr td:last-child {border-radius:0 12px 12px 0;}
+#seccion-app td button {padding:7px 12px;min-height:33px;margin:0 3px 2px 0;font-size:11px;}
+#seccion-app fieldset {border-radius:18px;padding:20px;border:1px solid #fff;box-shadow:var(--inset);min-width:0;margin:22px 0;}
+#seccion-app legend {padding:0 8px;font-weight:600;font-size:13px;}
+#seccion-app [role="status"]:not(#saludo-usuario) {font-size:13px;overflow-wrap:anywhere;}
+#seccion-app [hidden] {display:none !important;}
+@media(max-width:1050px){#seccion-app .modulo{grid-column:span 12;}#seccion-app{gap:22px;}}
+@media(max-width:620px){#seccion-app{padding:22px 14px 55px;gap:18px;}#seccion-app .modulo{padding:22px 16px;border-radius:19px;}#seccion-app #saludo-usuario{grid-column:1/9;font-size:17px;}#seccion-app #btn-logout{grid-column:9/-1;padding:9px;font-size:11px;}#seccion-app form label{display:flex;flex-direction:column;align-items:stretch;width:100%;margin:8px 0;}#seccion-app input:not([type="hidden"]),#seccion-app select{width:100%;}#seccion-app th,#seccion-app td{padding:10px;} }
+@media(prefers-reduced-motion:reduce){#seccion-app *,#seccion-app *::before{transition:none!important;}}
+
+/* Proporciones comunes: solo panel interno, sin afectar al login circular. */
+#seccion-app form { width: fit-content; max-width: 100%; margin-inline: auto; }
+#seccion-app form label { display: inline-flex; flex-direction: column; flex-wrap: nowrap; align-items: flex-start; vertical-align: bottom; gap: 7px; max-width: 100%; margin: 0 0 16px; line-height: 1.5; }
+#seccion-app input:not([type="hidden"]), #seccion-app select, #seccion-app textarea { width: var(--ancho-campo, 280px); max-width: 100%; min-width: 0; font-size: 15px; }
+#seccion-app input[type="email"] { --ancho-campo: 280px; }
+#seccion-app input[type="tel"] { --ancho-campo: 180px; }
+#seccion-app input[type="number"] { --ancho-campo: 130px; }
+#seccion-app input[type="date"] { --ancho-campo: 180px; min-width: 0; }
+#seccion-app table { width: max-content; max-width: 100%; font-size: 15px; }
+#seccion-app th { font-size: 12px; }
+#seccion-app td { white-space: normal; overflow-wrap: anywhere; min-width: 90px; max-width: 360px; }
+#seccion-app th, #seccion-app td { padding: 11px 14px; }
+#seccion-app td button { font-size: 13px; min-height: 38px; }
+#seccion-app form > button { margin: 6px 8px 6px 0; }
+#seccion-app .modulo > [role="status"] { max-width: 100%; }
+@media (max-width: 620px) {
+  #seccion-app form label { width: fit-content; max-width: 100%; align-items: flex-start; margin: 0 0 16px; }
+  #seccion-app input:not([type="hidden"]), #seccion-app select, #seccion-app textarea { font-size: 16px; }
+  #seccion-app .modulo h2 { overflow-wrap: anywhere; }
+  #seccion-app th, #seccion-app td { padding: 10px; }
+}
+
+/* MUEBLEX · tema compartido de los seis módulos internos. Sin cambios de medidas. */
+#seccion-app .modulo {
+  --bg: #fffaf3;
+  --text: #2d3c34;
+  --muted: #776b5c;
+  --accent: #365e4b;
+  --raised: 0 8px 28px #71533614;
+  --small-raised: 0 3px 8px #4a382018;
+  --inset: inset 0 1px 3px #7254310b;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid #fffdf8;
+  border-radius: 20px;
+  box-shadow: var(--raised);
+}
+#seccion-app .modulo h2 { color: #293d31; }
+#seccion-app .modulo h2::after { background: #be8b52; opacity: 1; width: 42px; }
+#seccion-app .modulo h3 { color: #3f5845; }
+#seccion-app .modulo > p:not([id]) { color: #756858; }
+#seccion-app .modulo label { color: #425143; }
+#seccion-app .modulo input:not([type="hidden"]),
+#seccion-app .modulo select,
+#seccion-app .modulo textarea {
+  background: #fffefb;
+  color: #2d3c34;
+  border: 1px solid #dccfbc;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px #72543109;
+}
+#seccion-app .modulo input::placeholder, #seccion-app .modulo textarea::placeholder { color: #817564; opacity: 1; }
+#seccion-app .modulo input:focus-visible,
+#seccion-app .modulo select:focus-visible,
+#seccion-app .modulo textarea:focus-visible { outline: 2px solid #52735c; outline-offset: 2px; border-color: #52735c; }
+#seccion-app .modulo button {
+  background: #365b49;
+  color: #fffdf4;
+  border: 1px solid #365b49;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px #29433114;
+}
+#seccion-app .modulo button:not(:disabled):hover { color: #fffdf4; background: #284735; border-color: #284735; }
+#seccion-app .modulo button:not(:disabled):active { box-shadow: inset 0 2px 4px #15261a33; }
+#seccion-app .modulo button:focus-visible { outline: 2px solid #8d602e; outline-offset: 3px; }
+#seccion-app .modulo button:disabled { background: #b9c5b9; color: #304236; border-color: #b9c5b9; opacity: .7; }
+#seccion-app .modulo button[id^="cancelar-"] { background: #f0e5d6; color: #61513d; border-color: #dccbb3; box-shadow: none; }
+#seccion-app .modulo button[id^="cancelar-"]:not(:disabled):hover { background: #e5d6c2; color: #493c2e; border-color: #cbb696; }
+#seccion-app .modulo th { color: #74634c; background: #f0e7da; }
+#seccion-app .modulo th:first-child { border-radius: 10px 0 0 10px; }
+#seccion-app .modulo th:last-child { border-radius: 0 10px 10px 0; }
+#seccion-app .modulo td { background: #fffdf9; border-block: 1px solid #eee4d5; color: #334238; }
+#seccion-app .modulo tbody tr:nth-child(even) td { background: #f8f2e8; }
+#seccion-app .modulo fieldset { background: #fbf5eb; border-color: #e2d2ba; box-shadow: none; }
+#seccion-app .modulo legend { color: #6e573b; font-size: 14px; }
+#seccion-app .modulo .btn-editar, #seccion-app .modulo .btn-editar-cliente { background: #e1ecdf; color: #34533b; border-color: #c9dac5; box-shadow: none; }
+#seccion-app .modulo .btn-eliminar, #seccion-app .modulo .btn-eliminar-cliente { background: #f4e2d9; color: #893e2b; border-color: #e8cbbb; box-shadow: none; }
+#seccion-app .modulo .btn-eliminar:not(:disabled):hover, #seccion-app .modulo .btn-eliminar-cliente:not(:disabled):hover { background: #8b4330; color: #fff9f1; border-color: #8b4330; }

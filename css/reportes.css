@@ -1,0 +1,47 @@
+/* Reportes: filtros independientes del contenido dinámico del resultado. */
+#seccion-app .vista-panel > .mod-reportes {
+  display: block;
+  width: min(100%, 850px);
+  min-width: 0;
+}
+#seccion-app #seccion-reportes .filtros-reportes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 22px;
+  width: 100%;
+  min-width: 0;
+  margin: 24px 0;
+}
+#seccion-app .filtros-reportes .filtro-fecha {
+  display: flex;
+  flex: 0 1 180px;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+#seccion-app .filtro-fecha label { font-size: 15px; font-weight: 500; }
+#seccion-app .filtro-fecha input[type="date"] { width: 180px; min-width: 0; max-width: 100%; }
+#seccion-app #btn-filtrar-ventas { margin: 0; max-width: 100%; }
+#seccion-app #resumen-ventas, #seccion-app #productos-vendidos {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 18px;
+  box-shadow: var(--inset);
+  min-height: 48px;
+  overflow-wrap: anywhere;
+}
+#seccion-app #resumen-ventas p, #seccion-app #productos-vendidos p { white-space: normal; }
+#seccion-app #resumen-ventas ul, #seccion-app #productos-vendidos ul { padding-left: 22px; line-height: 1.9; }
+
+/* Reportes MUEBLEX: resultados contenidos en tarjetas claras. */
+#seccion-app .mod-reportes #resumen-ventas,
+#seccion-app .mod-reportes #productos-vendidos { background: #f7f0e4; border: 1px solid #e7d9c2; box-shadow: none; }
+#seccion-app .mod-reportes #resumen-ventas strong,
+#seccion-app .mod-reportes #productos-vendidos strong { color: #36583d; }
+#seccion-app .mod-reportes #resumen-ventas li::marker,
+#seccion-app .mod-reportes #productos-vendidos li::marker { color: #ac7b45; }

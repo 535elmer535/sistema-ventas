@@ -1,0 +1,402 @@
+{
+  "base": "sistema-ventas-mueblex.zip",
+  "modificados": [
+    "INFORME-AJUSTES-COMPACTOS.md",
+    "MANIFIESTO-AJUSTES-COMPACTOS.json",
+    "css/clientes.css",
+    "css/inicio-mueblex.css",
+    "css/pedidos.css",
+    "css/productos.css",
+    "css/reportes.css",
+    "css/styles.css",
+    "css/usuarios.css",
+    "css/ventas.css"
+  ],
+  "creados": [],
+  "eliminados": [],
+  "hashes_modificados": [
+    {
+      "archivo": "INFORME-AJUSTES-COMPACTOS.md",
+      "sha256_anterior": "7b7a9c88413ff8b12f640e8769718d988a4a6759e16b588bfe0c1f88baeda3aa",
+      "sha256_final": "927bb76574a137032ff7f052d353a9b5a90fc387ef363e6518a94c3ea5c9eb7d"
+    },
+    {
+      "archivo": "css/clientes.css",
+      "sha256_anterior": "14db71d58163b14701c46e728f6cef31d1b0b83fe6565d23e8bf5b8c5b55335c",
+      "sha256_final": "d20eab6f6dc125d045a8c48bdf8568481aa9d708b28d26a532874cd07b731a27"
+    },
+    {
+      "archivo": "css/inicio-mueblex.css",
+      "sha256_anterior": "876ef891942c87e031f5fdc26ee4cbd623461cef2bf529f9dbc65385b8fa40ab",
+      "sha256_final": "3854edf8cd0f53d7d1015ab8df6f1d434842fa3a0da6cb1fa6466587509778f3"
+    },
+    {
+      "archivo": "css/pedidos.css",
+      "sha256_anterior": "f64d70e803fab55b252a596319f67dd154ac951b1df4ad6430bdd54bff038996",
+      "sha256_final": "66699e1c8ba8e0657d8ce0e054908c439cbbfccaff80700c6bcbc15b42d4891b"
+    },
+    {
+      "archivo": "css/productos.css",
+      "sha256_anterior": "ece17103b1b2fe2db6ae41c5d9e723d66c2ac6ff86b35688ac23241647f14ff9",
+      "sha256_final": "385f197177ad478a6f5ed4c55486e8aef41d7e1d7c81a54512cda7c07cad0cbc"
+    },
+    {
+      "archivo": "css/reportes.css",
+      "sha256_anterior": "230e7ac89675913ea4c9a4ca1ec03433b2ab53ccaf3423944efc2d476092e1ef",
+      "sha256_final": "03e69ed3658e0f1783814f69cd6c68151678e974b9c8a9723362b8341433ab57"
+    },
+    {
+      "archivo": "css/styles.css",
+      "sha256_anterior": "4eaa1697a4bd37f4a533f64c1dc9b8e16f8e20b5a74ea44314e8d18d67bb09e4",
+      "sha256_final": "2226cfb904f0fa30c0538432771fb273f8440f2d10dfef2c013d4c2f663529ad"
+    },
+    {
+      "archivo": "css/usuarios.css",
+      "sha256_anterior": "c0192f68a5ef53744601e163ca81a80d644c9efd97017a29ace8b260b58b92de",
+      "sha256_final": "8277359f6b754521218e7aa896f429fe3719e3e10f8079bcb3e279a423e12d07"
+    },
+    {
+      "archivo": "css/ventas.css",
+      "sha256_anterior": "ee48b85e98680da3ef881c06d6d7038b337170a6a53f1e2569c8d13752e1ee11",
+      "sha256_final": "5c8037694235720a11a84e46e97ad55b226d46d23da345094fdfd8fc59b9df65"
+    }
+  ],
+  "intactos": [
+    {
+      "archivo": "assets/interior-mueblex.png",
+      "sha256": "f865cfd92a76c038af5155f2aaa0a983c812515310a36d36b81d2a10aa6f38b6"
+    },
+    {
+      "archivo": "CAMBIOS-DISENO-NEUMORFICO.md",
+      "sha256": "57e1da94518911a550b59934692174bd7cacbafe25cc7b9db7d67516e626f2bf"
+    },
+    {
+      "archivo": "css/buscador.css",
+      "sha256": "57583ca47ec37fe15a458cdc415ead2efefcf5b3c1177732eaa921856836e06c"
+    },
+    {
+      "archivo": "css/login-neumorfico.css",
+      "sha256": "807004e63349345fe8349f983cc945c22ac8d2060024bf34c99ac688c4a1cad4"
+    },
+    {
+      "archivo": "css/navegacion.css",
+      "sha256": "591a1e1e0efb9a4115ce472081200bbc4c34acb870eb24a45bbe20dfa2c2267d"
+    },
+    {
+      "archivo": "diagramas/guia1-12-etapas.PNG",
+      "sha256": "81759c50542e684de1e5d870e43296ad5e937fc36e8abcb535911640ac443f7d"
+    },
+    {
+      "archivo": "diagramas/guia11-cargando.jpg",
+      "sha256": "0e367a9105cab717df7259d5f1c56b5eca674308866e9591493bd5d813869df9"
+    },
+    {
+      "archivo": "diagramas/guia11-con-datos.jpg",
+      "sha256": "bb99eb03c5d13489ec6c1065c5c15516d3d2a8083913ba1124be6dcf61e4ac2a"
+    },
+    {
+      "archivo": "diagramas/guia11-vacio.jpg",
+      "sha256": "2a34cd62a716c046244977fc6a269fb652b6189792207e1be444060e2ebec049"
+    },
+    {
+      "archivo": "diagramas/guia13-confirmar-eliminar.PNG",
+      "sha256": "741377d3d7e4c3754be50b79784f11f4e4ae3985e52b13d0a4a86acdb4a0017a"
+    },
+    {
+      "archivo": "diagramas/guia13-editar-cliente-supabase.PNG",
+      "sha256": "c915b9a28854bb5dd44e143aec6c83a5865b5f174de6acdc5119698f80f6f1c0"
+    },
+    {
+      "archivo": "diagramas/guia13-editar-cliente.PNG",
+      "sha256": "632589f5b697e24f034a8e2c5f201e0d8a557b848ecf26e4c6cad0407cbc7382"
+    },
+    {
+      "archivo": "diagramas/guia13-editar-supabase.PNG",
+      "sha256": "3faa338e2c355e1193923fa6fcda0993e4e7f6e5681b2fba0a3c0eb531daac28"
+    },
+    {
+      "archivo": "diagramas/guia13-editar.PNG",
+      "sha256": "e80a0b9da02b7e6ef986a6b6916b331fcc488380e5d44c7543e8f1591bdbaf3c"
+    },
+    {
+      "archivo": "diagramas/guia13-eliminar-cliente-supabase.PNG",
+      "sha256": "3f3b00d6ae0a699bd40ade924230b5d1ef8b8c9dc7980228824150a09249d2f7"
+    },
+    {
+      "archivo": "diagramas/guia13-eliminar-cliente.PNG",
+      "sha256": "53c7b83eb63d991753bee68bee8d2e34ba194871951f20a598cdf1052c0f5188"
+    },
+    {
+      "archivo": "diagramas/guia13-eliminar-supabase.PNG",
+      "sha256": "4c16862c763e0b5c75c610af802739254ef6ca3d43944ec539f07324d17c7923"
+    },
+    {
+      "archivo": "diagramas/guia13-eliminar.PNG",
+      "sha256": "be9d67cb2b3120cdcbf64dc25453a35c9601b4cf021b722a89d81ec9da76d85a"
+    },
+    {
+      "archivo": "diagramas/guia14-password-actualizada.png",
+      "sha256": "a23cf69350044c352940d3f5e54a4f32617e6d31fb91ecf2754dd991c8911383"
+    },
+    {
+      "archivo": "diagramas/guia14-rls-con-sesion.png",
+      "sha256": "a1c0a05f60d05e0254cdcdf979f47d7b329e71d5d5c9a8556e22a1013f376fd2"
+    },
+    {
+      "archivo": "diagramas/guia14-rls-sin-sesion.png",
+      "sha256": "9d4e046191c3b5ca00be6ed18e686fbdea8701794f8d18ed233fd4aa7907cae7"
+    },
+    {
+      "archivo": "diagramas/guia14-saludo-elmer.png",
+      "sha256": "60f1f48d31ba7bdbadd5d841d435cf3f56a61396a95c6017fa5f7527794eb1c7"
+    },
+    {
+      "archivo": "diagramas/guia14-saludo-vendedor.png",
+      "sha256": "6896603537956dfc3f939bfa76d1c67e414c6dd5088835b0d562ac4f93fe54bb"
+    },
+    {
+      "archivo": "diagramas/guia15-admin-con-boton-clientes.png",
+      "sha256": "e3b36d8ebcfb10c54c7f7358fd30fc5182469273e22f17887d18cb93996d0466"
+    },
+    {
+      "archivo": "diagramas/guia15-admin-con-boton-productos.png",
+      "sha256": "b64bbe208858ef9af67c461a466ddb86342596a21cdaf9ab8303b1365125386c"
+    },
+    {
+      "archivo": "diagramas/guia15-administrador-elimina-cliente.png",
+      "sha256": "48a5b592929ed7b5397c1104bb14aed4b76c048b07a95fc5ea4dfa45f4c7f146"
+    },
+    {
+      "archivo": "diagramas/guia15-administrador-elimina.png",
+      "sha256": "6389fe2105525d3ab9d6c86d5e96ba093411cec5dc905535154b0eab272dd348"
+    },
+    {
+      "archivo": "diagramas/guia15-politicas-clientes.png",
+      "sha256": "833ad67708fd868720cbb79272e7b389799e91077b06dc201e78fcd695575a7f"
+    },
+    {
+      "archivo": "diagramas/guia15-politicas-productos.png",
+      "sha256": "5bb779c60d8829cd06e67104f404b9c946be13cd0e18450acc115beb9bcbdd74"
+    },
+    {
+      "archivo": "diagramas/guia15-politicas-usuarios.png",
+      "sha256": "a289556894d61d14349440d722a83e4c337d61c215aa08ad246473d187f3c365"
+    },
+    {
+      "archivo": "diagramas/guia15-usuarios-vinculados.png",
+      "sha256": "384cb8fa2a910019b5a92d04a7c82a44e1b4df0f103200820a2144b4419ed104"
+    },
+    {
+      "archivo": "diagramas/guia15-vendedor-no-elimina-cliente.png",
+      "sha256": "3a669dbb4306e729233094f08aae657998d46afcf216576f3c8b88a61255e590"
+    },
+    {
+      "archivo": "diagramas/guia15-vendedor-no-elimina.png",
+      "sha256": "d7260ccc01e42f60a25f3623c4301b200fca355433ef89a78134a4bd8f503a6a"
+    },
+    {
+      "archivo": "diagramas/guia15-vendedor-sin-boton-clientes.png",
+      "sha256": "e698e81f70fb4c1854aa4b716aa2dd07b7991319449f2acbd43e0a4c82f887ec"
+    },
+    {
+      "archivo": "diagramas/guia15-vendedor-sin-boton-productos.png",
+      "sha256": "825815aa27fdd017e118b86c32e7b11ecd01c212e1b333a6152c7244fabecff0"
+    },
+    {
+      "archivo": "diagramas/guia16-total-sql.png",
+      "sha256": "7106c1961d67e5c127f54f169e5090c7f3260c1d9e7bf8a68c53e0dadef7c935"
+    },
+    {
+      "archivo": "diagramas/guia16-total-web.png",
+      "sha256": "22b31d70d12a795a32ed6e908ae115c1e72a53dd34ae9320731d7968baad3247"
+    },
+    {
+      "archivo": "diagramas/guia16-unidades-sql.png",
+      "sha256": "d3eb22836ab9263f4cb9fac780b64379364cb04d361951c95b211444d0ff419b"
+    },
+    {
+      "archivo": "diagramas/guia16-unidades-web.png",
+      "sha256": "1b556e7266a7a2eb65f9e6248315b61c3aa43dabb9b51fe2539c5d8ef1875b7b"
+    },
+    {
+      "archivo": "diagramas/guia17-cantidad-invalida.png",
+      "sha256": "a069df02f9a3a507aa47be0099d0e21d3cfeca5e43a6a26d458b1bc3d605072b"
+    },
+    {
+      "archivo": "diagramas/guia17-existencia-negativa.png",
+      "sha256": "279664aa2b45c18ab5e863806988855d84a1caf990918e2406bf0e6918507156"
+    },
+    {
+      "archivo": "diagramas/guia17-precio-cero.png",
+      "sha256": "e5d0c9685b1393c7c9123d0402b699eab8b478aeadf9ef1ce7905651eb69b53e"
+    },
+    {
+      "archivo": "diagramas/guia17-venta-valida.png",
+      "sha256": "53f5797db0ea2a533cdaf360716f9b7f4182a98d5c355fa514027b81e59bf8b8"
+    },
+    {
+      "archivo": "diagramas/guia5-casos-uso.png",
+      "sha256": "451213cb4bf4df20be1f7c86f618932dd3bd2e6decc4a953318174bc4eac65c9"
+    },
+    {
+      "archivo": "diagramas/guia6-modelo-datos(1).png",
+      "sha256": "c14f0ec731cb8fc6b211c20e003403398439550510892ebde9e17508a2a0e960"
+    },
+    {
+      "archivo": "diagramas/guia6-modelo-datos.png",
+      "sha256": "cd2bbb2115614ff1576952df2517d875b3cde9e700925894355d70d11e207607"
+    },
+    {
+      "archivo": "diagramas/guia7-wireframe-consultar-existencia(1).png",
+      "sha256": "38b7f49e87a099e193c07c1d0d7c8cfffd081bc20f2e5c89dc6eb687989b080a"
+    },
+    {
+      "archivo": "diagramas/guia7-wireframe-consultar-existencia.png",
+      "sha256": "b311a34f337623602073daeddd109b94ba487adf90f3cd92d06d6a2efa2c22b2"
+    },
+    {
+      "archivo": "diagramas/guia7-wireframe-registrar-venta(1).png",
+      "sha256": "a00c57c94b5a5822441eadbcea14be85b5b1a9bc1200ccf96a81b6f702059cee"
+    },
+    {
+      "archivo": "diagramas/guia7-wireframe-registrar-venta.png",
+      "sha256": "abd52e12d7305a98286840b758a86abea19173337e43e1281dfb4c3e72b1ccb0"
+    },
+    {
+      "archivo": "docs/01-introduccion.md",
+      "sha256": "ae637db9a0ca13d4b9e64c8e9324e66b11d53b2861665cabdfbeb3c5e37a0773"
+    },
+    {
+      "archivo": "docs/02-comprender-problema.md",
+      "sha256": "2e8e813400c40e6b3d1597737495ea3005eb686660775604f8427aa231c40c24"
+    },
+    {
+      "archivo": "docs/03-requerimientos.md",
+      "sha256": "714557d29bbe47a1980d01ffbd05a337f256ba419c14f40526adfab4156072cb"
+    },
+    {
+      "archivo": "docs/04-historias-usuario.md",
+      "sha256": "a210aa98e4f0ec1808a4ad4526343c9179ed9899289b5b918985be2fa40cd705"
+    },
+    {
+      "archivo": "docs/05-casos-uso.md",
+      "sha256": "47fab7ea505405ba128acea63c81fa8eba56126b1d19286910a06de6516d580e"
+    },
+    {
+      "archivo": "docs/06-modelo-datos.md",
+      "sha256": "18bc0404251be9ff3305dd8a7362295b8f9c785a906925afbb18f7f4377d93c4"
+    },
+    {
+      "archivo": "docs/07-diseno-interfaz.md",
+      "sha256": "7510f7c9183d3ea8b115a32aca8b63aed23721951fd674465be01dff73a84d0e"
+    },
+    {
+      "archivo": "docs/09-supabase.md",
+      "sha256": "7f68485b351adf157f8ac3fe791a399ed31186ef88d8a96e7f8031703cd853c6"
+    },
+    {
+      "archivo": "docs/09b-fundamentos-js.md",
+      "sha256": "c25d22d68aa30a6453e83e5605a74924c7184aaa7646ddfb700fd62d852f08e2"
+    },
+    {
+      "archivo": "docs/10-conexion-supabase.md",
+      "sha256": "23030d1ba6d39df12a3912f04061523fe72f914f1afb086d37fbc3293ee5ba8b"
+    },
+    {
+      "archivo": "docs/11-listado-productos.md",
+      "sha256": "c83d217dc35d48c32a3bbe2c28d43be7909354a39d21c2fe7f49d5326d692997"
+    },
+    {
+      "archivo": "docs/12-registrar-venta.md",
+      "sha256": "30627aec2ea3de0b6557130dacd52f807081c38dd2f40377165ed83798e7a926"
+    },
+    {
+      "archivo": "docs/13-actualizar-eliminar.md",
+      "sha256": "ea47d2e5b4720743604da88653202a8334486d223be9913d25b78f7a45d9f6e0"
+    },
+    {
+      "archivo": "docs/14-autenticacion.md",
+      "sha256": "bb8b5d5f8f1525eb8932ad2fb7fe1b9f9ae2909b2f31e63f965013de1caea78a"
+    },
+    {
+      "archivo": "docs/15-rls-por-rol.md",
+      "sha256": "773526212a85a625d1f2a7ebdda9093788cb2aea467a4ac5ad3205a0489cb19d"
+    },
+    {
+      "archivo": "docs/16-reportes.md",
+      "sha256": "362dc61b62ba95e83afa4f45ea53f93b0c1c4e603d7c2529bacff78104e2ecea"
+    },
+    {
+      "archivo": "docs/17-validaciones.md",
+      "sha256": "fea4ca0d427ab4d2e8cad267a2994e32ad7d7439e827aeb46919b113e971eb6f"
+    },
+    {
+      "archivo": "docs/sql/15-rls-por-rol.sql",
+      "sha256": "432c04db903f4534d6a9c426d1eb989614441868d88eabfb0fa41082cfb060b8"
+    },
+    {
+      "archivo": "index.html",
+      "sha256": "d8dd6f76bbdcf337c0231c816bd2d1eb7854ecfdb69deb61c967d4e334c497bf"
+    },
+    {
+      "archivo": "INSTRUCCIONES-ADMIN-USUARIOS.md",
+      "sha256": "8c51e51ac1a751c407d11ccd73a549cacafa2942e95594d7cca01e3e249a557f"
+    },
+    {
+      "archivo": "js/app.js",
+      "sha256": "1cd681ff4897254cb30313f8a9d94fa8dcff0a8090540294d7aea93071d19170"
+    },
+    {
+      "archivo": "js/inicio-mueblex.js",
+      "sha256": "087f50f47ceb0bfc8f191206192b0f1b12e02e6e7e2c254eda3ce98f6c33eb2b"
+    },
+    {
+      "archivo": "js/navegacion.js",
+      "sha256": "56b1f003d0f0657bbbe65850373e5e15559265d9a309bc31d6e6f044e37c4624"
+    },
+    {
+      "archivo": "js/practica-fundamentos.js",
+      "sha256": "544db394b06d8700f9ea85537e777626240c6ad9b5729bcfd304c656e0fb9e55"
+    },
+    {
+      "archivo": "js/supabase-client.js",
+      "sha256": "3adcc31196919af3c48046284f6c5f01522e3ae1b7e0f8fc48732e3464bb41e8"
+    },
+    {
+      "archivo": "pages/clientes.html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archivo": "pages/productos.html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archivo": "pages/ventas.html",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archivo": "practica-dom.html",
+      "sha256": "4b8a14f416dc6a7538a501890f2211732ab3792fcd161103fe3015813ff1f19c"
+    },
+    {
+      "archivo": "README.md",
+      "sha256": "f94b56936507787961708ca0760d0b09391e0a21949a0d79426f0517f8b7d018"
+    },
+    {
+      "archivo": "REGISTRO-CAMBIOS.txt",
+      "sha256": "d434c484bed452ea36ce79eb11b5e878afe0f9b3784e5b28244fe04dff6e0c7f"
+    },
+    {
+      "archivo": "supabase/functions/registrar-usuario/index.ts",
+      "sha256": "b28ed5a7c063d78eebb2045beb839093881000e129c8a13574b06d2a90818c10"
+    }
+  ],
+  "verificacion": {
+    "html_identico": true,
+    "javascript_identico": true,
+    "login_identico": true,
+    "revision_visual_completada": false,
+    "contraste_cerrar_sesion": 8.01,
+    "contraste_botones_principales": 7.5
+  }
+}

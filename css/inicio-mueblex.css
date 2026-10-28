@@ -1,0 +1,133 @@
+/* MUEBLEX: identidad del lateral, cabecera e Inicio. El login queda fuera de alcance. */
+#seccion-app { background: #f4ede5; padding: 18px 24px 48px 290px; }
+#seccion-app .barra-lateral { inset: 0 auto 0 0; width: 264px; border: 0; border-radius: 0 0 30px 0; padding: 32px 20px 24px; gap: 32px; background: radial-gradient(ellipse at bottom right, #8e6844aa, transparent 50%), linear-gradient(150deg, #38463d, #202c29 65%); color: #fff8ee; box-shadow: 8px 0 28px #30271d24; }
+#seccion-app .marca-panel { padding: 0; gap: 10px; }
+#seccion-app .marca-panel strong { font-size: 26px; letter-spacing: .07em; line-height: 1.3; color: #fffaf2; }
+#seccion-app .marca-panel small { font-size: 9px; color: #e8ded0; letter-spacing: .14em; margin-top: 5px; }
+#seccion-app .marca-simbolo { flex: 0 0 40px; height: 56px; color: #e9bc87; font-size: 31px; box-shadow: none; background: transparent; }
+#seccion-app .barra-lateral nav { gap: 10px; }
+#seccion-app .barra-lateral nav button { min-height: 49px; box-shadow: none; background: transparent; border: 1px solid transparent; color: #eee9df; font-size: 15px; font-weight: 400; border-radius: 12px; padding: 12px 16px; }
+#seccion-app .barra-lateral nav button:hover { background: #ffffff0d; color: #fff; transform: none; }
+#seccion-app .barra-lateral nav button i { width: 24px; font-size: 19px; color: #e8c8a2; }
+#seccion-app .barra-lateral nav [aria-current="page"] { background: linear-gradient(110deg,#f9e6ca,#d7b48d); box-shadow: 0 6px 20px #00000013; color: #25332d; font-weight: 600; border-color: #f3dfc5; }
+#seccion-app .barra-lateral nav [aria-current="page"] i { color: #25332d; }
+#seccion-app .lema-lateral { color: #e7d0b5; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-top: auto; padding-top: 28px; border-top: 1px solid #e7d0b544; }
+#seccion-app #btn-logout { color: #fff3e4; background: #ffffff08; border: 1px solid #e7d0b544; box-shadow: none; margin-top: 0; text-align: left; font-size: 14px; }
+#seccion-app #btn-logout:hover { color: #fff; background: #ffffff15; }
+#seccion-app #contenido-panel { max-width: 1540px; }
+#seccion-app .cabecera-panel { margin-bottom: 16px; }
+#seccion-app .barra-superior { display: flex; align-items: center; gap: 22px; width: 100%; }
+#seccion-app .perfil-panel { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; max-width: 260px; }
+#seccion-app .avatar-panel { display: grid; place-items: center; flex: 0 0 44px; height: 44px; border-radius: 50%; color: #fff8ed; background: #364c43; font-size: 21px; }
+#seccion-app .perfil-panel strong { display: block; font-size: 14px; overflow-wrap: anywhere; }
+#seccion-app .perfil-panel small { display: block; color: #6e665d; font-size: 12px; }
+#seccion-app .titulo-seccion { margin-top: 12px; font-size: 13px; color: #746957; }
+#seccion-app #vista-inicio { width: 100%; gap: 18px; }
+#seccion-app .hero-inicio { width: 100%; min-height: 250px; position: relative; overflow: hidden; border-radius: 22px; background: #dcc9b4; background-image: linear-gradient(90deg,#fff7ecef 0%,#fff7ecdf 35%,#fff7ec00 70%), url('../assets/interior-mueblex.png'); background-size: cover; background-position: center; padding: 32px; box-shadow: 0 6px 22px #644b3020; }
+#seccion-app .hero-texto { max-width: 650px; }
+#seccion-app .hero-inicio .sobretitulo { font-size: 10px; letter-spacing: .18em; font-weight: 600; color: #86603b; }
+#seccion-app .hero-inicio h1 { margin: 8px 0; line-height: 1.15; }
+#seccion-app .hero-inicio #saludo-usuario { display: block; font-size: clamp(25px,3vw,45px); font-weight: 700; letter-spacing: -.045em; color: #26332d; overflow-wrap: anywhere; }
+#seccion-app .hero-inicio #saludo-usuario::before { content: none; }
+#seccion-app .hero-inicio p { margin: 8px 0; color: #443b30; }
+#seccion-app .hero-inicio .frase-hero { font-style: italic; font-size: 14px; color: #735a42; margin-top: 16px; }
+#seccion-app .indicadores-inicio { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; width: 100%; }
+#seccion-app .indicador { display: flex; align-items: center; gap: 14px; padding: 20px 16px; border: 1px solid #fff; border-radius: 16px; background: #fffaf4; min-width: 0; box-shadow: 0 6px 20px #6c503013; }
+#seccion-app .indicador > i { display: grid; place-items: center; flex: 0 0 54px; height: 62px; border-radius: 14px; font-size: 25px; }
+#seccion-app .verde > i { color: #f5fff8; background: linear-gradient(135deg,#658675,#304e43); }
+#seccion-app .arena > i { color: #67401d; background: linear-gradient(135deg,#edcda2,#d9ad78); }
+#seccion-app .azul > i { color: #234946; background: linear-gradient(135deg,#c9e0e4,#a3c3ca); }
+#seccion-app .rosa > i { color: #603e49; background: linear-gradient(135deg,#ebcfc5,#bd969f); }
+#seccion-app .indicador p { font-size: 13px; margin: 0; }
+#seccion-app .indicador strong { display: block; font-size: clamp(18px,1.6vw,26px); line-height: 1.4; color: #1e2c26; overflow-wrap: anywhere; }
+#seccion-app .indicador small { display: block; font-size: 11px; color: #71685d; }
+#seccion-app #estado-inicio { width: 100%; margin: 0; font-size: 13px; }
+#seccion-app #estado-inicio:empty { display: none; }
+#seccion-app .cuadricula-inicio { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 18px; width: 100%; }
+#seccion-app .tarjeta-inicio { min-width: 0; border-radius: 18px; border: 1px solid #fff; background: #fffcf7; padding: 20px; box-shadow: 0 8px 25px #7153360c; }
+#seccion-app .titulo-tarjeta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+#seccion-app .titulo-tarjeta h2 { margin: 0; font-size: 17px; color: #29352e; line-height: 1.4; }
+#seccion-app .titulo-tarjeta button { box-shadow: none; background: transparent; border: 0; padding: 0; color: #8a5028; font-size: 12px; min-height: 34px; flex-shrink: 0; text-decoration: underline; }
+#seccion-app .acciones-inicio { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+#seccion-app .acciones-inicio button { display: flex; align-items: center; gap: 12px; min-height: 80px; padding: 16px; border: 0; box-shadow: none; color: #fff; text-align: left; font-size: 13px; }
+#seccion-app .acciones-inicio i { font-size: 24px; }
+#seccion-app .acciones-inicio span { margin-left: auto; font-size: 24px; }
+#seccion-app .acciones-inicio .accion-verde { background: linear-gradient(120deg,#48695b,#2e483e); }
+#seccion-app .acciones-inicio .accion-arena { background: linear-gradient(120deg,#d8ad77,#9d6639); }
+#seccion-app .acciones-inicio .accion-azul { background: linear-gradient(120deg,#cee2e5,#a0c2c9); color: #21443f; }
+#seccion-app .acciones-inicio .accion-rosa { background: linear-gradient(120deg,#c9a8ac,#987080); }
+#seccion-app .acciones-inicio button:hover { color: #fff9ef; filter: brightness(1.07); }
+#seccion-app .grafico-semana { display: flex; gap: 8px; height: 190px; align-items: stretch; width: 100%; overflow-x: auto; }
+#seccion-app .columna-grafico { flex: 1; min-width: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#seccion-app .valor-grafico { font-size: 9px; color: #726957; white-space: nowrap; }
+#seccion-app .pista-grafico { flex: 1; width: 70%; display: flex; align-items: end; border-bottom: 1px solid #dbd2c5; background: repeating-linear-gradient(to top,transparent 0,transparent 36px,#e9e1d6 37px); }
+#seccion-app .barra-grafico { width: 100%; background: linear-gradient(#93a48f,#4d6b59); border-radius: 5px 5px 0 0; }
+#seccion-app .dia-grafico { font-size: 11px; }
+#seccion-app .nota-inicio { font-size: 11px; color: #71685d; margin-bottom: 0; }
+#seccion-app .catalogo-inicio { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+#seccion-app .producto-inicio { overflow: hidden; border: 1px solid #e9dece; border-radius: 10px; padding: 0 10px 12px; min-width: 0; }
+#seccion-app .imagen-producto { height: 100px; display: grid; place-items: center; margin: 0 -10px 12px; background: linear-gradient(145deg,#eadbc8,#c9a784); color: #785333; font-size: 36px; }
+#seccion-app .producto-inicio h3 { font-size: 12px; line-height: 1.4; margin: 6px 0; overflow-wrap: anywhere; }
+#seccion-app .producto-inicio strong { font-size: 13px; }
+#seccion-app .producto-inicio small { display: block; font-size: 10px; color: #5c705d; margin-top: 8px; }
+#seccion-app .tabla-inicio-scroll { width: 100%; overflow-x: auto; }
+#seccion-app table.tabla-ultimas { display: table; width: 100%; font-size: 12px; margin: 0; border-spacing: 0; white-space: normal; }
+#seccion-app .tabla-ultimas th { font-size: 10px; background: #f4ede4; text-transform: none; letter-spacing: 0; }
+#seccion-app .tabla-ultimas td { min-width: 0; background: transparent; border-bottom: 1px solid #eee4d8; font-size: 12px; }
+#seccion-app .tabla-ultimas th, #seccion-app .tabla-ultimas td { padding: 12px 8px; }
+#seccion-app .estado-pago { display: inline-block; border-radius: 20px; padding: 4px 9px; background: #efe0c3; color: #6d5426; font-size: 10px; }
+#seccion-app .estado-pago.pagado { background: #d5e8d9; color: #34573d; }
+@media (max-width: 1320px) {
+  #seccion-app .indicadores-inicio { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #seccion-app .cuadricula-inicio { grid-template-columns: minmax(0,1fr); }
+}
+@media (max-width: 900px) {
+  #seccion-app { padding-left: 230px; padding-right: 18px; }
+  #seccion-app .barra-lateral { width: 208px; padding-inline: 14px; }
+  #seccion-app .marca-panel strong { font-size: 21px; }
+  #seccion-app .marca-panel small { font-size: 7px; }
+  #seccion-app .marca-simbolo { flex-basis: 30px; font-size: 26px; }
+  #seccion-app .barra-superior { align-items: flex-start; flex-direction: column-reverse; gap: 14px; }
+  #seccion-app .hero-inicio { padding: 24px; }
+}
+@media (max-width: 620px) {
+  #seccion-app { padding: 12px; }
+  #seccion-app .barra-lateral { position: static; width: 100%; border-radius: 22px; margin-bottom: 20px; padding: 24px 18px; gap: 18px; }
+  #seccion-app .barra-lateral nav { gap: 8px; }
+  #seccion-app .barra-lateral nav button { font-size: 13px; padding: 10px; }
+  #seccion-app .lema-lateral { margin: 0; padding-top: 14px; }
+  #seccion-app .indicadores-inicio { gap: 10px; }
+  #seccion-app .indicador { padding: 14px 10px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  #seccion-app .indicador > i { flex-basis: auto; width: 42px; height: 42px; font-size: 20px; }
+  #seccion-app .acciones-inicio { grid-template-columns: minmax(0,1fr); }
+  #seccion-app .catalogo-inicio { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  #seccion-app .titulo-tarjeta { align-items: flex-start; }
+}
+
+/* Imagen de ambiente discreta al pie del lateral, como en la referencia. */
+#seccion-app .barra-lateral {
+  background-image: linear-gradient(180deg, #26362ffa 0%, #26362ff2 65%, #26362f70 100%), url('../assets/interior-mueblex.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Cerrar sesión: mayor contraste, tamaño y separación dentro del lateral. */
+#seccion-app .barra-lateral #btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  background: #f0d0a6;
+  color: #293c30;
+  border: 1px solid #ffe8c7;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px #00000024;
+  font-size: 15px;
+  font-weight: 700;
+}
+#seccion-app .barra-lateral #btn-logout i { font-size: 20px; }
+#seccion-app .barra-lateral #btn-logout:not(:disabled):hover { background: #ffe3bc; color: #203226; border-color: #fff2df; transform: translateY(-1px); }
+#seccion-app .barra-lateral #btn-logout:focus-visible { outline: 3px solid #fff9e9; outline-offset: 4px; }

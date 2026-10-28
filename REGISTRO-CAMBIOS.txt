@@ -1,0 +1,32 @@
+REGISTRO DE CAMBIOS — MENÚ LATERAL NEUMÓRFICO
+
+Origen: sistema-ventas-main-2-diseñado todo con estilo css.zip, adjunto de la conversación Saludo amistoso.
+
+MODIFICADO
+- index.html: agrega menú lateral, cabecera e Inicio; agrupa los módulos existentes en Inventario, Ventas, Pedidos, Clientes, Reportes y Administración. Enlaza el nuevo CSS y JS. Conserva los formularios completos y sus atributos, IDs y contenido.
+
+AGREGADOS
+- css/navegacion.css: estilos del menú, estructura, selección activa, Inicio y adaptación a pantallas pequeñas (menú en bloque superior en móvil).
+- js/navegacion.js: muestra una sección a la vez, actualiza título y selección accesible, conserva los formularios al navegar y vuelve a Inicio cuando cambia la visibilidad de la aplicación por sesión. No consulta ni modifica Supabase ni los permisos.
+- REGISTRO-CAMBIOS.txt: este registro.
+
+ELIMINACIONES
+Ninguna. No se borraron ni sustituyeron módulos, recursos ni archivos originales.
+
+PRESERVACIÓN
+Los archivos JS originales, CSS originales, páginas auxiliares, documentos, imágenes, función Edge y SQL conservan exactamente sus bytes originales. El login conserva su marcado original. Administración agrupa el cambio de contraseña y el alta de usuarios; esta última conserva el atributo hidden gestionado por el código original de roles.
+
+PRUEBAS REALIZADAS
+- Análisis de sintaxis con node --check: app.js, supabase-client.js y navegacion.js correctos.
+- HTML analizado: estructura anidada correcta, IDs únicos y todos los IDs originales conservados.
+- Comparación estructural: todos los formularios originales idénticos, incluidos atributos, controles y contenido.
+- Prueba del nuevo JS con DOM simulado: siete destinos, una vista a la vez, selección activa única, título y retorno a Inicio correctos.
+- Comparación binaria de archivos originales: solo index.html modificado; cero eliminaciones.
+
+LÍMITES DE VERIFICACIÓN
+No se completó la prueba visual ni interactiva en navegador: Chromium no está instalado y el entorno impidió iniciar Edge (EPERM). No se verificaron operaciones reales de login, roles ni lecturas/escrituras de Supabase con cuentas reales. Su código original se conserva íntegro. Los estilos adaptables están implementados pero pendientes de revisión visual en navegador.
+
+USO
+Descomprimir y servir el proyecto por HTTP como antes. Abrir index.html. No requiere migración de base de datos ni nuevas dependencias. Las fuentes, iconos y librería Supabase siguen usando los enlaces externos originales.
+
+Archivos originales sin cambios: 82.

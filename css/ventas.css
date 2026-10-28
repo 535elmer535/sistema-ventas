@@ -1,0 +1,14 @@
+/* Ventas: selección compacta y tabla amplia cuando el detalle lo necesita. */
+#seccion-app .vista-panel > .mod-ventas { width: min(100%, 980px); }
+#seccion-app #form-venta { width: 100%; max-width: 860px; }
+#seccion-app #form-venta > label { margin-right: 18px; }
+#seccion-app #campo-producto { width: 280px; }
+#seccion-app #campo-cantidad { width: 110px; }
+#seccion-app #form-venta > p:has(#total-venta) { font-size: 21px; font-weight: 700; margin: 20px 0; }
+#seccion-app #total-venta { color: var(--accent); }
+#seccion-app #form-venta table { width: max-content; margin-inline: auto; }
+
+/* Ventas MUEBLEX: total visible y acciones coherentes con Inicio. */
+#seccion-app .mod-ventas #form-venta > p:has(#total-venta) { background: #eaf0e4; color: #304d36; border: 1px solid #d5dfca; padding: 14px 18px; border-radius: 12px; width: fit-content; max-width: 100%; }
+#seccion-app .mod-ventas #total-venta { color: #34593f; }
+#seccion-app .mod-ventas button[data-quitar-producto] { background: #f1e6d6; color: #76502e; border-color: #dfcbb0; box-shadow: none; }

@@ -1,0 +1,49 @@
+/* Clientes: alta a la izquierda y listado a la derecha; altura independiente. */
+#seccion-app #vista-clientes {
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+}
+#seccion-app #vista-clientes > .mod-clientes-alta {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  max-width: 100%;
+}
+#seccion-app #vista-clientes > .mod-clientes {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+#seccion-app .lista-clientes-scroll {
+  width: 100%;
+  max-width: 100%;
+  max-height: clamp(300px, 62vh, 660px);
+  overflow: auto;
+  scrollbar-gutter: stable;
+  border-radius: 12px;
+  margin: 12px 0 20px;
+}
+#seccion-app .lista-clientes-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#seccion-app #tabla-clientes { display: table; width: 100%; max-width: none; margin: 0; overflow: visible; }
+#seccion-app #tabla-clientes th { position: sticky; top: 0; z-index: 1; background: var(--bg); }
+#seccion-app #tabla-clientes td:first-child { min-width: 150px; }
+#seccion-app #tabla-clientes td:last-child { min-width: 170px; }
+#seccion-app #panel-edicion-cliente { margin-top: 18px; padding: 20px; border-radius: 17px; box-shadow: var(--inset); }
+#seccion-app #form-cliente, #seccion-app #form-editar-cliente { display: flex; flex-direction: column; align-items: flex-start; }
+#seccion-app #form-cliente button, #seccion-app #form-editar-cliente button { margin-top: 6px; }
+#seccion-app #campo-nombre-cliente, #seccion-app #editar-nombre-cliente { width: 280px; }
+#seccion-app #campo-contacto-cliente, #seccion-app #editar-contacto-cliente { width: 180px; }
+@media (max-width: 1100px) {
+  #seccion-app #vista-clientes { grid-template-columns: minmax(0, 1fr); }
+  #seccion-app #vista-clientes > .mod-clientes-alta { grid-column: 1; grid-row: 1; width: min(100%, 400px); }
+  #seccion-app #vista-clientes > .mod-clientes { grid-column: 1; grid-row: 2; }
+}
+
+/* Clientes MUEBLEX: registro y listado conservan sus columnas y desplazamiento. */
+#seccion-app .mod-clientes-alta { background: linear-gradient(145deg, #fffdf7, #f9efdf); }
+#seccion-app .mod-clientes #tabla-clientes th { background: #f0e7da; }
+#seccion-app .mod-clientes #panel-edicion-cliente { background: #f7efdf; border: 1px solid #e4d3b9; box-shadow: none; }
+#seccion-app .lista-clientes-scroll { scrollbar-color: #b4bca8 #f2e9dc; }

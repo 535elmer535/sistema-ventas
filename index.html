@@ -5,73 +5,296 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Ventas - Muebles de Melamina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/login-neumorfico.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/usuarios.css">
+  <link rel="stylesheet" href="css/productos.css">
+  <link rel="stylesheet" href="css/ventas.css">
+  <link rel="stylesheet" href="css/pedidos.css">
+  <link rel="stylesheet" href="css/clientes.css">
+  <link rel="stylesheet" href="css/reportes.css">
+  <link rel="stylesheet" href="css/navegacion.css">
+  <link rel="stylesheet" href="css/inicio-mueblex.css">
+  <link rel="stylesheet" href="css/buscador.css">
 </head>
 
 <body>
-  <h1>Sistema de Ventas - Muebles de Melamina</h1>
+  <div id="seccion-login" class="pantalla-login" style="display: none;">
+    <div class="login-wrapper">
+      <div class="flip-scene">
+        <div class="glass-circle front">
+          <div class="accent-ring"></div>
+          <form id="form-login" class="login-form">
+            <h1>Login</h1>
+            <div class="subtitle">Sign in to your account</div>
 
-  <div id="seccion-login" style="display: none;">
-    <h2>Iniciar sesión</h2>
+            <label class="input-box">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <input type="email" id="login-email" placeholder="Correo electrónico" aria-label="Correo electrónico"
+                autocomplete="username" required>
+            </label>
+            <label class="input-box">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input type="password" id="login-password" placeholder="Contraseña" aria-label="Contraseña"
+                autocomplete="current-password" required>
+            </label>
 
-    <form id="form-login">
-      <p>
-        <label>Correo:
-          <input type="email" id="login-email" autocomplete="username" required>
-        </label>
-      </p>
-
-      <p>
-        <label>Contraseña:
-          <input type="password" id="login-password" autocomplete="current-password" required>
-        </label>
-      </p>
-
-      <button type="submit">Iniciar sesión</button>
-    </form>
-
-    <p id="mensaje-login" role="status"></p>
+            <div class="forgot">
+              <label class="remember" for="recordarme"
+                title="Activado: mantiene tu sesión en este navegador. Desactivado: solo esta pestaña.">
+                <input type="checkbox" id="recordarme" checked>
+                <span class="switch on" aria-hidden="true"></span> Recordarme
+              </label>
+              <a href="#" id="enlace-recuperar">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit">SIGN IN</button>
+            <p id="mensaje-login" class="mensaje-login" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="seccion-app" style="display: none;">
-    <button type="button" id="btn-logout">Cerrar sesión</button>
+    <aside class="barra-lateral" aria-label="Menú principal">
+      <div class="marca-panel"><span class="marca-simbolo" aria-hidden="true"><i class="fa-solid fa-cubes-stacked"></i></span><strong>MUEBLEX<small>MUEBLES DE MELAMINA</small></strong></div>
+      <nav aria-label="Secciones del sistema">
+        <button type="button" data-destino="inicio" aria-controls="vista-inicio" aria-current="page"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Inicio</span></button>
+        <button type="button" data-destino="inventario" aria-controls="vista-inventario" ><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i><span>Inventario</span></button>
+        <button type="button" data-destino="ventas" aria-controls="vista-ventas" ><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><span>Ventas</span></button>
+        <button type="button" data-destino="pedidos" aria-controls="vista-pedidos" ><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i><span>Pedidos</span></button>
+        <button type="button" data-destino="clientes" aria-controls="vista-clientes" ><i class="fa-solid fa-users" aria-hidden="true"></i><span>Clientes</span></button>
+        <button type="button" data-destino="reportes" aria-controls="vista-reportes" ><i class="fa-solid fa-chart-column" aria-hidden="true"></i><span>Reportes</span></button>
+        <button type="button" data-destino="administracion" aria-controls="vista-administracion" ><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Administración</span></button>
+      </nav>
+      <p class="lema-lateral">Diseño que se adapta a ti</p>
+      <button type="button" id="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Cerrar sesión</button>
+    </aside>
+    <main id="contenido-panel">
+      <header class="cabecera-panel">
+        <div class="barra-superior">
+          <form id="form-buscador" role="search" autocomplete="off">
+            <label class="solo-lectores" for="busqueda-global">Buscar productos, clientes o ventas</label>
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="busqueda-global" type="search" placeholder="Buscar producto, cliente o venta…" minlength="2" maxlength="80" aria-controls="resultados-buscador" aria-describedby="ayuda-buscador">
+            <button type="submit">Buscar</button>
+          </form>
+          <div class="perfil-panel"><span class="avatar-panel" id="avatar-panel" aria-hidden="true">M</span><div><strong id="perfil-nombre">Mi cuenta</strong><small id="perfil-rol">Sesión activa</small></div></div>
+        </div>
+        <p id="ayuda-buscador" class="ayuda-buscador">Busca por nombre, teléfono, número de venta (V-12) o fecha (AAAA-MM-DD).</p>
+        <section id="resultados-buscador" aria-label="Resultados de búsqueda" hidden>
+          <div class="cabecera-resultados"><h2>Resultados</h2><button type="button" id="cerrar-buscador">Cerrar</button></div>
+          <p id="estado-buscador" role="status" aria-live="polite"></p>
+          <div id="lista-resultados"></div>
+        </section>
+        <p class="titulo-seccion" id="titulo-seccion">Inicio</p>
+      </header>
+      <div id="vista-inicio" class="vista-panel" aria-labelledby="titulo-inicio">
+        <section class="hero-inicio" aria-label="Bienvenida">
+          <div class="hero-texto"><p class="sobretitulo">DISEÑO · CALIDAD · FUNCIONALIDAD</p><h1 id="titulo-inicio"><span id="saludo-usuario" role="status">Bienvenido</span></h1><p>Tu sistema de ventas de muebles de melamina</p><p class="frase-hero">Diseño para cada espacio.<br>Todo tu negocio en un solo lugar.</p></div>
+        </section>
+        <div class="indicadores-inicio">
+          <article class="indicador verde"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><div><p>Ventas de hoy</p><strong id="inicio-ventas-hoy">—</strong><small>Valor de ventas registradas</small></div></article>
+          <article class="indicador arena"><i class="fa-solid fa-box-open" aria-hidden="true"></i><div><p>Productos</p><strong id="inicio-productos">—</strong><small>En el catálogo</small></div></article>
+          <article class="indicador azul"><i class="fa-solid fa-users" aria-hidden="true"></i><div><p>Clientes</p><strong id="inicio-clientes">—</strong><small>Registrados</small></div></article>
+          <article class="indicador rosa"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i><div><p>Pedidos a medida</p><strong id="inicio-pedidos">—</strong><small>Pedidos registrados</small></div></article>
+        </div>
+        <p id="estado-inicio" role="status" aria-live="polite"></p>
+        <div class="cuadricula-inicio">
+          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Ventas de los últimos 7 días</h2></div><div id="grafico-semana" class="grafico-semana" aria-label="Valor de ventas por día"></div><p class="nota-inicio">Importes en Bs. Valor de ventas; no representa dinero cobrado.</p></section>
+          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2><i class="fa-solid fa-bolt" aria-hidden="true"></i> Acciones rápidas</h2></div><div class="acciones-inicio">
+            <button type="button" class="accion-verde" data-destino="ventas"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>Registrar venta <span aria-hidden="true">›</span></button>
+            <button type="button" class="accion-arena" data-destino="inventario"><i class="fa-solid fa-box-open" aria-hidden="true"></i>Ver inventario <span aria-hidden="true">›</span></button>
+            <button type="button" class="accion-azul" data-destino="clientes"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>Nuevo cliente <span aria-hidden="true">›</span></button>
+            <button type="button" class="accion-rosa" data-destino="pedidos"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>Pedido a medida <span aria-hidden="true">›</span></button>
+          </div></section>
+          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Tu catálogo</h2><button type="button" data-destino="inventario">Ver todos</button></div><div id="catalogo-inicio" class="catalogo-inicio"><p>Cargando catálogo…</p></div></section>
+          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Últimas ventas</h2><button type="button" data-destino="reportes">Ver reportes</button></div><div class="tabla-inicio-scroll"><table class="tabla-ultimas"><thead><tr><th>N.º</th><th>Fecha</th><th>Total</th><th>Pago</th></tr></thead><tbody id="ultimas-ventas-inicio"><tr><td colspan="4">Cargando ventas…</td></tr></tbody></table></div></section>
+        </div>
+      </div>
+      <div id="vista-administracion" class="vista-panel" hidden aria-label="Administración">
 
-<p id="saludo-usuario" role="status"></p>
+    <section id="panel-usuarios-admin" hidden class="modulo mod-usuarios">
+      <h2>Administrar usuarios</h2>
+      <p>Solo el administrador puede registrar nuevas cuentas.</p>
+      <form id="form-nuevo-usuario">
+        <p><label>Nombre <input id="nuevo-usuario-nombre" type="text" maxlength="100" required></label></p>
+        <p><label>Correo electrónico <input id="nuevo-usuario-correo" type="email" autocomplete="off" required></label>
+        </p>
 
-<section>
-  <h2>Cambiar contraseña</h2>
+<p><label>Contacto <input id="nuevo-usuario-contacto" type="text" maxlength="30" required></label></p>
 
-  <form id="form-cambiar-password">
-    <p>
-      <label>Nueva contraseña:
-        <input type="password" id="nueva-password"
-               autocomplete="new-password"
-               minlength="12" required>
-      </label>
-    </p>
+        <p><label>Contraseña temporal <input id="nuevo-usuario-password" type="password" autocomplete="new-password"
+              minlength="12" required></label></p>
+        <p><label>Rol
+            <select id="nuevo-usuario-rol">
+              <option value="vendedor">Vendedor</option>
+              <option value="administrador">Administrador</option>
+            </select>
+          </label></p>
+        <button type="submit">Registrar nuevo usuario</button>
+      </form>
+      <p id="mensaje-nuevo-usuario" role="status" aria-live="polite"></p>
+    </section>
 
-    <p>
-      <label>Repetir nueva contraseña:
-        <input type="password" id="confirmar-password"
-               autocomplete="new-password"
-               minlength="12" required>
-      </label>
-    </p>
+    <section class="modulo mod-seguridad">
+      <h2>Cambiar contraseña</h2>
 
-    <button type="submit">Cambiar contraseña</button>
+      <form id="form-cambiar-password">
+        <p>
+          <label>Nueva contraseña:
+            <input type="password" id="nueva-password" autocomplete="new-password" minlength="12" required>
+          </label>
+        </p>
+
+        <p>
+          <label>Repetir nueva contraseña:
+            <input type="password" id="confirmar-password" autocomplete="new-password" minlength="12" required>
+          </label>
+        </p>
+
+        <button type="submit">Cambiar contraseña</button>
+      </form>
+
+      <p id="mensaje-password" role="status"></p>
+    </section>
+
+      </div>
+      <div id="vista-inventario" class="vista-panel" hidden aria-label="Inventario">
+        <section id="panel-registrar-mueble" class="modulo" hidden>
+  <h2>Registrar mueble</h2>
+
+  <form id="form-registrar-mueble">
+    <label for="nuevo-mueble-nombre">Nombre del mueble:</label>
+    <input
+      type="text"
+      id="nuevo-mueble-nombre"
+      maxlength="200"
+      required
+    >
+
+    <label for="nuevo-mueble-categoria">Categoría:</label>
+    <select id="nuevo-mueble-categoria" required>
+      <option value="">Selecciona una categoría</option>
+    </select>
+
+    <label for="nuevo-mueble-precio">Precio de venta (Bs):</label>
+    <input
+      type="number"
+      id="nuevo-mueble-precio"
+      min="0.01"
+      step="0.01"
+      required
+    >
+
+    <label for="nuevo-mueble-existencia">Existencia inicial:</label>
+    <input
+      type="number"
+      id="nuevo-mueble-existencia"
+      min="0"
+      max="2147483647"
+      step="1"
+      value="0"
+      required
+    >
+
+    <button type="submit">Registrar mueble</button>
   </form>
 
-  <p id="mensaje-password" role="status"></p>
+  <p id="mensaje-registrar-mueble" role="status"></p>
+</section>
+<section id="panel-reposicion-stock" class="modulo" hidden>
+  <h2>Reponer existencias</h2>
+
+  <p>Registra las unidades que ingresan al inventario.</p>
+
+  <form id="form-reposicion-stock">
+    <label>Mueble:
+      <select id="reposicion-producto" required>
+        <option value="">Selecciona un mueble</option>
+      </select>
+    </label>
+
+    <p id="reposicion-existencia-actual" role="status"></p>
+
+    <label>Unidades que ingresan:
+      <input
+        type="number"
+        id="reposicion-cantidad"
+        min="1"
+        max="2147483647"
+        step="1"
+        required
+      >
+    </label>
+
+    <label>Motivo del ingreso:
+      <input
+        type="text"
+        id="reposicion-motivo"
+        maxlength="500"
+        placeholder="Ejemplo: muebles terminados en el taller"
+        required
+      >
+    </label>
+
+    <button type="submit">Registrar ingreso de stock</button>
+  </form>
+
+  <p id="mensaje-reposicion-stock" role="status"></p>
 </section>
 
-    <section>
-      <h2>Consultar existencia de muebles</h2>
+<section class="modulo" id="panel-historial-reposiciones">
+  <h2>Historial de reposiciones</h2>
 
+  <button type="button" id="actualizar-historial-reposiciones">
+    Actualizar historial
+  </button>
+
+  <p id="mensaje-historial-reposiciones" role="status"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Mueble</th>
+        <th>Unidades ingresadas</th>
+        <th>Existencia anterior</th>
+        <th>Existencia nueva</th>
+        <th>Motivo</th>
+        <th>Registrado por</th>
+      </tr>
+    </thead>
+
+    <tbody id="cuerpo-historial-reposiciones"></tbody>
+  </table>
+
+  <button type="button" id="anteriores-reposiciones" disabled>
+    Anteriores
+  </button>
+
+  <button type="button" id="siguientes-reposiciones" disabled>
+    Siguientes
+  </button>
+</section>
+
+    <section class="modulo mod-productos">
+      <h2>Consultar existencia de muebles</h2>
+<p>
+  Avisos de existencias: agotado = 0 unidades;
+  stock bajo = de 1 a 3 unidades.
+</p>
       <table id="tabla-productos">
         <thead>
           <tr>
             <th>Producto</th>
             <th>Precio</th>
             <th>Existencia</th>
+            <th>Estado del stock</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -82,15 +305,17 @@
 
         <form id="form-editar-producto">
           <input type="hidden" id="editar-id">
-
+          <input type="hidden" id="editar-precio-anterior-centavos">
           <label>Precio:
             <input type="number" id="editar-precio" min="0.01" step="0.01" required>
           </label>
 
-          <label>Existencia:
-            <input type="number" id="editar-existencia" min="0" step="1" required>
-          </label>
+          <label>Existencia actual:
+  <input type="number" id="editar-existencia" readonly>
+</label>
 
+<p>Para ingresar unidades, utiliza Reponer existencias.</p>
+          
           <button type="submit">Guardar cambios</button>
 
           <button type="button" id="cancelar-edicion-producto">
@@ -103,7 +328,9 @@
       <p id="mensaje-producto" role="status"></p>
     </section>
 
-    <section>
+      </div>
+      <div id="vista-ventas" class="vista-panel" hidden aria-label="Ventas">
+    <section class="modulo mod-ventas">
       <h2>Registrar venta de muebles en stock</h2>
 
       <form id="form-venta">
@@ -141,14 +368,97 @@
         <p>Total: Bs <span id="total-venta">0.00</span></p>
 
         <button type="submit" id="confirmar-venta" disabled>
-          Registrar venta
-        </button>
+  Confirmar venta
+</button>
       </form>
 
       <p id="mensaje-venta" role="status"></p>
     </section>
+<section class="modulo" id="panel-historial-ventas">
+  <h2>Historial de ventas de stock</h2>
 
-    <section>
+  <button type="button" id="actualizar-historial-ventas">
+    Actualizar historial
+  </button>
+
+  <p id="mensaje-historial-ventas" role="status"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Venta</th>
+        <th>Fecha</th>
+        <th>Responsable</th>
+        <th>Total (Bs)</th>
+        <th>Estado del pago</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+
+    <tbody id="cuerpo-historial-ventas">
+      <tr>
+        <td colspan="6">El historial todavía no se ha cargado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" id="anteriores-historial-ventas" disabled>
+    Anteriores
+  </button>
+
+  <button type="button" id="siguientes-historial-ventas" disabled>
+    Siguientes
+  </button>
+
+  <section id="detalle-venta-stock" hidden>
+    <h3>Detalle de la venta</h3>
+
+    <button type="button" id="cerrar-detalle-venta">
+      Cerrar detalle
+    </button>
+<button type="button" id="imprimir-comprobante-venta" hidden>
+  Imprimir comprobante
+</button>
+    <div id="contenido-detalle-venta"></div>
+    <section id="panel-cobro-venta" hidden>
+  <h4>Registrar pago de la venta</h4>
+
+  <p>
+    Saldo disponible para cobrar:
+    Bs <span id="saldo-disponible-cobro-venta">0.00</span>
+  </p>
+
+  <form id="form-cobro-venta">
+    <input type="hidden" id="cobro-venta-id-venta">
+
+    <label for="cobro-venta-monto">Monto recibido (Bs):</label>
+    <input
+      type="number"
+      id="cobro-venta-monto"
+      min="0.01"
+      step="0.01"
+      required
+    >
+
+    <label for="cobro-venta-metodo">Método del cobro:</label>
+    <select id="cobro-venta-metodo" required>
+      <option value="efectivo">Efectivo</option>
+      <option value="QR">QR</option>
+      <option value="transferencia">Transferencia</option>
+    </select>
+
+    <button type="submit" id="guardar-cobro-venta">
+      Registrar pago
+    </button>
+  </form>
+</section>
+
+<p id="mensaje-cobro-venta" role="status"></p>
+  </section>
+</section>
+      </div>
+      <div id="vista-pedidos" class="vista-panel" hidden aria-label="Pedidos">
+    <section class="modulo mod-pedidos">
       <h2>Registrar pedido a medida</h2>
 
       <p>
@@ -275,20 +585,196 @@
 
       <p id="mensaje-pedido" role="status"></p>
     </section>
+<section class="modulo" id="panel-historial-pedidos">
+  <h2>Historial de pedidos a medida</h2>
 
-    <section>
+  <button type="button" id="actualizar-historial-pedidos">
+    Actualizar historial
+  </button>
+
+  <p id="mensaje-historial-pedidos" role="status"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Venta</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Responsable</th>
+        <th>Total (Bs)</th>
+        <th>Estado del pago</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+
+    <tbody id="cuerpo-historial-pedidos">
+      <tr>
+        <td colspan="7">El historial todavía no se ha cargado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" id="anteriores-historial-pedidos" disabled>
+    Anteriores
+  </button>
+
+  <button type="button" id="siguientes-historial-pedidos" disabled>
+    Siguientes
+  </button>
+
+  <section id="detalle-pedido-medida" hidden>
+    <h3>Detalle del pedido</h3>
+
+    <button type="button" id="cerrar-detalle-pedido">
+      Cerrar detalle
+    </button>
+<button type="button" id="imprimir-comprobante-pedido" hidden>
+  Imprimir comprobante
+</button>
+
+<button type="button" id="imprimir-nota-taller" hidden>
+  Imprimir nota para el taller
+</button>
+    <div id="contenido-detalle-pedido"></div>
+    <section id="panel-entrega-pedido" hidden>
+  <h4>Datos de entrega</h4>
+<div id="resumen-entrega-pedido"></div>
+
+<button type="button" id="editar-entrega-pedido" hidden>
+  Editar entrega
+</button>
+  <form id="form-entrega-pedido">
+    <input type="hidden" id="entrega-id-venta">
+    <input type="hidden" id="entrega-version">
+
+    <label>Modalidad:
+      <select id="entrega-modalidad" required>
+        <option value="">Selecciona una modalidad</option>
+        <option value="retiro_tienda">Retiro en tienda</option>
+        <option value="domicilio">Entrega a domicilio</option>
+      </select>
+    </label>
+
+    <div id="campos-entrega-domicilio" hidden>
+      <label>Dirección de entrega:
+        <input
+          type="text"
+          id="entrega-direccion"
+          maxlength="500"
+        >
+      </label>
+
+      <label>Referencia del lugar (opcional):
+        <input
+          type="text"
+          id="entrega-referencia"
+          maxlength="500"
+        >
+      </label>
+    </div>
+
+    <label>Nombre de quien recibe o retira:
+      <input
+        type="text"
+        id="entrega-nombre"
+        maxlength="200"
+        required
+      >
+    </label>
+
+    <label>Teléfono de quien recibe o retira:
+      <input
+        type="tel"
+        id="entrega-contacto"
+        maxlength="80"
+        required
+      >
+    </label>
+
+    <button type="submit">Guardar datos de entrega</button>
+  </form>
+
+  <p id="mensaje-entrega-pedido" role="status"></p>
+</section>
+    <section id="panel-cobro-pedido" hidden>
+  <h4>Registrar pago del pedido</h4>
+
+  <p>
+    Saldo disponible para cobrar:
+    Bs <span id="saldo-disponible-cobro-pedido">0.00</span>
+  </p>
+
+  <form id="form-cobro-pedido">
+    <input type="hidden" id="cobro-pedido-id-venta">
+
+    <label for="cobro-pedido-monto">Monto recibido (Bs):</label>
+    <input
+      type="number"
+      id="cobro-pedido-monto"
+      min="0.01"
+      step="0.01"
+      required
+    >
+
+    <label for="cobro-pedido-metodo">Método del cobro:</label>
+    <select id="cobro-pedido-metodo" required>
+      <option value="efectivo">Efectivo</option>
+      <option value="QR">QR</option>
+      <option value="transferencia">Transferencia</option>
+    </select>
+
+    <button type="submit" id="guardar-cobro-pedido">
+      Registrar pago
+    </button>
+  </form>
+</section>
+
+<p id="mensaje-cobro-pedido" role="status"></p>
+  </section>
+</section>
+      </div>
+      <div id="vista-clientes" class="vista-panel" hidden aria-label="Clientes">
+    <section class="modulo mod-clientes-alta">
+      <h2>Registrar cliente</h2>
+
+      <form id="form-cliente">
+        <label>Nombre:
+          <input type="text" id="campo-nombre-cliente" required>
+        </label>
+
+        <label>Teléfono:
+          <input type="tel" id="campo-contacto-cliente" required>
+        </label>
+        <label>Dirección del cliente (opcional):
+  <input
+    type="text"
+    id="campo-direccion-cliente"
+    maxlength="500"
+    autocomplete="street-address"
+  >
+</label>
+        <button type="submit">Registrar cliente</button>
+      </form>
+
+      <p id="mensaje-cliente" role="status"></p>
+    </section>
+
+    <section class="modulo mod-clientes">
       <h2>Clientes</h2>
 
+      <div class="lista-clientes-scroll" role="region" aria-label="Lista de clientes" tabindex="0">
       <table id="tabla-clientes">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Teléfono</th>
+            <th>Dirección</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="cuerpo-clientes"></tbody>
       </table>
+      </div>
       <div id="panel-edicion-cliente" style="display: none;">
         <h3>Editar cliente</h3>
 
@@ -302,7 +788,14 @@
           <label>Teléfono:
             <input type="tel" id="editar-contacto-cliente" required>
           </label>
-
+          <label>Dirección del cliente (opcional):
+  <input
+    type="text"
+    id="editar-direccion-cliente"
+    maxlength="500"
+    autocomplete="street-address"
+  >
+</label>
           <button type="submit">Guardar cambios</button>
 
           <button type="button" id="cancelar-edicion-cliente">
@@ -314,49 +807,44 @@
       <p id="mensaje-edicion-cliente" role="status"></p>
     </section>
 
-    <section>
-      <h2>Registrar cliente</h2>
 
-      <form id="form-cliente">
-        <label>Nombre:
-          <input type="text" id="campo-nombre-cliente" required>
-        </label>
+      </div>
+      <div id="vista-reportes" class="vista-panel" hidden aria-label="Reportes">
+    <section id="seccion-reportes" class="modulo mod-reportes">
+      <h2>Reporte de ventas</h2>
+      <div class="filtros-reportes">
+        <div class="filtro-fecha">
+          <label for="ventas-desde">Desde:</label>
+          <input type="date" id="ventas-desde">
+        </div>
+        <div class="filtro-fecha">
+          <label for="ventas-hasta">Hasta:</label>
+          <input type="date" id="ventas-hasta">
+        </div>
+        <button type="button" id="btn-filtrar-ventas">
+          Consultar ventas
+        </button>
+      </div>
+      <div id="resumen-ventas"></div>
+      <h3>Muebles de catálogo más vendidos</h3>
+      <p>Unidades vendidas en todo el historial, sin filtro de fechas.</p>
 
-        <label>Teléfono:
-          <input type="tel" id="campo-contacto-cliente" required>
-        </label>
+      <button type="button" id="btn-productos-vendidos">
+        Consultar muebles más vendidos
+      </button>
 
-        <button type="submit">Registrar cliente</button>
-      </form>
-
-      <p id="mensaje-cliente" role="status"></p>
+      <div id="productos-vendidos"></div>
     </section>
-<section id="seccion-reportes">
-  <h2>Reporte de ventas</h2>
-<label for="ventas-desde">Desde:</label>
-<input type="date" id="ventas-desde">
-
-<label for="ventas-hasta">Hasta:</label>
-<input type="date" id="ventas-hasta">
-
-<button type="button" id="btn-filtrar-ventas">
-  Consultar ventas
-</button>
-  <div id="resumen-ventas"></div>
-  <h3>Muebles de catálogo más vendidos</h3>
-<p>Unidades vendidas en todo el historial, sin filtro de fechas.</p>
-
-<button type="button" id="btn-productos-vendidos">
-  Consultar muebles más vendidos
-</button>
-
-<div id="productos-vendidos"></div>
-</section>
+      </div>
+    </main>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/devoluciones-mueblex.js"></script>
+  <script src="js/navegacion.js"></script>
+  <script src="js/inicio-mueblex.js"></script>
 </body>
 
 </html>
