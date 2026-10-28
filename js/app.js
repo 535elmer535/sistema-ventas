@@ -644,10 +644,14 @@ function llenarSelectClientes(clientes) {
 // Convierte un importe con hasta dos decimales en centavos enteros.
 // Vacío y más de dos decimales se rechazan, en lugar de redondearlos en silencio.
 function importeEnCentavos(texto) {
-  const valor = String(texto).trim();
+  const valor = String(texto).trim().replace(/^\./, "0.");
+
   if (!/^\d+(?:\.\d{1,2})?$/.test(valor)) return null;
+
   const [entero, decimal = ""] = valor.split(".");
-  const centavos = Number(entero) * 100 + Number(decimal.padEnd(2, "0"));
+  const centavos =
+    Number(entero) * 100 + Number(decimal.padEnd(2, "0"));
+
   return Number.isSafeInteger(centavos) ? centavos : null;
 }
 
