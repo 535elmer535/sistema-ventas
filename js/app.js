@@ -4762,9 +4762,10 @@ function formularioAnulacion(operacion, tipo) {
     >
       <h4>Anular ${tipo === "venta" ? "venta" : "pedido"} sin cobros</h4>
 
-      <label>
+      <label for="anulacion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-motivo">
         Motivo de anulación:
         <input
+          id="anulacion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-motivo"
           type="text"
           name="motivo"
           maxlength="500"

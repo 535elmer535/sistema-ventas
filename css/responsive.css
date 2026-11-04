@@ -1,0 +1,162 @@
+/* Guía 20, actividad B. Se carga después de los estilos de cada módulo.
+   El diseño de escritorio conserva sus reglas originales. */
+@media (max-width: 699px) {
+  body { margin: 0; }
+
+  #seccion-app { padding: 12px 12px 36px; }
+  #seccion-app #contenido-panel { width: 100%; min-width: 0; }
+  #seccion-app .barra-lateral {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    gap: 12px;
+    margin: 0 0 16px;
+    border-radius: 16px;
+    overflow: visible;
+  }
+  #seccion-app .marca-panel { min-width: 0; gap: 8px; }
+  #seccion-app .marca-panel strong { font-size: 20px; }
+  #seccion-app .marca-panel small { font-size: 7px; letter-spacing: .08em; }
+  #seccion-app .marca-simbolo { flex: 0 0 28px; height: 36px; font-size: 24px; }
+  #seccion-app #alternar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    max-width: 135px;
+    padding: 8px 10px;
+    background: #f0d0a6;
+    color: #293c30;
+    border-color: #ffe8c7;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  #seccion-app .barra-lateral nav {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  #seccion-app .barra-lateral nav button {
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 8px;
+    gap: 8px;
+    font-size: 13px;
+  }
+  #seccion-app .barra-lateral nav button span { overflow-wrap: anywhere; }
+  #seccion-app .barra-lateral .lema-lateral { display: none; }
+  #seccion-app .barra-lateral #btn-logout { grid-column: 1 / -1; grid-row: auto; min-height: 44px; }
+  #seccion-app .barra-lateral[data-menu-movil="cerrado"] #btn-logout { display: none; }
+
+  #seccion-app .barra-superior { flex-direction: column-reverse; align-items: stretch; gap: 12px; }
+  #seccion-app .perfil-panel { max-width: 100%; }
+  #seccion-app .cabecera-panel { margin-bottom: 16px; }
+  #seccion-app #busqueda-global { font-size: 16px; }
+  #seccion-app .vista-panel { gap: 18px; }
+  #seccion-app .vista-panel > .modulo {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  #seccion-app .modulo h2 { overflow-wrap: normal; }
+  #seccion-app .modulo form { width: 100%; max-width: 100%; }
+  #seccion-app .modulo form label {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px;
+  }
+  #seccion-app .modulo input:not([type="hidden"]),
+  #seccion-app .modulo select,
+  #seccion-app .modulo textarea { max-width: 100%; min-width: 0; font-size: 16px; }
+  #seccion-app #form-registrar-mueble { display: flex; flex-direction: column; align-items: stretch; }
+  #seccion-app #form-registrar-mueble label { margin: 12px 0 6px; }
+  #seccion-app #form-registrar-mueble :is(input, select) { width: 100%; }
+  #seccion-app #form-editar-producto { flex-direction: column; align-items: stretch; }
+  #seccion-app #form-editar-producto label { width: 100%; }
+  #seccion-app #panel-edicion,
+  #seccion-app #panel-edicion-cliente { padding: 16px; max-width: 100%; }
+  #seccion-app #form-pedido fieldset { padding: 14px; }
+  #seccion-app #form-pedido fieldset p { flex-direction: column; align-items: stretch; gap: 0; }
+  #seccion-app #form-pedido fieldset p label,
+  #seccion-app #form-pedido label:has(#campo-precio-pedido) { width: 100%; }
+  #seccion-app #form-nuevo-usuario,
+  #seccion-app #form-cambiar-password { grid-template-columns: minmax(0, 1fr); }
+  #seccion-app #vista-clientes { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  #seccion-app #vista-clientes > .mod-clientes-alta,
+  #seccion-app #vista-clientes > .mod-clientes { width: 100%; }
+  #seccion-app #seccion-reportes .filtros-reportes { flex-direction: column; align-items: stretch; gap: 12px; }
+  #seccion-app .filtros-reportes .filtro-fecha { flex-basis: auto; }
+  #seccion-app .filtro-fecha input[type="date"] { width: 100%; }
+  #seccion-app #resumen-ventas,
+  #seccion-app #productos-vendidos { padding: 14px; }
+
+  /* La tabla es la zona desplazable: no se cortan palabras ni fechas para
+     intentar encajar todas las columnas a la vez en una pantalla pequeña. */
+  #seccion-app .modulo table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-color: #9caa96 #f0e7da;
+    scrollbar-width: auto;
+  }
+  #seccion-app .modulo table th,
+  #seccion-app .modulo table td {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+    min-width: 100px;
+    max-width: none;
+    padding: 12px;
+  }
+  #seccion-app .modulo table td:first-child { min-width: 140px; }
+  #seccion-app .modulo table td button { min-height: 44px; }
+  #seccion-app #tabla-clientes { display: table; max-width: none; overflow: visible; }
+
+  /* Completa las reglas existentes entre 621 y 699 px. */
+  #seccion-app .indicadores-inicio { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  #seccion-app .indicador { min-width: 0; padding: 14px 10px; flex-direction: column; align-items: flex-start; }
+  #seccion-app .indicador > i { flex-basis: auto; width: 42px; height: 42px; font-size: 20px; }
+  #seccion-app .acciones-inicio { grid-template-columns: minmax(0, 1fr); }
+  #seccion-app .catalogo-inicio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #seccion-app .hero-inicio {
+    min-height: 0;
+    padding: 24px 20px;
+    background-image: linear-gradient(90deg, #fff7ecf5, #fff7eceb), url('../assets/interior-mueblex.png');
+  }
+
+  /* El formulario móvil usa una tarjeta flexible, sin reducir las letras
+     mediante transformaciones ni recortar sus mensajes. */
+  .pantalla-login { overflow: visible; min-height: 100svh; }
+  .pantalla-login .login-wrapper { min-height: 100svh; padding: 28px 16px; }
+  .pantalla-login .flip-scene { width: min(100%, 440px); height: auto; }
+  .pantalla-login .glass-circle {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 40px 24px;
+    border-radius: 32px;
+  }
+  .pantalla-login .glass-circle::before { inset: 8px; border-radius: 26px; }
+  .pantalla-login .login-form { width: 100%; max-width: 320px; }
+  .pantalla-login .login-form h1 { font-size: 32px; }
+  .pantalla-login .login-form .subtitle { font-size: 14px; margin-bottom: 24px; }
+  .pantalla-login .input-box input { height: 48px; font-size: 16px; padding-left: 42px; }
+  .pantalla-login .input-box { margin-bottom: 16px; }
+  .pantalla-login .forgot { flex-wrap: wrap; justify-content: flex-start; gap: 12px 16px; margin-bottom: 20px; }
+  .pantalla-login .remember { min-height: 44px; gap: 8px; font-size: 14px; }
+  .pantalla-login .switch { transform: none; margin-right: 0; flex-shrink: 0; }
+  .pantalla-login .forgot a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-align: left; }
+  .pantalla-login .login-form button { min-height: 48px; font-size: 16px; }
+  .pantalla-login .mensaje-login { font-size: 14px; }
+}

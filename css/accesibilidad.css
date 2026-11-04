@@ -1,0 +1,77 @@
+/* Guía 20, actividad C. Etiquetas, foco y contraste del diseño existente. */
+.pantalla-login .input-box { padding-top: 24px; }
+.pantalla-login .etiqueta-login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #494949;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.pantalla-login .input-box i { top: calc(50% + 12px); color: #595959; }
+.pantalla-login .input-box input { color: #353535; }
+.pantalla-login .input-box input::placeholder { color: #595959; opacity: 1; }
+.pantalla-login .input-box input:focus-visible { outline: 2px solid #782b2b; outline-offset: 3px; }
+.pantalla-login .login-form .subtitle,
+.pantalla-login .remember { color: #595959; }
+.pantalla-login .forgot a { color: #674020; text-decoration: underline; text-underline-offset: 3px; }
+.pantalla-login .forgot a:hover { color: #492812; }
+.pantalla-login .forgot a:focus-visible { outline: 2px solid #782b2b; outline-offset: 3px; border-radius: 3px; }
+.pantalla-login .login-form button { color: #353535; min-height: 44px; }
+.pantalla-login .login-form button:not(:disabled):hover { background: #782b2b; color: #ffffff; }
+.pantalla-login .login-form button:focus-visible { outline: 3px solid #782b2b; outline-offset: 4px; }
+.pantalla-login .login-form button:disabled {
+  background: #d3d3d3;
+  color: #525252;
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
+  cursor: wait;
+}
+.pantalla-login .mensaje-login { color: #842424; font-size: 14px; line-height: 1.5; }
+
+#seccion-app .modulo [role="status"] { color: #334238; font-size: 14px; line-height: 1.6; }
+#seccion-app .modulo button:disabled {
+  background: #d3dccf;
+  color: #53604f;
+  border-color: #bec8b9;
+  opacity: 1;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+#seccion-app .modulo :is(input, select, textarea):disabled { opacity: 1; color: #53604f; background: #e6e9e1; }
+#seccion-app .modulo input[type="checkbox"] {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  min-height: 20px;
+  padding: 0;
+  margin: 3px 0 0;
+  box-shadow: none;
+  accent-color: #365b49;
+}
+#seccion-app .modulo label:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+#seccion-app .acciones-inicio .accion-arena { color: #3d2b1d; background: linear-gradient(120deg, #edcda2, #d9ad78); }
+#seccion-app .acciones-inicio .accion-arena:not(:disabled):hover { color: #3d2b1d; }
+#seccion-app .acciones-inicio .accion-rosa { color: #392730; background: linear-gradient(120deg, #ebcfc5, #d3b2bb); }
+#seccion-app .acciones-inicio .accion-rosa:not(:disabled):hover { color: #392730; }
+#seccion-app .barra-lateral nav [aria-current="page"]:hover {
+  background: linear-gradient(110deg, #f9e6ca, #d7b48d);
+  color: #25332d;
+}
+#seccion-app #alternar-menu:focus-visible { outline: 3px solid #fff9e9; outline-offset: 3px; }
+@media (max-width: 699px) {
+  #seccion-app .barra-lateral nav button[data-destino="administracion"] { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pantalla-login *, .pantalla-login *::before, .pantalla-login *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

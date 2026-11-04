@@ -31,24 +31,24 @@ function formularioDevolucion(operacion, tipo) {
       <h4>Anular y registrar devolución completa</h4>
       <p>Importe completo a devolver: <strong>Bs ${(cobrado / 100).toFixed(2)}</strong>.</p>
       <p>Registra aquí el dinero que ya devolviste al cliente.</p>
-      <label>Método de devolución:
-        <select name="metodo" required>
+      <label for="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-metodo">Método de devolución:
+        <select id="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-metodo" name="metodo" required>
           <option value="">Selecciona un método</option>
           <option value="efectivo">Efectivo</option>
           <option value="QR">QR</option>
           <option value="transferencia">Transferencia</option>
         </select>
       </label>
-      <label>Motivo de anulación y devolución:
-        <input type="text" name="motivo" maxlength="500" required>
+      <label for="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-motivo">Motivo de anulación y devolución:
+        <input id="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-motivo" type="text" name="motivo" maxlength="500" required>
       </label>
-      <label>
-        <input type="checkbox" name="dinero_devuelto" required>
+      <label for="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-dinero">
+        <input id="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-dinero" type="checkbox" name="dinero_devuelto" required>
         Confirmo que devolví al cliente el importe completo indicado.
       </label>
       ${tipo === "venta" ? `
-        <label>
-          <input type="checkbox" name="stock_recibido" required>
+        <label for="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-stock">
+          <input id="devolucion-${escaparHTML(tipo)}-${escaparHTML(operacion.id_venta)}-stock" type="checkbox" name="stock_recibido" required>
           Confirmo que recuperé los muebles de esta venta y pueden volver al inventario.
         </label>
       ` : ""}

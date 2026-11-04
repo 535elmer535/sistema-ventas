@@ -20,24 +20,28 @@
   <link rel="stylesheet" href="css/navegacion.css">
   <link rel="stylesheet" href="css/inicio-mueblex.css">
   <link rel="stylesheet" href="css/buscador.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 
 <body>
-  <div id="seccion-login" class="pantalla-login" style="display: none;">
+  <div id="seccion-login" class="pantalla-login" role="main" style="display: none;">
     <div class="login-wrapper">
       <div class="flip-scene">
         <div class="glass-circle front">
           <div class="accent-ring"></div>
           <form id="form-login" class="login-form">
-            <h1>Login</h1>
-            <div class="subtitle">Sign in to your account</div>
+            <h1>Iniciar sesión</h1>
+            <div class="subtitle">Accede a tu cuenta Mueblex</div>
 
-            <label class="input-box">
+            <label for="login-email" class="input-box">
+              <span class="etiqueta-login">Correo electrónico</span>
               <i class="fa-solid fa-user" aria-hidden="true"></i>
               <input type="email" id="login-email" placeholder="Correo electrónico" aria-label="Correo electrónico"
                 autocomplete="username" required>
             </label>
-            <label class="input-box">
+            <label for="login-password" class="input-box">
+              <span class="etiqueta-login">Contraseña</span>
               <i class="fa-solid fa-lock" aria-hidden="true"></i>
               <input type="password" id="login-password" placeholder="Contraseña" aria-label="Contraseña"
                 autocomplete="current-password" required>
@@ -51,7 +55,7 @@
               </label>
               <a href="#" id="enlace-recuperar">¿Olvidaste tu contraseña?</a>
             </div>
-            <button type="submit">SIGN IN</button>
+            <button type="submit">Ingresar</button>
             <p id="mensaje-login" class="mensaje-login" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -62,7 +66,8 @@
   <div id="seccion-app" style="display: none;">
     <aside class="barra-lateral" aria-label="Menú principal">
       <div class="marca-panel"><span class="marca-simbolo" aria-hidden="true"><i class="fa-solid fa-cubes-stacked"></i></span><strong>MUEBLEX<small>MUEBLES DE MELAMINA</small></strong></div>
-      <nav aria-label="Secciones del sistema">
+      <button type="button" id="alternar-menu" aria-controls="menu-secciones" aria-expanded="false" hidden><span aria-hidden="true">☰</span> <span id="texto-menu-movil">Menú</span></button>
+      <nav id="menu-secciones" aria-label="Secciones del sistema">
         <button type="button" data-destino="inicio" aria-controls="vista-inicio" aria-current="page"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Inicio</span></button>
         <button type="button" data-destino="inventario" aria-controls="vista-inventario" ><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i><span>Inventario</span></button>
         <button type="button" data-destino="ventas" aria-controls="vista-ventas" ><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><span>Ventas</span></button>
@@ -122,15 +127,15 @@
       <h2>Administrar usuarios</h2>
       <p>Solo el administrador puede registrar nuevas cuentas.</p>
       <form id="form-nuevo-usuario">
-        <p><label>Nombre <input id="nuevo-usuario-nombre" type="text" maxlength="100" required></label></p>
-        <p><label>Correo electrónico <input id="nuevo-usuario-correo" type="email" autocomplete="off" required></label>
+        <p><label for="nuevo-usuario-nombre">Nombre <input id="nuevo-usuario-nombre" type="text" maxlength="100" required></label></p>
+        <p><label for="nuevo-usuario-correo">Correo electrónico <input id="nuevo-usuario-correo" type="email" autocomplete="off" required></label>
         </p>
 
-<p><label>Contacto <input id="nuevo-usuario-contacto" type="text" maxlength="30" required></label></p>
+<p><label for="nuevo-usuario-contacto">Contacto <input id="nuevo-usuario-contacto" type="text" maxlength="30" required></label></p>
 
-        <p><label>Contraseña temporal <input id="nuevo-usuario-password" type="password" autocomplete="new-password"
+        <p><label for="nuevo-usuario-password">Contraseña temporal <input id="nuevo-usuario-password" type="password" autocomplete="new-password"
               minlength="12" required></label></p>
-        <p><label>Rol
+        <p><label for="nuevo-usuario-rol">Rol
             <select id="nuevo-usuario-rol">
               <option value="vendedor">Vendedor</option>
               <option value="administrador">Administrador</option>
@@ -146,13 +151,13 @@
 
       <form id="form-cambiar-password">
         <p>
-          <label>Nueva contraseña:
+          <label for="nueva-password">Nueva contraseña:
             <input type="password" id="nueva-password" autocomplete="new-password" minlength="12" required>
           </label>
         </p>
 
         <p>
-          <label>Repetir nueva contraseña:
+          <label for="confirmar-password">Repetir nueva contraseña:
             <input type="password" id="confirmar-password" autocomplete="new-password" minlength="12" required>
           </label>
         </p>
@@ -213,7 +218,7 @@
   <p>Registra las unidades que ingresan al inventario.</p>
 
   <form id="form-reposicion-stock">
-    <label>Mueble:
+    <label for="reposicion-producto">Mueble:
       <select id="reposicion-producto" required>
         <option value="">Selecciona un mueble</option>
       </select>
@@ -221,7 +226,7 @@
 
     <p id="reposicion-existencia-actual" role="status"></p>
 
-    <label>Unidades que ingresan:
+    <label for="reposicion-cantidad">Unidades que ingresan:
       <input
         type="number"
         id="reposicion-cantidad"
@@ -232,7 +237,7 @@
       >
     </label>
 
-    <label>Motivo del ingreso:
+    <label for="reposicion-motivo">Motivo del ingreso:
       <input
         type="text"
         id="reposicion-motivo"
@@ -306,11 +311,11 @@
         <form id="form-editar-producto">
           <input type="hidden" id="editar-id">
           <input type="hidden" id="editar-precio-anterior-centavos">
-          <label>Precio:
+          <label for="editar-precio">Precio:
             <input type="number" id="editar-precio" min="0.01" step="0.01" required>
           </label>
 
-          <label>Existencia actual:
+          <label for="editar-existencia">Existencia actual:
   <input type="number" id="editar-existencia" readonly>
 </label>
 
@@ -334,11 +339,11 @@
       <h2>Registrar venta de muebles en stock</h2>
 
       <form id="form-venta">
-        <label>Producto:
+        <label for="campo-producto">Producto:
           <select id="campo-producto"></select>
         </label>
 
-        <label>Cantidad:
+        <label for="campo-cantidad">Cantidad:
           <input type="number" id="campo-cantidad" min="1" step="1" value="1">
         </label>
 
@@ -467,7 +472,7 @@
       </p>
 
       <form id="form-pedido">
-        <label>Cliente:
+        <label for="campo-cliente-pedido">Cliente:
           <select id="campo-cliente-pedido" required>
             <option value="">Selecciona un cliente</option>
           </select>
@@ -482,41 +487,41 @@
           <legend>Datos del mueble a medida</legend>
 
           <p>
-            <label>Descripción:
+            <label for="campo-descripcion-pedido">Descripción:
               <input type="text" id="campo-descripcion-pedido" placeholder="Ropero de tres puertas y dos cajones">
             </label>
           </p>
 
           <p>
-            <label>Alto (cm):
+            <label for="campo-alto-pedido">Alto (cm):
               <input type="number" id="campo-alto-pedido" min="0.1" step="0.1">
             </label>
 
-            <label>Ancho (cm):
+            <label for="campo-ancho-pedido">Ancho (cm):
               <input type="number" id="campo-ancho-pedido" min="0.1" step="0.1">
             </label>
 
-            <label>Profundidad (cm):
+            <label for="campo-profundidad-pedido">Profundidad (cm):
               <input type="number" id="campo-profundidad-pedido" min="0.1" step="0.1">
             </label>
           </p>
 
           <p>
-            <label>Color de melamina:
+            <label for="campo-color-pedido">Color de melamina:
               <input type="text" id="campo-color-pedido" placeholder="Blanco mate">
             </label>
 
-            <label>Cantidad:
+            <label for="campo-cantidad-pedido">Cantidad:
               <input type="number" id="campo-cantidad-pedido" min="1" step="1" value="1">
             </label>
 
-            <label>Precio acordado por unidad (Bs):
+            <label for="campo-precio-pedido">Precio acordado por unidad (Bs):
               <input type="number" id="campo-precio-pedido" min="0.01" step="0.01">
             </label>
           </p>
 
           <p>
-            <label>Fecha estimada de entrega:
+            <label for="campo-fecha-pedido">Fecha estimada de entrega:
               <input type="date" id="campo-fecha-pedido">
             </label>
           </p>
@@ -555,13 +560,13 @@
         </p>
 
         <p>
-          <label>Monto recibido al registrar (anticipo o pago completo, Bs):
+          <label for="campo-anticipo-pedido">Monto recibido al registrar (anticipo o pago completo, Bs):
             <input type="number" id="campo-anticipo-pedido" min="0" step="0.01" value="0" required>
           </label>
         </p>
 
         <p>
-          <label>Método del cobro:
+          <label for="campo-metodo-pedido">Método del cobro:
             <select id="campo-metodo-pedido">
               <option value="efectivo">Efectivo</option>
               <option value="QR">QR</option>
@@ -647,7 +652,7 @@
     <input type="hidden" id="entrega-id-venta">
     <input type="hidden" id="entrega-version">
 
-    <label>Modalidad:
+    <label for="entrega-modalidad">Modalidad:
       <select id="entrega-modalidad" required>
         <option value="">Selecciona una modalidad</option>
         <option value="retiro_tienda">Retiro en tienda</option>
@@ -656,7 +661,7 @@
     </label>
 
     <div id="campos-entrega-domicilio" hidden>
-      <label>Dirección de entrega:
+      <label for="entrega-direccion">Dirección de entrega:
         <input
           type="text"
           id="entrega-direccion"
@@ -664,7 +669,7 @@
         >
       </label>
 
-      <label>Referencia del lugar (opcional):
+      <label for="entrega-referencia">Referencia del lugar (opcional):
         <input
           type="text"
           id="entrega-referencia"
@@ -673,7 +678,7 @@
       </label>
     </div>
 
-    <label>Nombre de quien recibe o retira:
+    <label for="entrega-nombre">Nombre de quien recibe o retira:
       <input
         type="text"
         id="entrega-nombre"
@@ -682,7 +687,7 @@
       >
     </label>
 
-    <label>Teléfono de quien recibe o retira:
+    <label for="entrega-contacto">Teléfono de quien recibe o retira:
       <input
         type="tel"
         id="entrega-contacto"
@@ -738,14 +743,14 @@
       <h2>Registrar cliente</h2>
 
       <form id="form-cliente">
-        <label>Nombre:
+        <label for="campo-nombre-cliente">Nombre:
           <input type="text" id="campo-nombre-cliente" required>
         </label>
 
-        <label>Teléfono:
+        <label for="campo-contacto-cliente">Teléfono:
           <input type="tel" id="campo-contacto-cliente" required>
         </label>
-        <label>Dirección del cliente (opcional):
+        <label for="campo-direccion-cliente">Dirección del cliente (opcional):
   <input
     type="text"
     id="campo-direccion-cliente"
@@ -781,14 +786,14 @@
         <form id="form-editar-cliente">
           <input type="hidden" id="editar-id-cliente">
 
-          <label>Nombre:
+          <label for="editar-nombre-cliente">Nombre:
             <input type="text" id="editar-nombre-cliente" required>
           </label>
 
-          <label>Teléfono:
+          <label for="editar-contacto-cliente">Teléfono:
             <input type="tel" id="editar-contacto-cliente" required>
           </label>
-          <label>Dirección del cliente (opcional):
+          <label for="editar-direccion-cliente">Dirección del cliente (opcional):
   <input
     type="text"
     id="editar-direccion-cliente"
