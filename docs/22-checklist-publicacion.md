@@ -32,13 +32,23 @@ La lista de Administración actualiza también el selector de categorías de Inv
 - Comprobar que las cuentas activas utilizan contraseñas adecuadas y revisar la configuración de altas de cuentas.
 - Confirmar la configuración y el funcionamiento de la función de servidor que registra usuarios.
 
-## Pendientes de la guía
+## Estado actualizado de la guía
 
-- Decidir el tratamiento de los datos de prueba.
-- Actualizar el README con el estado y las funciones reales de Mueblex.
-- Completar la revisión de rutas y elegir el alojamiento.
-- Documentar la reflexión y completar la lista final con resultados comprobados.
-- Realizar commit, push y verificación en GitHub al terminar.
+- Seguridad, categorías y registro de cuentas: revisados según
+  las pruebas documentadas más abajo.
+- Datos de prueba: se conservarán durante las verificaciones.
+- README y rutas: revisados.
+- Alojamiento elegido: Netlify.
+- Pendiente: reflexión final y guardado en Git/GitHub.
+
+Antes de publicar:
+
+- Cambiar las contraseñas repetidas, según lo acordado.
+
+Antes de ingresar datos reales:
+
+- Preparar un respaldo de Supabase y autorizar una limpieza
+  controlada de los datos de prueba.
 
 ## Verificación local del paquete de categorías
 
@@ -67,3 +77,37 @@ Con administrador se creó la cuenta “Vendedor prueba Guía 22”. La cuenta p
 Desde esa cuenta se intentó llamar directamente a `registrar-usuario` con una solicitud vacía. El servidor rechazó la llamada con HTTP 403, resultado null y mensaje “No autorizado”.
 
 El cambio de las contraseñas repetidas queda pendiente por decisión del usuario, para realizarlo al final y antes de publicar Mueblex.
+
+### Actividad B — Datos de prueba
+
+El usuario confirmó que todos los datos actuales de Supabase son de prueba. Todavía no se han ingresado operaciones reales del negocio.
+
+Se conservarán durante las verificaciones restantes. Antes de cargar datos reales, se preparará un respaldo de la base de datos y se revisará una limpieza controlada.
+
+La limpieza sigue pendiente de preparación y autorización. Un ZIP del proyecto respalda los archivos del código, pero no sustituye el respaldo de los datos de Supabase.
+
+### README y rutas
+
+Se actualizó el README con las funciones, roles, tecnologías, estructura y estado actual de Mueblex.
+
+Se verificaron sus seis enlaces de documentación. También se comprobaron 25 recursos locales de index.html y 3 referencias locales de los CSS. Todos los archivos referenciados existen y sus rutas son relativas.
+
+### Plataforma elegida para publicar
+
+Se utilizará Netlify para publicar Mueblex porque permite alojar
+HTML, CSS y JavaScript y conectarse con GitHub para actualizar el sistema.
+
+Supabase seguirá gestionando los usuarios y la base de datos.
+
+Se comenzará con el plan gratuito, controlando su consumo mensual.
+Más adelante se podrá trasladar la web a Cloudflare Pages si conviene.
+
+### Reflexión final
+
+El punto más fácil de pasar por alto fue revisar los permisos
+reales de la base de datos. Tener RLS activo y ocultar botones
+al vendedor no bastaba para comprobar toda la seguridad.
+
+La revisión permitió detectar y retirar el permiso TRUNCATE,
+que podía permitir vaciar tablas, y comprobar que el servidor
+rechaza acciones que requieren un administrador.
