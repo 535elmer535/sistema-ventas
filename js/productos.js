@@ -82,6 +82,19 @@ function estadoStockMueble(existencia) {
   return "Disponible";
 }
 
+function llenarSelectCategoriasMueble(categorias, seleccionAnterior) {
+  const select = document.querySelector("#nuevo-mueble-categoria");
+  const seleccion = seleccionAnterior ?? select.value;
+  select.innerHTML =
+    '<option value="">Selecciona una categoría</option>' +
+    categorias.map((categoria) => `
+      <option value="${escaparHTML(categoria.id_categoria)}">
+        ${escaparHTML(categoria.nombre)}
+      </option>
+    `).join("");
+  select.value = seleccion;
+}
+
 async function prepararRegistroMueble() {
   const panel = document.querySelector("#panel-registrar-mueble");
   const select = document.querySelector("#nuevo-mueble-categoria");
@@ -95,6 +108,7 @@ async function prepararRegistroMueble() {
 
   if (!usuarioEsAdministrador) return;
 
+  const seleccionAnterior = select.value;
   select.innerHTML = '<option value="">Cargando categorías...</option>';
   mensaje.textContent = "";
 
@@ -106,13 +120,7 @@ async function prepararRegistroMueble() {
 
     if (error) throw error;
 
-    select.innerHTML =
-      '<option value="">Selecciona una categoría</option>' +
-      data.map((categoria) => `
-        <option value="${escaparHTML(categoria.id_categoria)}">
-          ${escaparHTML(categoria.nombre)}
-        </option>
-      `).join("");
+    llenarSelectCategoriasMueble(data, seleccionAnterior);
 
     if (data.length === 0) {
       mensaje.textContent = "Primero necesitas una categoría registrada.";

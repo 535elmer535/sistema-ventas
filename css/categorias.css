@@ -1,0 +1,15 @@
+/* Categorías de Administración: formulario breve y tabla de nombres. */
+#seccion-app #panel-categorias-admin { width: min(100%, 700px); }
+#seccion-app #form-categoria { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+#seccion-app #form-categoria label { display: flex; flex-direction: column; flex: 1 1 240px; gap: 6px; margin: 0; }
+#seccion-app #categoria-nombre { width: 100%; min-width: 0; }
+#seccion-app #form-categoria .acciones-categoria { display: flex; flex-wrap: wrap; gap: 8px; }
+#seccion-app #panel-categorias-admin .tabla-categorias-scroll { overflow-x: auto; max-width: 100%; }
+#seccion-app #tabla-categorias { width: 100%; }
+#seccion-app #tabla-categorias td:first-child { overflow-wrap: anywhere; white-space: normal; }
+#seccion-app #tabla-categorias th:last-child,
+#seccion-app #tabla-categorias td:last-child { width: 110px; text-align: right; }
+@media (max-width: 699px) {
+  #seccion-app #form-categoria { flex-direction: column; align-items: stretch; }
+  #seccion-app #form-categoria label { flex-basis: auto; }
+}

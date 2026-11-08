@@ -16,6 +16,7 @@ async function mostrarApp() {
   document.querySelector("#seccion-app").style.display = "block";
 
   await mostrarSaludoUsuario();
+  await prepararCategoriasAdmin();
   await prepararRecuperacionVenta();
   await prepararRecuperacionPedido();
   await prepararRecuperacionCobro();
