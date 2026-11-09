@@ -19,6 +19,14 @@ Deno.serve(async (req) => {
   const admin = createClient(url, adminKey, { auth: { autoRefreshToken: false, persistSession: false } });
   const { data: authData, error: authError } = await admin.auth.getUser(token);
   if (authError || !authData.user) return respond({ error: "Sesión inválida" }, 401);
+  let emitido = 0;
+  try { emitido = JSON.parse(atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).iat || 0; } catch { /* JWT no disponible. */ }
+  if (emitido < (authData.user.app_metadata?.mueblex_restablecido_desde || 0)) {
+    return respond({ error: "Vuelve a iniciar sesión después del restablecimiento." }, 401);
+  }
+  if (authData.user.app_metadata?.mueblex_cambio_pendiente === true) {
+    return respond({ error: "Completa el cambio obligatorio de contraseña antes de administrar cuentas." }, 403);
+  }
   const { data: adminUser, error: roleError } = await admin.from("usuarios")
     .select("rol").eq("id_auth", authData.user.id).maybeSingle();
   if (roleError || adminUser?.rol !== "administrador") return respond({ error: "No autorizado" }, 403);

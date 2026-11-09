@@ -1,0 +1,96 @@
+{
+  "base": "sistema-ventas.zip recibido después de Guía 22",
+  "archivos": [
+    {
+      "ruta": "LEEME-RECUPERACION-WHATSAPP.md",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "3eecd09db460eb1d6ea80becb00dd3a5f558c01f5ee4d1eb06cb32017446ab2c"
+    },
+    {
+      "ruta": "README.md",
+      "accion": "reemplazar",
+      "sha256_base": "a00c40a3f95763990bd9e0615625270bd7ed8e1a6e64d0caaa6767f4610cb959",
+      "sha256_nuevo": "f28e371b3473feddc718f247e4d88cc3c6f5b5ea05c9768841a79984f43c8f95"
+    },
+    {
+      "ruta": "css/recuperacion-mueblex.css",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "e70fe71743b69d69b230be33240c322165ec4193749f7dc02c031fd08dd6a15e"
+    },
+    {
+      "ruta": "docs/recuperacion-whatsapp.md",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "bfb35baec64586999b62737bcd89f73a5466e8b48fa6f5f3423ab847e929a0c1"
+    },
+    {
+      "ruta": "docs/sql/mejora-11-recuperacion-whatsapp.sql",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "1c0dd08f11f5b9bf6aab468c246b8740bff499bb94c231068a669af4879ef3d7"
+    },
+    {
+      "ruta": "docs/validacion-recuperacion.json",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "266da573851c33259bbbdef659a47aefb50958c62e01ffaa452811a89bf5a7df"
+    },
+    {
+      "ruta": "index.html",
+      "accion": "reemplazar",
+      "sha256_base": "6a6ee5fce7c541fbbcce6cb0473a133d3eddae3bcafe172019c221184b170391",
+      "sha256_nuevo": "777ec99ed7a8850554617e4d208f9ea6c62ea14552a6c5cc66a84c0a42355a6b"
+    },
+    {
+      "ruta": "js/auth.js",
+      "accion": "reemplazar",
+      "sha256_base": "8c3886b5d0fa900a3c677cccacddd5d29d0c5497bd80d1b31df41f60a817cc1e",
+      "sha256_nuevo": "6494d184e47cbfa1380bd3185fd3646ac21d52ed54c5e9e48b8ff56e1640fac7"
+    },
+    {
+      "ruta": "js/recuperacion-mueblex.js",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "a576cc8998af9b8c6f0e972ac0cce9ea20aa3ddb4d7f28fdeeea4dac2715bd08"
+    },
+    {
+      "ruta": "supabase/functions/gestionar-recuperacion/index.ts",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "8b4e509e65ae905217e9db59dee1e8180f1bdf4225c51f6aa5b90702459c267f"
+    },
+    {
+      "ruta": "supabase/functions/registrar-usuario/index.ts",
+      "accion": "reemplazar",
+      "sha256_base": "b28ed5a7c063d78eebb2045beb839093881000e129c8a13574b06d2a90818c10",
+      "sha256_nuevo": "704c3bcb7e05007d858bd92892b6d05ecbd2b3c2be8193ca0eff19fea3f4d632"
+    },
+    {
+      "ruta": "tests/recuperacion-interfaz.cjs",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "a87e1cb12390585b8ce7c837cc524158c5ab40c607b708bc3e1bc4e77aecd4b1"
+    },
+    {
+      "ruta": "tests/recuperacion-servidor.cjs",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "9aadd57b2826dde1683ceff7f6055420fc998024b693265a1237c5be4de84ea8"
+    },
+    {
+      "ruta": "docs/sql/mejora-11b-corregir-historial-recuperacion.sql",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "56dbea101c94f0940e5013cfe7362fe81df35dfe2208949d8d91ef7b08aa76a9"
+    },
+    {
+      "ruta": "docs/sql/SQL-Recuperacion-MUEBLEX.sql",
+      "accion": "agregar",
+      "sha256_base": null,
+      "sha256_nuevo": "1c0dd08f11f5b9bf6aab468c246b8740bff499bb94c231068a669af4879ef3d7"
+    }
+  ],
+  "nota": "Estado actualizado después de las pruebas reales; los pendientes se mantienen identificados."
+}

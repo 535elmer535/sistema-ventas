@@ -108,3 +108,18 @@ Los documentos registran el alcance y los resultados de cada comprobación. Las 
 El repositorio y los ZIP del proyecto conservan el código, los recursos y la documentación. Los datos de Supabase requieren un respaldo independiente de la base de datos.
 
 La incorporación de datos reales se coordinará después de revisar las pruebas existentes, los accesos del personal y la configuración final de publicación.
+
+
+## Recuperación asistida por WhatsApp
+
+Se incluye la adaptación para solicitar ayuda a un administrador elegido y
+restablecer el acceso con contraseña temporal y cambio obligatorio.
+El usuario instaló el SQL y las funciones del servidor y comprobó el flujo
+con una cuenta de prueba: contacto por WhatsApp, restablecimiento, cambio
+obligatorio, rechazo de la contraseña temporal e historial. Se comprobó el
+rechazo HTTP 403 para la consulta administrativa desde un vendedor y se
+revisó la presentación móvil. Las pruebas adicionales pendientes se indican
+en el documento de recuperación. La publicación en Netlify sigue pendiente.
+
+- [Instalación por bloques](LEEME-RECUPERACION-WHATSAPP.md)
+- [Funcionamiento y resultados de pruebas](docs/recuperacion-whatsapp.md)

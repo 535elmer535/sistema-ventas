@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/buscador.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
+  <link rel="stylesheet" href="css/recuperacion-mueblex.css">
 </head>
 
 <body>
@@ -146,6 +147,32 @@
           <tbody id="cuerpo-categorias"></tbody>
         </table>
       </div>
+    </section>
+
+    <section id="panel-recuperacion-admin" hidden class="modulo mod-recuperacion">
+      <h2>Acceso de los usuarios</h2>
+      <p>Busca una cuenta para ayudar a recuperar su acceso. Confirma la identidad de la persona antes de restablecer su contraseña.</p>
+      <form id="form-buscar-acceso" class="rec-fila">
+        <label for="buscar-acceso">Nombre o correo<input id="buscar-acceso" type="search" maxlength="100" placeholder="Buscar usuario"></label>
+        <button type="submit">Buscar</button>
+        <button type="button" id="actualizar-accesos">Mostrar todos</button>
+      </form>
+      <p id="mensaje-accesos" role="status" aria-live="polite"></p>
+      <div class="rec-tabla"><table>
+        <caption>Usuarios con acceso al sistema</caption>
+        <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>WhatsApp de ayuda</th><th>Acciones</th></tr></thead>
+        <tbody id="filas-accesos"></tbody>
+      </table></div>
+      <div class="rec-fila rec-paginacion"><button id="accesos-anterior" type="button">Anteriores</button><span id="pagina-accesos"></span><button id="accesos-siguiente" type="button">Siguientes</button></div>
+      <h3>Historial de recuperación</h3>
+      <button id="actualizar-recuperaciones" type="button">Actualizar historial</button>
+      <p id="mensaje-historial-recuperaciones" role="status" aria-live="polite"></p>
+      <div class="rec-tabla"><table>
+        <caption>Contraseñas restablecidas y cambios completados</caption>
+        <thead><tr><th>Fecha</th><th>Cuenta</th><th>Acción</th><th>Responsable</th></tr></thead>
+        <tbody id="filas-historial-recuperaciones"></tbody>
+      </table></div>
+      <div class="rec-fila rec-paginacion"><button id="recuperaciones-anterior" type="button">Anteriores</button><span id="pagina-recuperaciones"></span><button id="recuperaciones-siguiente" type="button">Siguientes</button></div>
     </section>
 
     <section id="panel-usuarios-admin" hidden class="modulo mod-usuarios">
@@ -869,9 +896,64 @@
     </main>
   </div>
 
+  <section id="cambio-obligatorio" class="rec-pantalla" hidden aria-labelledby="titulo-cambio-obligatorio">
+    <div class="rec-tarjeta">
+      <h1 id="titulo-cambio-obligatorio" tabindex="-1">Crea tu nueva contraseña</h1>
+      <p>Entraste con un acceso temporal. Elige una contraseña que solo tú conozcas para continuar con Mueblex.</p>
+      <form id="form-cambio-obligatorio">
+        <label for="rec-password-actual">Contraseña temporal<input id="rec-password-actual" type="password" autocomplete="current-password" required minlength="12"></label>
+        <label for="rec-password-nueva">Nueva contraseña<input id="rec-password-nueva" type="password" autocomplete="new-password" required minlength="12"></label>
+        <label for="rec-password-repetir">Repetir nueva contraseña<input id="rec-password-repetir" type="password" autocomplete="new-password" required minlength="12"></label>
+        <p>Al menos 12 caracteres. Evita contraseñas de otras cuentas.</p>
+        <button type="submit">Guardar y volver a iniciar sesión</button>
+      </form>
+      <p id="mensaje-cambio-obligatorio" role="status" aria-live="polite"></p>
+      <button type="button" id="salir-cambio-obligatorio">Cerrar sesión</button>
+    </div>
+  </section>
+
+  <dialog id="dialogo-contactar-admin" class="rec-dialogo" aria-labelledby="titulo-contactar-admin">
+    <h2 id="titulo-contactar-admin">Recuperar mi acceso</h2>
+    <p>Elige a un administrador para solicitar ayuda por WhatsApp.</p>
+    <form id="form-contactar-admin">
+      <label for="rec-correo">Correo de tu cuenta<input id="rec-correo" type="email" autocomplete="email" maxlength="254" required></label>
+      <label for="rec-administrador">Administrador<select id="rec-administrador" required><option value="">Selecciona un administrador</option></select></label>
+      <button type="submit">Preparar mensaje</button>
+    </form>
+    <p id="mensaje-contactar-admin" role="status" aria-live="polite"></p>
+    <a id="rec-abrir-whatsapp" class="rec-enlace" target="_blank" rel="noopener noreferrer" hidden>Abrir WhatsApp</a>
+    <p>WhatsApp abrirá el mensaje preparado. Tú debes pulsar Enviar.</p>
+    <button type="button" data-rec-cerrar>Cerrar</button>
+  </dialog>
+
+  <dialog id="dialogo-contacto-recuperacion" class="rec-dialogo" aria-labelledby="titulo-contacto-recuperacion">
+    <h2 id="titulo-contacto-recuperacion">WhatsApp de ayuda</h2>
+    <p id="rec-cuenta-contacto"></p>
+    <form id="form-contacto-recuperacion">
+      <label for="rec-telefono">Código de país y número<input id="rec-telefono" type="tel" inputmode="numeric" maxlength="15" pattern="[1-9][0-9]{7,14}" placeholder="591 seguido del número"></label>
+      <p>Este nombre y número estarán visibles en la recuperación del inicio de sesión. Déjalo vacío para retirar el contacto.</p>
+      <div class="rec-fila"><button type="submit">Guardar contacto</button><button type="button" data-rec-cerrar>Cancelar</button></div>
+    </form>
+    <p id="mensaje-contacto-recuperacion" role="status" aria-live="polite"></p>
+  </dialog>
+
+  <dialog id="dialogo-restablecer-acceso" class="rec-dialogo" aria-labelledby="titulo-restablecer-acceso">
+    <h2 id="titulo-restablecer-acceso">Restablecer contraseña</h2>
+    <p id="rec-cuenta-destino"></p>
+    <form id="form-restablecer-acceso">
+      <label for="rec-temporal">Contraseña temporal<input id="rec-temporal" type="password" autocomplete="new-password" minlength="12" required></label>
+      <label for="rec-temporal-repetir">Repetir contraseña temporal<input id="rec-temporal-repetir" type="password" autocomplete="new-password" minlength="12" required></label>
+      <label class="rec-confirmacion"><input type="checkbox" id="rec-identidad" required>He verificado que la persona es propietaria de esta cuenta.</label>
+      <p>Entrega la contraseña en privado. La persona tendrá que cambiarla al entrar. No se mostrará después del guardado.</p>
+      <div class="rec-fila"><button type="submit">Restablecer acceso</button><button type="button" data-rec-cerrar>Cancelar</button></div>
+    </form>
+    <p id="mensaje-restablecer-acceso" role="status" aria-live="polite"></p>
+  </dialog>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/recuperacion-mueblex.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/productos.js"></script>
   <script src="js/categorias.js"></script>

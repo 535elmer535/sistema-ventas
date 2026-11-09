@@ -1,0 +1,44 @@
+{
+  "estado": "Instalada por el usuario; flujo principal y móvil comprobados; pruebas adicionales documentadas como pendientes",
+  "pruebas_servidor_simulado": 48,
+  "pruebas_interfaz_simulada": 36,
+  "recursos_locales_index": 27,
+  "ids_originales_conservados": 191,
+  "rpc_negocio_cubiertas": [
+    "actualizar_precio_mueble",
+    "anular_operacion_con_devolucion",
+    "anular_operacion_sin_cobros",
+    "avanzar_estado_pedido",
+    "consultar_resumen_negocio",
+    "guardar_categoria_segura",
+    "guardar_entrega_pedido",
+    "registrar_cobro_seguro",
+    "registrar_mueble_seguro",
+    "registrar_pedido_seguro",
+    "registrar_venta_stock",
+    "reponer_stock_seguro"
+  ],
+  "sql_ejecutado_en_supabase": true,
+  "revision_visual_navegador": true,
+  "archivos_modificados": [
+    "index.html",
+    "js/auth.js",
+    "README.md",
+    "supabase/functions/registrar-usuario/index.ts"
+  ],
+  "archivos_nuevos": [
+    "css/recuperacion-mueblex.css",
+    "docs/recuperacion-whatsapp.md",
+    "docs/sql/mejora-11-recuperacion-whatsapp.sql",
+    "js/recuperacion-mueblex.js",
+    "LEEME-RECUPERACION-WHATSAPP.md",
+    "supabase/functions/gestionar-recuperacion/index.ts",
+    "tests/recuperacion-interfaz.cjs",
+    "tests/recuperacion-servidor.cjs"
+  ],
+  "navegador_automatizado": false,
+  "fecha_pruebas_reales": "2026-11-09",
+  "evidencia_real": "Capturas y confirmaciones del usuario; alcance y pendientes en docs/recuperacion-whatsapp.md",
+  "correccion_historial_aplicada": true,
+  "movil": "390 x 844; usuarios e historial como tarjetas; formulario confirmado utilizable"
+}

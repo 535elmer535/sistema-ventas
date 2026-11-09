@@ -1,0 +1,74 @@
+/* Recuperación de acceso y ayuda de administradores, en escritorio y móvil. */
+.rec-dialogo, .rec-tarjeta { box-sizing:border-box; background:#fffaf2; color:#283e35; border:1px solid #d9bd98; border-radius:20px; padding:28px; font-family:'Poppins',sans-serif; }
+.rec-dialogo { width:min(560px,calc(100% - 28px)); max-height:calc(100dvh - 28px); overflow-y:auto; }
+.rec-dialogo::backdrop { background:rgba(23,36,30,.65); }
+.rec-dialogo h2, .rec-tarjeta h1 { margin-top:0; }
+.rec-dialogo label, .rec-tarjeta label, .mod-recuperacion label { display:flex; flex-direction:column; gap:6px; margin:14px 0; }
+.rec-dialogo input, .rec-dialogo select, .rec-tarjeta input, #buscar-acceso { box-sizing:border-box; width:100%; min-width:0; padding:11px 12px; border:1px solid #dcc6ac; border-radius:9px; background:white; color:#233b32; font:inherit; }
+.rec-dialogo button, .rec-tarjeta button, .rec-enlace { background:#355c4c; color:white; border:0; border-radius:9px; padding:11px 16px; cursor:pointer; font:inherit; font-weight:600; text-decoration:none; }
+.rec-dialogo button:disabled, .rec-tarjeta button:disabled { opacity:.6; cursor:wait; }
+.rec-dialogo :focus-visible, .rec-tarjeta :focus-visible { outline:3px solid #b78446; outline-offset:3px; }
+.rec-enlace { display:inline-block; }
+.rec-enlace[hidden], .rec-pantalla[hidden], #panel-recuperacion-admin[hidden] { display:none !important; }
+.rec-fila { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.rec-fila label { flex:1 1 230px; }
+.rec-dialogo .rec-confirmacion { display:flex; flex-direction:row; align-items:flex-start; gap:10px; }
+.rec-confirmacion input { width:auto; flex:none; margin-top:5px; }
+.rec-pantalla { min-height:100dvh; display:grid; place-items:center; padding:24px; box-sizing:border-box; background:#f1ebe2; }
+.rec-tarjeta { width:min(100%,560px); }
+#seccion-app #panel-recuperacion-admin { width:min(100%,1150px); }
+.rec-tabla { overflow-x:auto; max-width:100%; }
+.rec-tabla table { width:100%; min-width:650px; }
+.rec-tabla caption { text-align:left; margin:12px 0; }
+.rec-tabla td { overflow-wrap:anywhere; }
+.rec-tabla td:last-child .rec-fila { min-width:165px; }
+.rec-paginacion { margin:16px 0 24px; }
+@media(max-width:699px) {
+  .rec-dialogo, .rec-tarjeta { padding:20px; }
+  .rec-pantalla { padding:14px; }
+  .rec-fila label { flex-basis:100%; }
+  /* En móvil, cada fila es una tarjeta: datos y acciones sin deslizar la tabla. */
+  #seccion-app #panel-recuperacion-admin .rec-tabla { overflow:visible; }
+  #seccion-app #panel-recuperacion-admin table {
+    display:block; width:100%; min-width:0; max-width:100%; overflow:visible;
+    white-space:normal; border-spacing:0; margin:12px 0 20px;
+  }
+  #seccion-app #panel-recuperacion-admin caption {
+    display:block; width:100%; white-space:normal; overflow-wrap:anywhere;
+  }
+  #seccion-app #panel-recuperacion-admin thead {
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); clip-path:inset(50%); white-space:nowrap;
+  }
+  #seccion-app #panel-recuperacion-admin tbody { display:grid; gap:14px; width:100%; }
+  #seccion-app #panel-recuperacion-admin tbody tr {
+    display:grid; min-width:0; padding:12px 14px; border:1px solid #eadcc9;
+    border-radius:14px; background:#fffdf9;
+  }
+  #seccion-app #panel-recuperacion-admin tbody td {
+    display:block; width:auto; min-width:0; max-width:none; padding:7px 0;
+    border:0; border-radius:0; background:transparent;
+    white-space:normal; overflow-wrap:anywhere; text-align:left;
+  }
+  #seccion-app #panel-recuperacion-admin tbody td::before {
+    display:block; margin-bottom:4px; font-size:11px; font-weight:700;
+    letter-spacing:.4px; text-transform:uppercase; color:#79684e;
+  }
+  #filas-accesos td:nth-child(1)::before { content:"Nombre"; }
+  #filas-accesos td:nth-child(2)::before { content:"Correo"; }
+  #filas-accesos td:nth-child(3)::before { content:"Rol"; }
+  #filas-accesos td:nth-child(4)::before { content:"WhatsApp de ayuda"; }
+  #filas-accesos td:nth-child(5)::before { content:"Acciones"; }
+  #filas-historial-recuperaciones td:nth-child(1)::before { content:"Fecha"; }
+  #filas-historial-recuperaciones td:nth-child(2)::before { content:"Cuenta"; }
+  #filas-historial-recuperaciones td:nth-child(3)::before { content:"Acción"; }
+  #filas-historial-recuperaciones td:nth-child(4)::before { content:"Responsable"; }
+  #seccion-app #panel-recuperacion-admin tbody td[colspan]::before { content:none; }
+  #seccion-app #panel-recuperacion-admin td .rec-fila {
+    flex-direction:column; align-items:stretch; width:100%; min-width:0;
+  }
+  #seccion-app #panel-recuperacion-admin td button {
+    width:100%; max-width:100%; min-height:44px; white-space:normal;
+    overflow-wrap:anywhere; box-sizing:border-box;
+  }
+}

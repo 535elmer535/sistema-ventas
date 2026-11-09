@@ -11,11 +11,13 @@ function mostrarLogin() {
 
 // Guía 14: mostrar el sistema y cargar sus datos.
 async function mostrarApp() {
+  if (!(await RecuperacionMueblex.verificarAcceso())) return;
 
   document.querySelector("#seccion-login").style.display = "none";
   document.querySelector("#seccion-app").style.display = "block";
 
   await mostrarSaludoUsuario();
+  await RecuperacionMueblex.preparar(usuarioEsAdministrador);
   await prepararCategoriasAdmin();
   await prepararRecuperacionVenta();
   await prepararRecuperacionPedido();
@@ -49,7 +51,7 @@ async function iniciar() {
     console.error("Error al comprobar la sesión:", error);
     mostrarLogin();
     document.querySelector("#mensaje-login").textContent =
-      "No se pudo comprobar la sesión. Actualiza la página.";
+      "Vuelve a iniciar sesión con tu contraseña vigente. Si el problema persiste, revisa la instalación de recuperación en Supabase.";
   }
 }
 
@@ -246,6 +248,7 @@ contacto: document.querySelector("#nuevo-usuario-contacto").value.trim(),
     if (error || data?.error) throw new Error(data?.error || error?.message || "No se pudo registrar.");
     formulario.reset();
     mensaje.textContent = "Usuario registrado correctamente.";
+    await RecuperacionMueblex.actualizarUsuarios();
   } catch (error) {
     console.error("Error al registrar usuario:", error);
     mensaje.textContent = "No se pudo registrar. Verifica que la función segura esté desplegada en Supabase y que tengas permisos de administrador.";
@@ -253,23 +256,3 @@ contacto: document.querySelector("#nuevo-usuario-contacto").value.trim(),
     boton.disabled = false;
   }
 });
-
-document.querySelector("#enlace-recuperar")?.addEventListener("click", async (event) => {
-  event.preventDefault();
-  const mensaje = document.querySelector("#mensaje-login");
-  const email = document.querySelector("#login-email").value.trim();
-  if (!email) {
-    mensaje.textContent = "Escribe primero tu correo electrónico para recuperar la contraseña.";
-    document.querySelector("#login-email").focus();
-    return;
-  }
-  try {
-    const { error } = await clientesupabase.auth.resetPasswordForEmail(email);
-    if (error) throw error;
-    mensaje.textContent = "Si el correo está registrado y la recuperación está configurada, recibirás instrucciones por email.";
-  } catch (error) {
-    console.error("Error al solicitar recuperación:", error);
-    mensaje.textContent = "No se pudo solicitar la recuperación. Consulta al administrador.";
-  }
-});
-
