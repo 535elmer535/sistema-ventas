@@ -202,6 +202,32 @@ const RecuperacionMueblex = (() => {
   function limpiarEnlace() { $("rec-abrir-whatsapp").hidden = true; $("rec-abrir-whatsapp").removeAttribute("href"); }
   $("rec-correo").addEventListener("input", limpiarEnlace);
   $("rec-administrador").addEventListener("change", limpiarEnlace);
+  // Diseño B: usa el mismo formulario de recuperación dentro de la tarjeta.
+  // Si se restaura el Diseño A, continúa abriéndose como diálogo modal.
+  function vistaContacto(abrir) {
+    const tarjeta = $("login-tarjeta-b");
+    if (!tarjeta) return;
+    tarjeta.classList.toggle("recuperando", abrir);
+    $("form-login").inert = abrir;
+    if (abrir) $("form-login").setAttribute("aria-hidden", "true");
+    else $("form-login").removeAttribute("aria-hidden");
+    tarjeta.querySelector(".login-copy-acceso").hidden = abrir;
+    tarjeta.querySelector(".login-copy-recuperar").hidden = !abrir;
+    $("enlace-recuperar").setAttribute("aria-expanded", String(abrir));
+    $("login-b-alternar").setAttribute("aria-expanded", String(abrir));
+    $("login-b-alternar").textContent = abrir ? "Volver a iniciar sesión" : "Recuperar mi cuenta";
+  }
+  if ($("login-tarjeta-b")) {
+    $("login-b-alternar").addEventListener("click", () => {
+      if ($("dialogo-contactar-admin").open) $("dialogo-contactar-admin").close();
+      else $("enlace-recuperar").click();
+    });
+    $("login-tarjeta-b").addEventListener("keydown", event => {
+      if (event.key === "Escape" && $("dialogo-contactar-admin").open) {
+        event.preventDefault(); $("dialogo-contactar-admin").close();
+      }
+    });
+  }
   $("enlace-recuperar").addEventListener("click", async event => {
     event.preventDefault();
     if ($("dialogo-contactar-admin").open) return;
@@ -209,7 +235,11 @@ const RecuperacionMueblex = (() => {
     $("rec-correo").value = $("login-email").value.trim();
     const select = $("rec-administrador"); select.replaceChildren(new Option("Consultando…", ""));
     $("mensaje-contactar-admin").textContent = "Consultando contactos…";
-    $("dialogo-contactar-admin").showModal();
+    if ($("login-tarjeta-b")) {
+      vistaContacto(true);
+      $("dialogo-contactar-admin").show();
+      $("rec-correo").focus();
+    } else $("dialogo-contactar-admin").showModal();
     try {
       const { data, error } = await clientesupabase.rpc("administradores_recuperacion_mueblex");
       if (version !== versionContactos || !$("dialogo-contactar-admin").open) return;
@@ -224,7 +254,11 @@ const RecuperacionMueblex = (() => {
       $("mensaje-contactar-admin").textContent = "No se pudieron consultar los contactos. Revisa la conexión o contacta al responsable del negocio.";
     }
   });
-  $("dialogo-contactar-admin").addEventListener("close", () => { versionContactos++; contactos = []; limpiarEnlace(); $("form-contactar-admin").reset(); });
+  $("dialogo-contactar-admin").addEventListener("close", () => {
+    versionContactos++; contactos = []; limpiarEnlace(); $("form-contactar-admin").reset();
+    vistaContacto(false);
+    if ($("login-tarjeta-b")) $("enlace-recuperar").focus();
+  });
   $("form-contactar-admin").addEventListener("submit", event => {
     event.preventDefault(); limpiarEnlace();
     const email = $("rec-correo").value.trim(), indice = $("rec-administrador").value;

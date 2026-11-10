@@ -25,17 +25,26 @@
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
   <link rel="stylesheet" href="css/recuperacion-mueblex.css">
+  <link rel="stylesheet" href="css/login-melanova.css">
 </head>
 
 <body>
-  <div id="seccion-login" class="pantalla-login" role="main" style="display: none;">
+  <div id="seccion-login" class="pantalla-login login-melanova login-diseno-b" role="main" style="display: none;">
     <div class="login-wrapper">
-      <div class="flip-scene">
-        <div class="glass-circle front">
-          <div class="accent-ring"></div>
-          <form id="form-login" class="login-form">
+      <div id="login-tarjeta-b" class="login-tarjeta-b">
+        <aside class="login-lateral-b" aria-label="Melanova">
+          <div class="login-marca-b"><img src="assets/melanova-logo.png" alt="" width="68" height="68"><div><strong>MELANOVA</strong><span>MUEBLES DE MELAMINA</span></div></div>
+          <div class="login-mensaje-b">
+            <div class="login-copy-acceso"><span class="login-sobretitulo-b">DISEÑO PARA CADA ESPACIO</span><h2>Tu negocio,<br>en orden.</h2><p>Muebles, ventas y pedidos.<br>Todo en un solo lugar.</p></div>
+            <div class="login-copy-recuperar" hidden><span class="login-sobretitulo-b">ESTAMOS PARA AYUDARTE</span><h2>Recupera<br>tu acceso.</h2><p>Contacta a un administrador por WhatsApp para volver a tu cuenta.</p></div>
+            <button type="button" id="login-b-alternar" aria-controls="dialogo-contactar-admin" aria-expanded="false">Recuperar mi cuenta</button>
+          </div>
+          <p class="login-pie-b">Diseño · Calidad · Funcionalidad</p>
+        </aside>
+        <div class="login-contenido-b">
+          <form id="form-login" class="login-form login-form-b">
             <h1>Iniciar sesión</h1>
-            <div class="subtitle">Accede a tu cuenta Melanova</div>
+            <div class="subtitle">Bienvenido de nuevo. Accede a tu cuenta.</div>
 
             <label for="login-email" class="input-box">
               <span class="etiqueta-login">Correo electrónico</span>
@@ -56,11 +65,24 @@
                 <input type="checkbox" id="recordarme" checked>
                 <span class="switch on" aria-hidden="true"></span> Recordarme
               </label>
-              <a href="#" id="enlace-recuperar">¿Olvidaste tu contraseña?</a>
+              <a href="#" id="enlace-recuperar" aria-controls="dialogo-contactar-admin" aria-expanded="false">¿Olvidaste tu contraseña?</a>
             </div>
             <button type="submit">Ingresar</button>
             <p id="mensaje-login" class="mensaje-login" role="status" aria-live="polite"></p>
           </form>
+          <dialog id="dialogo-contactar-admin" class="rec-dialogo login-recuperar-b" aria-labelledby="titulo-contactar-admin">
+    <h2 id="titulo-contactar-admin">Recuperar mi acceso</h2>
+    <p>Elige a un administrador para solicitar ayuda por WhatsApp.</p>
+    <form id="form-contactar-admin">
+      <label for="rec-correo">Correo de tu cuenta<input id="rec-correo" type="email" autocomplete="email" maxlength="254" required></label>
+      <label for="rec-administrador">Administrador<select id="rec-administrador" required><option value="">Selecciona un administrador</option></select></label>
+      <button type="submit">Preparar mensaje</button>
+    </form>
+    <p id="mensaje-contactar-admin" role="status" aria-live="polite"></p>
+    <a id="rec-abrir-whatsapp" class="rec-enlace" target="_blank" rel="noopener noreferrer" hidden>Abrir WhatsApp</a>
+    <p>WhatsApp abrirá el mensaje preparado. Tú debes pulsar Enviar.</p>
+    <button type="button" class="login-b-regresar" data-rec-cerrar>Volver a iniciar sesión</button>
+  </dialog>
         </div>
       </div>
     </div>
@@ -913,19 +935,7 @@
     </div>
   </section>
 
-  <dialog id="dialogo-contactar-admin" class="rec-dialogo" aria-labelledby="titulo-contactar-admin">
-    <h2 id="titulo-contactar-admin">Recuperar mi acceso</h2>
-    <p>Elige a un administrador para solicitar ayuda por WhatsApp.</p>
-    <form id="form-contactar-admin">
-      <label for="rec-correo">Correo de tu cuenta<input id="rec-correo" type="email" autocomplete="email" maxlength="254" required></label>
-      <label for="rec-administrador">Administrador<select id="rec-administrador" required><option value="">Selecciona un administrador</option></select></label>
-      <button type="submit">Preparar mensaje</button>
-    </form>
-    <p id="mensaje-contactar-admin" role="status" aria-live="polite"></p>
-    <a id="rec-abrir-whatsapp" class="rec-enlace" target="_blank" rel="noopener noreferrer" hidden>Abrir WhatsApp</a>
-    <p>WhatsApp abrirá el mensaje preparado. Tú debes pulsar Enviar.</p>
-    <button type="button" data-rec-cerrar>Cerrar</button>
-  </dialog>
+
 
   <dialog id="dialogo-contacto-recuperacion" class="rec-dialogo" aria-labelledby="titulo-contacto-recuperacion">
     <h2 id="titulo-contacto-recuperacion">WhatsApp de ayuda</h2>
