@@ -124,29 +124,26 @@
         </section>
         <p class="titulo-seccion" id="titulo-seccion">Inicio</p>
       </header>
-      <div id="vista-inicio" class="vista-panel" aria-labelledby="titulo-inicio">
-        <section class="hero-inicio" aria-label="Bienvenida">
-          <div class="hero-texto"><p class="sobretitulo">DISEÑO · CALIDAD · FUNCIONALIDAD</p><h1 id="titulo-inicio"><span id="saludo-usuario" role="status">Bienvenido</span></h1><p>Tu sistema de ventas de muebles de melamina</p><p class="frase-hero">Diseño para cada espacio.<br>Todo tu negocio en un solo lugar.</p></div>
-        </section>
-        <div class="indicadores-inicio">
-          <article class="indicador verde"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><div><p>Ventas de hoy</p><strong id="inicio-ventas-hoy">—</strong><small>Valor de ventas registradas</small></div></article>
-          <article class="indicador arena"><i class="fa-solid fa-box-open" aria-hidden="true"></i><div><p>Productos</p><strong id="inicio-productos">—</strong><small>En el catálogo</small></div></article>
-          <article class="indicador azul"><i class="fa-solid fa-users" aria-hidden="true"></i><div><p>Clientes</p><strong id="inicio-clientes">—</strong><small>Registrados</small></div></article>
-          <article class="indicador rosa"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i><div><p>Pedidos a medida</p><strong id="inicio-pedidos">—</strong><small>Pedidos registrados</small></div></article>
-        </div>
-        <p id="estado-inicio" role="status" aria-live="polite"></p>
-        <div class="cuadricula-inicio">
-          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2><i class="fa-solid fa-chart-simple" aria-hidden="true"></i> Ventas de los últimos 7 días</h2></div><div id="grafico-semana" class="grafico-semana" aria-label="Valor de ventas por día"></div><p class="nota-inicio">Importes en Bs. Valor de ventas; no representa dinero cobrado.</p></section>
-          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2><i class="fa-solid fa-bolt" aria-hidden="true"></i> Acciones rápidas</h2></div><div class="acciones-inicio">
-            <button type="button" class="accion-verde" data-destino="ventas"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>Registrar venta <span aria-hidden="true">›</span></button>
-            <button type="button" class="accion-arena" data-destino="inventario"><i class="fa-solid fa-box-open" aria-hidden="true"></i>Ver inventario <span aria-hidden="true">›</span></button>
-            <button type="button" class="accion-azul" data-destino="clientes"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>Nuevo cliente <span aria-hidden="true">›</span></button>
-            <button type="button" class="accion-rosa" data-destino="pedidos"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>Pedido a medida <span aria-hidden="true">›</span></button>
-          </div></section>
-          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Tu catálogo</h2><button type="button" data-destino="inventario">Ver todos</button></div><div id="catalogo-inicio" class="catalogo-inicio"><p>Cargando catálogo…</p></div></section>
-          <section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Últimas ventas</h2><button type="button" data-destino="reportes">Ver reportes</button></div><div class="tabla-inicio-scroll"><table class="tabla-ultimas"><thead><tr><th>N.º</th><th>Fecha</th><th>Total</th><th>Pago</th></tr></thead><tbody id="ultimas-ventas-inicio"><tr><td colspan="4">Cargando ventas…</td></tr></tbody></table></div></section>
-        </div>
-      </div>
+      <div id="vista-inicio" class="vista-panel inicio-operativo" aria-labelledby="titulo-inicio">
+<section class="hero-inicio" aria-label="Bienvenida"><div class="hero-texto"><h1 id="titulo-inicio"><span id="saludo-usuario" role="status">Bienvenido</span></h1><p id="fecha-inicio"></p></div><span class="insignia-inicio">Tu negocio, en orden.</span></section>
+<div class="indicadores-inicio">
+<article class="indicador verde"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i><div><p>Ventas de hoy</p><strong id="inicio-ventas-hoy">—</strong><small>Ventas y pedidos activos</small></div></article>
+<article class="indicador arena"><i class="fa-solid fa-wallet" aria-hidden="true"></i><div><p>Saldo por cobrar</p><strong id="inicio-saldo">—</strong><small>Operaciones activas</small></div></article>
+<article class="indicador azul"><i class="fa-solid fa-box-open" aria-hidden="true"></i><div><p>Muebles con stock bajo</p><strong id="inicio-stock-bajo">—</strong><small>De 0 a 3 unidades</small></div></article>
+<article class="indicador rosa"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i><div><p>Pedidos por entregar</p><strong id="inicio-pendientes">—</strong><small>Con muebles aún sin entregar</small></div></article>
+</div><p id="estado-inicio" role="status" aria-live="polite"></p>
+<section class="tarjeta-inicio accesos-operativos"><div class="titulo-tarjeta"><h2>¿Qué necesitas hacer?</h2><button type="button" id="actualizar-inicio">Actualizar resumen</button></div><div class="acciones-inicio">
+<button type="button" class="accion-verde" data-destino="ventas"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>Registrar venta <span aria-hidden="true">›</span></button>
+<button type="button" class="accion-rosa" data-destino="pedidos"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>Nuevo pedido <span aria-hidden="true">›</span></button>
+<button type="button" class="accion-azul" data-destino="clientes"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>Nuevo cliente <span aria-hidden="true">›</span></button>
+<button type="button" class="accion-arena" data-destino="inventario"><i class="fa-solid fa-box-open" aria-hidden="true"></i>Ver inventario <span aria-hidden="true">›</span></button>
+</div></section><div class="cuadricula-inicio">
+<section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Últimas ventas</h2><button type="button" data-destino="ventas">Ver historial</button></div><div class="tabla-inicio-scroll"><table class="tabla-ultimas"><thead><tr><th>N.º</th><th>Fecha</th><th>Total</th><th>Pago</th></tr></thead><tbody id="ultimas-ventas-inicio"><tr><td colspan="4">Cargando ventas…</td></tr></tbody></table></div><p class="nota-inicio">Las tres ventas de stock más recientes.</p></section>
+<section class="tarjeta-inicio"><div class="titulo-tarjeta"><h2>Próximas entregas</h2><button type="button" data-destino="pedidos">Ver pedidos</button></div><div id="entregas-inicio" class="entregas-inicio"><p>Cargando pedidos…</p></div><p class="nota-inicio">Hasta tres pedidos. Primero los atrasados; fechas estimadas, por confirmar.</p></section>
+</div>
+<section class="tarjeta-inicio tarjeta-semana-inicio" aria-labelledby="titulo-semana-inicio"><div class="titulo-tarjeta"><h2 id="titulo-semana-inicio">Ventas de los últimos 7 días</h2><strong id="total-semana-inicio">—</strong></div><div id="grafico-semana-inicio" class="grafico-operativo" aria-label="Ventas y pedidos activos por día"><p>Cargando gráfico…</p></div><p class="nota-inicio">Importes en Bs, abreviados en el gráfico. Ventas y pedidos activos; no es dinero cobrado ni ganancia.</p></section>
+</div>
+
       <div id="vista-administracion" class="vista-panel" hidden aria-label="Administración">
 
     <section id="panel-categorias-admin" hidden class="modulo mod-categorias">
