@@ -3002,7 +3002,7 @@ function abrirDocumentoImprimible(titulo, contenido) {
   if (!ventana) {
     window.alert(
       "El navegador bloqueó la ventana. Permite las ventanas " +
-      "emergentes de Mueblex y vuelve a pulsar el botón."
+      "emergentes de Melanova y vuelve a pulsar el botón."
     );
     return;
   }
@@ -3024,7 +3024,7 @@ function abrirDocumentoImprimible(titulo, contenido) {
         </button>
 
         <main>
-          <h1>MUEBLEX</h1>
+          <h1>MELANOVA</h1>
           <p>Muebles de melamina</p>
           ${contenido}
         </main>
@@ -3159,11 +3159,11 @@ ${mostrarEstadoOperacion(venta)}
 
       ${tablaCobrosComprobante(venta.cobros)}
 ${mostrarDevolucionesOperacion(venta)}
-      <p>Comprobante interno de Mueblex.</p>
+      <p>Comprobante interno de Melanova.</p>
     `;
 
     abrirDocumentoImprimible(
-      `Mueblex - Venta ${venta.id_venta}`,
+      `Melanova - Venta ${venta.id_venta}`,
       contenido
     );
   });
@@ -3319,7 +3319,7 @@ ${esNotaTaller && pedido.estado_operacion === "anulada"
 
       ${tablaCobrosComprobante(pedido.cobros)}
 ${mostrarDevolucionesOperacion(pedido)}
-      <p>Comprobante interno de Mueblex.</p>
+      <p>Comprobante interno de Melanova.</p>
     ` : `
       <h3>Observaciones del taller</h3>
       <p>________________________________________________</p>
@@ -3328,7 +3328,7 @@ ${mostrarDevolucionesOperacion(pedido)}
     `}
   `;
 
-  abrirDocumentoImprimible(`Mueblex - ${titulo}`, contenido);
+  abrirDocumentoImprimible(`Melanova - ${titulo}`, contenido);
 }
 
 document.querySelector("#imprimir-comprobante-pedido")

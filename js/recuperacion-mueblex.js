@@ -232,7 +232,7 @@ const RecuperacionMueblex = (() => {
     if (!email || !$("rec-correo").checkValidity() || !contacto) {
       $("mensaje-contactar-admin").textContent = "Escribe tu correo y selecciona un administrador."; return;
     }
-    const texto = `Hola, ${contacto.nombre}. Solicito ayuda para recuperar el acceso a mi cuenta de MUEBLEX. Mi correo es ${email}. ¿Puedes verificar mi identidad y ayudarme a restablecer la contraseña?`;
+    const texto = `Hola, ${contacto.nombre}. Solicito ayuda para recuperar el acceso a mi cuenta de Melanova. Mi correo es ${email}. ¿Puedes verificar mi identidad y ayudarme a restablecer la contraseña?`;
     $("rec-abrir-whatsapp").href = `https://wa.me/${contacto.whatsapp}?text=${encodeURIComponent(texto)}`;
     $("rec-abrir-whatsapp").hidden = false;
     $("mensaje-contactar-admin").textContent = "Mensaje preparado. Abre WhatsApp y pulsa Enviar. Todavía no se ha enviado.";
