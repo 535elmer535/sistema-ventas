@@ -51,29 +51,30 @@ acceder al negocio y volver a iniciar sesión después del cambio.
 - [x] SQL aplicado: el CSV del usuario muestra 12 funciones protegidas.
 - [x] `gestionar-recuperacion` desplegada y `registrar-usuario` actualizada.
 - [x] Administrador publica un número de ayuda; el usuario confirma apertura de
-  WhatsApp y envío del mensaje al contacto elegido.
+      WhatsApp y envío del mensaje al contacto elegido.
 - [x] Restablecimiento de «Vendedor prueba Guía 22» registrado con responsable.
 - [x] La contraseña temporal muestra «Crea tu nueva contraseña» y oculta el panel.
 - [x] El usuario completa el cambio y entra con la contraseña nueva.
 - [x] El usuario confirma que la contraseña temporal anterior fue rechazada.
 - [x] Historial con «Contraseña temporal establecida» y «Cambio obligatorio completado».
 - [x] Panel de recuperación oculto al vendedor; consulta directa `accion: listar`
-  rechazada con HTTP 403, resultado null y mensaje de autorización.
+      rechazada con HTTP 403, resultado null y mensaje de autorización.
 - [x] Formulario de contacto utilizable en vista de 390 × 844.
 - [x] Usuarios e historial adaptados a tarjetas en móvil, con datos y acciones visibles.
 - [x] El usuario confirma que el formulario de restablecimiento se utiliza sin fallas
-  en la vista móvil.
+      en la vista móvil.
 
 ## Comprobaciones adicionales aún no ejecutadas en la instalación real
 
 - [ ] Selección entre dos administradores publicados: la prueba real mostró un
-  administrador; el caso de dos contactos se verificó solamente en simulación.
+      administrador; el caso de dos contactos se verificó solamente en simulación.
 - [ ] Retirada de un contacto de la lista pública.
 - [ ] Llamada directa a la función de gestión sin sesión.
 - [ ] Consulta directa del historial por vendedor.
 - [ ] Llamada directa a una RPC y lectura de tablas mientras la cuenta está temporal.
 - [ ] Acceso con una sesión anterior al restablecimiento.
-- [ ] Revisión de carga de inventario, ventas, pedidos, clientes y reportes tras
+- [x] Revisión de carga de inventario, ventas, pedidos, clientes y reportes tras
+
   las nuevas protecciones. No se repitieron operaciones de negocio por esta mejora.
 
 La ocultación del panel temporal se comprobó visualmente; eso no sustituye las
@@ -91,7 +92,6 @@ en el servidor y SQL, pero no se presentan como pruebas reales ya ejecutadas.
 - Sesiones y duración de JWT:
   https://supabase.com/docs/guides/auth/sessions
 
-
 ## Corrección del historial durante las pruebas reales
 
 Se observó un rechazo HTTP 409 al restablecer una cuenta de prueba. La revisión
@@ -106,7 +106,6 @@ Para una instalación existente, aplicar solo
 `sql/mejora-11b-corregir-historial-recuperacion.sql`. El SQL completo también
 incorpora la corrección para instalaciones futuras. No se necesita desplegar
 de nuevo las funciones Edge ni sustituir la página por esta corrección.
-
 
 ## Ajuste móvil
 

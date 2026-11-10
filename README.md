@@ -1,4 +1,4 @@
-# MUEBLEX — Sistema de ventas de muebles de melamina
+# Melanova — Sistema de ventas de muebles de melamina
 
 Sistema web para administrar muebles de catálogo y pedidos fabricados a medida. Reúne inventario, clientes, ventas, cobros y seguimiento del trabajo y la entrega.
 
@@ -6,11 +6,25 @@ Desarrollado por Elmer para utilizarlo en un negocio de muebles de melamina, tom
 
 ## Estado del proyecto
 
-**Guía 22 en curso — preparación para publicación.**
+**Publicado en Netlify — Guía 23 en proceso de cierre documental.**
 
-La versión actual utiliza datos de prueba. Antes de incorporar operaciones reales se preparará un respaldo de Supabase y se revisará la limpieza de esas pruebas. La elección del alojamiento y la publicación se realizarán después de completar las verificaciones pendientes.
+La marca elegida es Melanova. La interfaz todavía muestra MUEBLEX; su cambio visual
+y la elección del logo se realizarán después.
 
-El seguimiento actualizado está en [la checklist de publicación](docs/22-checklist-publicacion.md).
+La versión actual utiliza datos de prueba. Se comprobó una venta de dos unidades
+como administrador, su guardado en Supabase y el descuento de stock, el rechazo de
+una venta sin sesión y el uso de la web publicada en móvil. El alcance exacto y
+los resultados están en [el registro de publicación](docs/23-publicacion.md).
+
+Antes de incorporar datos reales se preparará un respaldo de Supabase y se
+revisará una limpieza controlada de los datos de prueba.
+
+## Demo en vivo
+
+[**Abrir Melanova**](https://mela-nova.netlify.app)
+
+El acceso al panel requiere una cuenta autorizada. La versión local y esta
+publicación utilizan la misma base de datos de Supabase.
 
 ## Funcionalidades
 
@@ -31,10 +45,10 @@ Los reportes distinguen el valor vendido del dinero efectivamente cobrado. El ne
 
 ## Roles
 
-| Rol | Uso principal |
-| --- | --- |
-| Administrador | Gestión del negocio, muebles, precios, reposiciones, categorías, cuentas del personal, anulaciones y devoluciones. |
-| Vendedor | Consulta del inventario, gestión de clientes, ventas, pedidos, cobros, seguimiento de taller y entrega, y consulta de reportes. |
+| Rol           | Uso principal                                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Administrador | Gestión del negocio, muebles, precios, reposiciones, categorías, cuentas del personal, anulaciones y devoluciones.              |
+| Vendedor      | Consulta del inventario, gestión de clientes, ventas, pedidos, cobros, seguimiento de taller y entrega, y consulta de reportes. |
 
 Las restricciones de las operaciones se comprueban en Supabase mediante permisos, políticas y funciones. La interfaz muestra los controles correspondientes al rol.
 
@@ -43,9 +57,10 @@ Las restricciones de las operaciones se comprueban en Supabase mediante permisos
 - HTML5 y CSS3.
 - JavaScript y Supabase JavaScript Client v2.
 - Supabase PostgreSQL, Authentication y Row Level Security (RLS).
-- Funciones SQL para operaciones del negocio y una Edge Function en TypeScript para crear cuentas.
+- Funciones SQL para operaciones del negocio y Edge Functions en TypeScript para crear cuentas y gestionar la recuperación de acceso.
 - Git y GitHub para el control de versiones.
 - VS Code y Live Server para el desarrollo local.
+- Netlify para publicar la interfaz y actualizarla desde GitHub.
 
 ## Abrir la instalación actual en desarrollo
 
@@ -74,6 +89,7 @@ sistema-ventas/
 │   ├── supabase-client.js     # Conexión y almacenamiento de sesión
 │   ├── utils.js               # Funciones compartidas
 │   ├── auth.js                # Acceso, perfiles y cuentas
+│   ├── recuperacion-mueblex.js # WhatsApp, acceso temporal e historial
 │   ├── productos.js           # Inventario, muebles, precios y reposiciones
 │   ├── categorias.js          # Administración de nombres de categorías
 │   ├── clientes.js            # Operaciones de clientes
@@ -98,17 +114,17 @@ Los módulos de la interfaz actual se integran desde `index.html`. El orden de l
 - [Diseño responsive y accesibilidad](docs/20-mejoras-interfaz.md).
 - [Reorganización del código y pruebas posteriores](docs/21-refactor.md).
 - [Preparación para publicación y revisión de seguridad](docs/22-checklist-publicacion.md).
+- [Publicación en Netlify y resultados de pruebas](docs/23-publicacion.md).
 
 Después de reorganizar el código se comprobaron una venta de stock, un pedido a medida con anticipo y el rechazo de ventas sin sesión, incluyendo consultas de verificación en Supabase. Las pruebas de administración de categorías y de registro de cuentas se documentaron posteriormente en la Guía 22.
 
-Los documentos registran el alcance y los resultados de cada comprobación. Las verificaciones de producción pendientes se siguen en la checklist de publicación.
+Los documentos registran el alcance y los resultados de cada comprobación. El estado de las pruebas de la web publicada y el cierre pendiente se siguen en el registro de la Guía 23.
 
 ## Respaldo y puesta en uso
 
 El repositorio y los ZIP del proyecto conservan el código, los recursos y la documentación. Los datos de Supabase requieren un respaldo independiente de la base de datos.
 
 La incorporación de datos reales se coordinará después de revisar las pruebas existentes, los accesos del personal y la configuración final de publicación.
-
 
 ## Recuperación asistida por WhatsApp
 
@@ -119,7 +135,7 @@ con una cuenta de prueba: contacto por WhatsApp, restablecimiento, cambio
 obligatorio, rechazo de la contraseña temporal e historial. Se comprobó el
 rechazo HTTP 403 para la consulta administrativa desde un vendedor y se
 revisó la presentación móvil. Las pruebas adicionales pendientes se indican
-en el documento de recuperación. La publicación en Netlify sigue pendiente.
+en el documento de recuperación. La interfaz ya está publicada en Netlify.
 
 - [Instalación por bloques](LEEME-RECUPERACION-WHATSAPP.md)
 - [Funcionamiento y resultados de pruebas](docs/recuperacion-whatsapp.md)
