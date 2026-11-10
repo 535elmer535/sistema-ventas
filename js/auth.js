@@ -4,6 +4,9 @@ let usuarioEsAdministrador = false;
 
 // Mostrar el formulario de inicio de sesión.
 function mostrarLogin() {
+  const recordarme = document.querySelector("#recordarme");
+  recordarme.checked = false;
+  recordarme.nextElementSibling.classList.remove("on");
   document.querySelector("#seccion-app").style.display = "none";
   document.querySelector("#seccion-login").style.display = "block";
 }
@@ -135,8 +138,8 @@ document.querySelector("#form-login")
 
   // Recordarme usa el almacenamiento definido en supabase-client.js.
 const selectorRecordarme = document.querySelector("#recordarme");
-selectorRecordarme.checked = recordarSesion;
-selectorRecordarme.nextElementSibling.classList.toggle("on", recordarSesion);
+selectorRecordarme.checked = false;
+selectorRecordarme.nextElementSibling.classList.toggle("on", false);
 selectorRecordarme.addEventListener("change", () => {
   selectorRecordarme.nextElementSibling.classList.toggle("on", selectorRecordarme.checked);
 });

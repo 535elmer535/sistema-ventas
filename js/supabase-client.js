@@ -8,7 +8,7 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // La clave anterior de Supabase sigue siendo legible para no desconectar
 // inesperadamente a los usuarios que ya tenían una sesión.
 const PREFERENCIA_RECORDAR = "melamina-recordarme";
-let recordarSesion = localStorage.getItem(PREFERENCIA_RECORDAR) !== "false";
+let recordarSesion = localStorage.getItem(PREFERENCIA_RECORDAR) === "true";
 const almacenamientoSesion = {
   getItem(clave) {
     return sessionStorage.getItem(clave) ?? localStorage.getItem(clave);
