@@ -3,8 +3,9 @@
 ## Estado
 
 Sistema publicado en Netlify y probado por el usuario el 9 de noviembre de 2026.
-La documentación de esta entrega queda preparada; falta guardarla y subirla a
-GitHub y confirmar la publicación automática posterior a ese push.
+La documentación se guardó y subió a GitHub con el commit 6253810. Las capturas
+compartidas confirmaron el árbol de trabajo limpio y la publicación automática
+de ese mismo commit en Netlify.
 
 - URL pública: https://mela-nova.netlify.app
 - Proyecto Netlify: mela-nova.
@@ -111,17 +112,18 @@ contra Netlify.
 
 ## Actividad C — README
 
-Se prepara una sección Demo en vivo con la URL pública y se actualiza el estado
-real del proyecto. Falta comprobar el enlace desde el README de GitHub una vez
-subidos estos archivos.
+El README incluye una sección Demo en vivo con la URL pública y el estado del
+proyecto. El archivo se incluyó en el commit 6253810. La revisión local de la
+Guía 24 confirmó que conserva el enlace correcto; no se registró una comprobación
+separada de abrir ese enlace desde la interfaz de GitHub.
 
 ## Actividad D — Guardado y publicación automática
 
-- [ ] Commit y push de esta documentación.
-- [ ] Comprobar que GitHub muestra el README y este documento.
-- [ ] Abrir desde GitHub el enlace de Demo en vivo.
-- [ ] Confirmar en Netlify un nuevo despliegue del commit recién enviado.
-- [ ] Confirmar que git status muestra el árbol de trabajo limpio.
+- [x] Commit y push de esta documentación: 6253810.
+- El push confirmó el envío del commit que contiene el README y este documento; no se documentó una inspección separada de ambos archivos en la interfaz de GitHub.
+- Comprobación adicional no registrada: abrir desde la interfaz de GitHub el enlace de Demo en vivo. La URL pública sí se abrió y se probó.
+- [x] Netlify mostró publicado el commit 6253810.
+- [x] La captura de git status confirmó el árbol de trabajo limpio después del push.
 
 ## Reflexión
 
@@ -136,7 +138,6 @@ lugar de suponer que bastaba con que funcionara en Live Server.
 
 ## Próximos pasos
 
-- Completar el guardado y la confirmación de la publicación automática anteriores.
 - Continuar con la Guía 24: manual de usuario y documentación de cierre.
 - Realizar más adelante el cambio visual de MUEBLEX a Melanova y elegir el logo.
 - Conservar los datos de prueba mientras se verifica el sistema. Antes de cargar
