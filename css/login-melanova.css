@@ -79,91 +79,185 @@ html, body { margin: 0; padding: 0; }
   #seccion-login.login-diseno-b .login-lateral-b, #seccion-login.login-diseno-b .login-form-b { transition: none; }
 }
 
-/* Diseño B: cristal suave en la superficie crema; el panel verde queda sólido. */
-#seccion-login.login-diseno-b .login-tarjeta-b {
-  background: rgba(255, 251, 243, .66);
-  backdrop-filter: blur(16px) saturate(.95);
-  -webkit-backdrop-filter: blur(16px) saturate(.95);
-  border-color: rgba(255, 250, 235, .6);
-  box-shadow: 0 24px 75px #12271c33, inset 0 1px 0 #ffffff55;
-}
-@supports not ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
-  #seccion-login.login-diseno-b .login-tarjeta-b { background: rgba(255, 251, 243, .95); }
-}
 
-/* Variante de comparación: cristal más transparente, inspirado en el Diseño A. */
-#seccion-login.login-diseno-b .login-tarjeta-b {
-  background: rgba(255, 251, 243, .20);
-  backdrop-filter: blur(10px) saturate(1.05);
-  -webkit-backdrop-filter: blur(10px) saturate(1.05);
-  border-color: rgba(255, 250, 235, .42);
-  box-shadow: 0 20px 65px #12271c2b, inset 0 1px 0 #ffffff33;
+/* Diseño B compacto, centrado y con los colores del Diseño A. */
+#seccion-login.login-diseno-b {
+  background: linear-gradient(#18281b35, #18281b55), url('../assets/melanova-acceso-interior.png') center / cover no-repeat;
 }
-@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-  #seccion-login.login-diseno-b .login-tarjeta-b { background: rgba(255, 251, 243, .92); }
-}
-
-/* Transición suave entre los bordes exteriores de la tarjeta y la foto. */
+#seccion-login.login-diseno-b .login-wrapper { padding: 30px 20px; }
 #seccion-login.login-diseno-b .login-tarjeta-b {
-  --borde-fundido: 5px;
-  border-color: transparent;
-  box-shadow: none;
+  width: min(900px, 100%); min-height: 590px; background: rgba(255,255,255,.055);
+  backdrop-filter: blur(9px) saturate(1.08); -webkit-backdrop-filter: blur(9px) saturate(1.08);
+  --borde-fundido: 5px; border-color: transparent; box-shadow: none;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--borde-fundido), #000 calc(100% - var(--borde-fundido)), transparent), linear-gradient(to bottom, transparent, #000 var(--borde-fundido), #000 calc(100% - var(--borde-fundido)), transparent);
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-composite: source-in;
+  -webkit-mask-repeat: no-repeat; -webkit-mask-composite: source-in;
   mask-image: linear-gradient(to right, transparent, #000 var(--borde-fundido), #000 calc(100% - var(--borde-fundido)), transparent), linear-gradient(to bottom, transparent, #000 var(--borde-fundido), #000 calc(100% - var(--borde-fundido)), transparent);
-  mask-repeat: no-repeat;
-  mask-composite: intersect;
+  mask-repeat: no-repeat; mask-composite: intersect;
 }
-@media (max-width: 760px) {
-  #seccion-login.login-diseno-b .login-tarjeta-b { --borde-fundido: 3px; }
+#seccion-login.login-diseno-b .login-lateral-b { padding: 30px 26px; border-radius: 22px 100px 100px 22px; }
+#seccion-login.login-diseno-b .recuperando .login-lateral-b { border-radius: 100px 22px 22px 100px; }
+#seccion-login.login-diseno-b .login-marca-b { justify-content: center; gap: 0; width: 100%; text-align: center; }
+#seccion-login.login-diseno-b .login-marca-b img { width: 56px; height: 56px; flex-basis: 56px; }
+#seccion-login.login-diseno-b .login-marca-b strong { color: #f1d19c; font-size: 18px; font-weight: 600; letter-spacing: .12em; }
+#seccion-login.login-diseno-b .login-mensaje-b { margin: auto 0; padding: 16px 0; text-align: center; }
+#seccion-login.login-diseno-b .login-mensaje-b h2 { margin: 0 0 18px; font-size: 32px; line-height: 1.18; letter-spacing: -.035em; color: #fff9ec; }
+#seccion-login.login-diseno-b .login-mensaje-b p { margin: 0 auto; max-width: 290px; color: #e3e9d8; font-size: 14px; line-height: 1.8; }
+#seccion-login.login-diseno-b #login-b-alternar {
+  width: min(100%,260px); min-height: 48px; margin-top: 22px; padding: 12px 14px;
+  color: #263b2b; background: linear-gradient(110deg,#f3ddba,#d8b57c);
+  border: 1px solid #f4d6a3; border-radius: 12px; font-size: 14px; font-weight: 600;
 }
-
-/* Diseño B compacto: menos espacio vacío y textos secundarios más legibles. */
-#seccion-login.login-diseno-b .login-wrapper { padding: 32px 20px; }
-#seccion-login.login-diseno-b .login-tarjeta-b { width: min(980px, 100%); min-height: 650px; }
-#seccion-login.login-diseno-b .login-lateral-b { padding: 32px 30px; }
-#seccion-login.login-diseno-b .login-marca-b span { font-size: 10px; letter-spacing: .1em; }
-#seccion-login.login-diseno-b .login-mensaje-b { padding: 24px 0; }
-#seccion-login.login-diseno-b .login-sobretitulo-b { font-size: 11px; letter-spacing: .09em; }
-#seccion-login.login-diseno-b .login-mensaje-b h2 { font-size: 38px; margin: 17px 0; }
-#seccion-login.login-diseno-b .login-mensaje-b p { font-size: 15px; line-height: 1.75; }
-#seccion-login.login-diseno-b #login-b-alternar { font-size: 14px; margin-top: 22px; }
-#seccion-login.login-diseno-b .login-pie-b { font-size: 12px; letter-spacing: 0; padding-top: 16px; }
-#seccion-login.login-diseno-b .login-form-b { padding: 40px 32px; }
-#seccion-login.login-diseno-b .login-form .subtitle { font-size: 15px; }
-#seccion-login.login-diseno-b .etiqueta-login { font-size: 14px; }
-#seccion-login.login-diseno-b .remember, #seccion-login.login-diseno-b .forgot a { font-size: 14px; }
-#seccion-login.login-diseno-b .login-form button { font-size: 16px; }
-#seccion-login.login-diseno-b .mensaje-login { font-size: 14px; }
-#seccion-login.login-diseno-b #dialogo-contactar-admin[open] { padding: 32px; }
-#seccion-login.login-diseno-b .login-recuperar-b p,
-#seccion-login.login-diseno-b .login-recuperar-b label,
-#seccion-login.login-diseno-b .login-recuperar-b #mensaje-contactar-admin,
-#seccion-login.login-diseno-b .login-b-regresar { font-size: 14px; }
+#seccion-login.login-diseno-b #login-b-alternar:hover { color: #203322; background: linear-gradient(110deg,#ffeaca,#e6c58f); }
+#seccion-login.login-diseno-b .login-form-b { padding: 32px 28px; justify-content: center; }
+#seccion-login.login-diseno-b .login-form h1 { color: #fff9ec; text-align: center; font-size: 30px; font-weight: 600; letter-spacing: -.035em; margin: 0 0 8px; }
+#seccion-login.login-diseno-b .login-form .subtitle { color: #e3e9d8; text-align: center; font-size: 13px; line-height: 1.6; margin: 0 0 24px; }
+#seccion-login.login-diseno-b .input-box { padding-top: 24px; margin-bottom: 18px; }
+#seccion-login.login-diseno-b .etiqueta-login { color: #fff6e2; font-size: 13px; line-height: 18px; }
+#seccion-login.login-diseno-b .input-box i { color: #f6dfb8; font-size: 14px; left: 17px; top: 49px; }
+#seccion-login.login-diseno-b .input-box input,
+#seccion-login.login-diseno-b .login-recuperar-b input,
+#seccion-login.login-diseno-b .login-recuperar-b select {
+  height: 50px; border-radius: 14px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,249,232,.28);
+  color: #fffbed; box-shadow: inset 0 1px 1px #ffffff14; font-size: 16px;
+}
+#seccion-login.login-diseno-b .input-box input { padding-left: 44px; }
+#seccion-login.login-diseno-b .input-box input::placeholder { color: #e2e7d7; opacity: 1; }
+#seccion-login.login-diseno-b .input-box input:focus,
+#seccion-login.login-diseno-b .login-recuperar-b input:focus,
+#seccion-login.login-diseno-b .login-recuperar-b select:focus { background: #ffffff21; border-color: #ead0a0; box-shadow: 0 0 0 3px #e6c59117; }
+#seccion-login.login-diseno-b .input-box:focus-within i { color: #ffe4b4; }
+#seccion-login.login-diseno-b .login-recuperar-b select option { color: #293d33; background: #fffaf2; }
+#seccion-login.login-diseno-b .forgot { margin: 0 0 18px; gap: 2px 10px; }
+#seccion-login.login-diseno-b .remember { color: #edf0e4; font-size: 13px; gap: 7px; }
+#seccion-login.login-diseno-b .switch { width: 32px; height: 18px; background: #ffffff2b; border: 1px solid #dbe4d55e; box-shadow: none; }
+#seccion-login.login-diseno-b .switch::after { width: 12px; height: 12px; top: 2px; }
+#seccion-login.login-diseno-b .remember input:checked + .switch { background: #dfbd88; border-color: #dfbd88; }
+#seccion-login.login-diseno-b .remember input:checked + .switch::after { background: #284331; }
+#seccion-login.login-diseno-b .remember input:not(:checked) + .switch::after { background: #f5f0db; }
+#seccion-login.login-diseno-b .forgot a { color: #fff2d3; font-size: 13px; font-weight: 400; }
+#seccion-login.login-diseno-b .forgot a:hover { color: #ffe0a8; }
+#seccion-login.login-diseno-b .login-form button,
 #seccion-login.login-diseno-b .login-recuperar-b button[type='submit'],
-#seccion-login.login-diseno-b #rec-abrir-whatsapp { font-size: 15px; }
+#seccion-login.login-diseno-b #rec-abrir-whatsapp {
+  min-height: 50px; border-radius: 14px; border: 1px solid #f4d6a3; background: linear-gradient(110deg,#f3ddba,#d8b57c);
+  color: #263b2b; font-size: 15px; font-weight: 700; box-shadow: 0 6px 22px #13291d29;
+}
+#seccion-login.login-diseno-b .login-form button:not(:disabled):hover,
+#seccion-login.login-diseno-b .login-recuperar-b button[type='submit']:hover,
+#seccion-login.login-diseno-b #rec-abrir-whatsapp:hover { color: #203322; background: linear-gradient(110deg,#ffeaca,#e6c58f); }
+#seccion-login.login-diseno-b .login-form button:disabled { background: #b9b499; color: #2f4435; }
+#seccion-login.login-diseno-b .mensaje-login { color: #fff3db; background: #152f23d9; padding: 10px 12px; border-radius: 8px; font-size: 13px; text-align: center; }
+#seccion-login.login-diseno-b #dialogo-contactar-admin[open] { padding: 30px 28px; color: #fff9ec; }
+#seccion-login.login-diseno-b .login-recuperar-b h2 { color: #fff9ec; font-size: 26px; text-align: center; }
+#seccion-login.login-diseno-b .login-recuperar-b p { color: #e3e9d8; font-size: 13px; text-align: center; }
+#seccion-login.login-diseno-b .login-recuperar-b label { color: #fff6e2; font-size: 13px; }
+#seccion-login.login-diseno-b .login-recuperar-b #mensaje-contactar-admin { color: #fff3db; font-size: 13px; }
+#seccion-login.login-diseno-b .login-b-regresar { color: #fff2d3; font-size: 13px; }
+#seccion-login.login-diseno-b :is(input,select,button,a):focus-visible { outline-color: #edcf9a; }
+#seccion-login.login-diseno-b .remember input:focus-visible + .switch { outline-color: #edcf9a; }
+#seccion-login.login-diseno-b .login-form h1,
+#seccion-login.login-diseno-b .login-form .subtitle,
+#seccion-login.login-diseno-b .etiqueta-login,
+#seccion-login.login-diseno-b .remember,
+#seccion-login.login-diseno-b .forgot a { text-shadow: 0 1px 3px #10241888; }
 @media (max-width: 900px) and (min-width: 761px) {
-  #seccion-login.login-diseno-b .login-lateral-b { padding: 28px 24px; }
-  #seccion-login.login-diseno-b .login-form-b { padding: 32px 26px; }
-  #seccion-login.login-diseno-b .login-marca-b strong { font-size: 22px; }
-  #seccion-login.login-diseno-b .login-mensaje-b h2 { font-size: 34px; }
+  #seccion-login.login-diseno-b .login-lateral-b { padding: 28px 22px; }
+  #seccion-login.login-diseno-b .login-form-b { padding: 30px 24px; }
   #seccion-login.login-diseno-b #dialogo-contactar-admin[open] { padding: 28px 24px; }
 }
 @media (max-width: 760px) {
   #seccion-login.login-diseno-b .login-wrapper { padding: 20px 14px; }
-  #seccion-login.login-diseno-b .login-tarjeta-b { max-width: 440px; min-height: 745px; }
-  #seccion-login.login-diseno-b .login-tarjeta-b.recuperando { min-height: 890px; }
+  #seccion-login.login-diseno-b .login-tarjeta-b { max-width: 430px; min-height: 680px; --borde-fundido: 3px; }
+  #seccion-login.login-diseno-b .login-tarjeta-b.recuperando { min-height: 850px; }
   #seccion-login.login-diseno-b .login-lateral-b,
-  #seccion-login.login-diseno-b .recuperando .login-lateral-b { padding: 18px 20px; }
-  #seccion-login.login-diseno-b .login-mensaje-b { padding: 0; }
-  #seccion-login.login-diseno-b #login-b-alternar { margin-top: 14px; }
-  #seccion-login.login-diseno-b .login-form-b { padding: 30px 26px; }
-  #seccion-login.login-diseno-b #dialogo-contactar-admin[open] { padding: 30px 26px; }
+  #seccion-login.login-diseno-b .recuperando .login-lateral-b { height: 150px; padding: 16px 20px; border-radius: 18px 18px 45px 45px; }
+  #seccion-login.login-diseno-b .login-marca-b img { width: 46px; height: 46px; flex-basis: 46px; }
+  #seccion-login.login-diseno-b .login-marca-b strong { font-size: 18px; }
+  #seccion-login.login-diseno-b .login-mensaje-b { padding: 0; margin: 0; width: 100%; }
+  #seccion-login.login-diseno-b #login-b-alternar { width: min(100%,250px); min-height: 44px; margin-top: 12px; font-size: 13px; padding: 10px 14px; }
+  #seccion-login.login-diseno-b .login-form-b { top: 150px; height: calc(100% - 150px); padding: 28px 24px; justify-content: center; }
+  #seccion-login.login-diseno-b #dialogo-contactar-admin[open] { inset: 150px 0 auto 0; height: calc(100% - 150px); padding: 28px 24px; }
+  #seccion-login.login-diseno-b .login-form h1 { font-size: 28px; }
+  #seccion-login.login-diseno-b .login-recuperar-b h2 { font-size: 25px; }
+}
+@supports not ((backdrop-filter: blur(9px)) or (-webkit-backdrop-filter: blur(9px))) {
+  #seccion-login.login-diseno-b .login-tarjeta-b { background: rgba(39,58,46,.88); }
 }
 
-/* Mejor contraste de los textos pequeños sobre la foto translúcida. */
-#seccion-login.login-diseno-b .forgot a { color: #293d33; font-weight: 500; }
-#seccion-login.login-diseno-b .remember { color: #344438; }
-#seccion-login.login-diseno-b .login-form .subtitle,
-#seccion-login.login-diseno-b .login-recuperar-b p { color: #465240; }
+/* Jerarquía visual: marca, acceso y mensaje comercial. */
+#seccion-login.login-diseno-b .login-marca-b { justify-content: center; align-items: center; width: 100%; text-align: center; gap: 0; min-height: 90px; }
+#seccion-login.login-diseno-b .login-marca-b img { width: 84px; height: 84px; flex-basis: 84px; }
+#seccion-login.login-diseno-b .login-marca-b strong { font-size: 36px; line-height: 1.2; letter-spacing: .055em; color: #f1d19c; }
+#seccion-login.login-diseno-b .login-form h1 { font-size: 32px; line-height: 1.2; text-align: center; }
+#seccion-login.login-diseno-b .login-mensaje-b h2 { font-size: 26px; line-height: 1.2; }
+#seccion-login.login-diseno-b .login-pie-b { width: 100%; box-sizing: border-box; margin: 0; padding-top: 16px; border-top: 1px solid #dfbd8840; color: #d9c8a9; font-size: 12px; line-height: 1.5; letter-spacing: 0; text-align: center; }
+@media (min-width: 761px) and (max-width: 900px) {
+  #seccion-login.login-diseno-b .login-marca-b strong { font-size: 34px; }
+  #seccion-login.login-diseno-b .login-marca-b img { width: 76px; height: 76px; flex-basis: 76px; }
+}
+@media (max-width: 760px) {
+  #seccion-login.login-diseno-b .login-marca-b { min-height: 60px; }
+  #seccion-login.login-diseno-b .login-marca-b img { width: 60px; height: 60px; flex-basis: 60px; }
+  #seccion-login.login-diseno-b .login-marca-b strong { font-size: 30px; }
+  #seccion-login.login-diseno-b .login-form h1 { font-size: 28px; }
+  #seccion-login.login-diseno-b .login-mensaje-b h2 { font-size: 24px; }
+  #seccion-login.login-diseno-b .login-pie-b { display: none; }
+}
+
+/* Centrado óptico de la marca en el espacio superior del panel. */
+@media (min-width: 761px) {
+  #seccion-login.login-diseno-b .login-marca-b { transform: translate(-48px, 32px); }
+}
+
+/* Inicio del lema alineado visualmente con la punta del logo. */
+@media (min-width: 761px) {
+  #seccion-login.login-diseno-b .login-pie-b { text-align: left; text-indent: 12px; }
+}
+
+/* Recordarme activado: fondo verde y círculo dorado. */
+#seccion-login.login-diseno-b .remember input:checked + .switch { background: #284331; border-color: #284331; }
+#seccion-login.login-diseno-b .remember input:checked + .switch::after { background: #dfbd88; }
+
+/* Mostrar u ocultar la contraseña del acceso. */
+#seccion-login.login-diseno-b #login-password { padding-right: 54px; }
+#seccion-login.login-diseno-b #alternar-password-melanova,
+#seccion-login.login-diseno-b #alternar-password-melanova:hover,
+#seccion-login.login-diseno-b #alternar-password-melanova:active {
+  position: absolute; inset: auto 5px 3px auto; display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px; margin: 0; padding: 0;
+  background: transparent; border: 0; border-radius: 10px; color: #f6dfb8;
+  box-shadow: none; transform: none; cursor: pointer; line-height: 1;
+}
+#seccion-login.login-diseno-b #alternar-password-melanova:hover { color: #ffe4b4; background: #ffffff12; }
+#seccion-login.login-diseno-b #alternar-password-melanova:focus-visible { outline: 2px solid #edcf9a; outline-offset: -2px; }
+#seccion-login.login-diseno-b #alternar-password-melanova svg { display: block; pointer-events: none; }
+
+/* Selector de ayuda: colores legibles y menú acorde a Melanova. */
+#seccion-login.login-diseno-b #rec-administrador {
+  color-scheme: light; color: #fff6e2; font-weight: 400; font-size: 15px;
+  border: 1px solid #fff9e847; border-radius: 14px;
+}
+#seccion-login.login-diseno-b #rec-administrador:focus-visible { outline: 2px solid #edcf9a; outline-offset: 2px; box-shadow: none; }
+#seccion-login.login-diseno-b #rec-administrador option { color: #293d33; background: #fffaf2; font-weight: 400; }
+@supports (appearance: base-select) {
+  #seccion-login.login-diseno-b #rec-administrador,
+  #seccion-login.login-diseno-b #rec-administrador::picker(select) { appearance: base-select; }
+  #seccion-login.login-diseno-b #rec-administrador { display: flex; align-items: center; padding: 0 14px; cursor: pointer; }
+  #seccion-login.login-diseno-b #rec-administrador::picker-icon { color: #f1d19c; transition: rotate .2s ease; }
+  #seccion-login.login-diseno-b #rec-administrador:open::picker-icon { rotate: 180deg; }
+  #seccion-login.login-diseno-b #rec-administrador::picker(select) {
+    margin-top: 7px; padding: 6px; max-height: 230px; overflow-y: auto;
+    color: #fff6e2; background: #284334; border: 1px solid #dfbd8870;
+    border-radius: 12px; box-shadow: 0 10px 26px #14251c40;
+    font: 400 14px 'Poppins',sans-serif;
+  }
+  #seccion-login.login-diseno-b #rec-administrador option {
+    display: flex; align-items: center; gap: 8px; min-height: 44px;
+    padding: 10px 12px; border-radius: 8px; color: #fff6e2; background: transparent;
+    white-space: normal; overflow-wrap: anywhere; cursor: pointer;
+  }
+  #seccion-login.login-diseno-b #rec-administrador option:hover,
+  #seccion-login.login-diseno-b #rec-administrador option:focus { background: #ffffff16; outline: none; }
+  #seccion-login.login-diseno-b #rec-administrador option:checked { background: #dfbd88; color: #263b2b; }
+  #seccion-login.login-diseno-b #rec-administrador option::checkmark { color: currentColor; }
+}

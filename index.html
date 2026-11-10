@@ -33,10 +33,10 @@
     <div class="login-wrapper">
       <div id="login-tarjeta-b" class="login-tarjeta-b">
         <aside class="login-lateral-b" aria-label="Melanova">
-          <div class="login-marca-b"><img src="assets/melanova-logo.png" alt="" width="68" height="68"><div><strong>MELANOVA</strong><span>MUEBLES DE MELAMINA</span></div></div>
+          <div class="login-marca-b"><img src="assets/melanova-logo.png" alt="" width="68" height="68"><div><strong>MELANOVA</strong></div></div>
           <div class="login-mensaje-b">
-            <div class="login-copy-acceso"><span class="login-sobretitulo-b">DISEÑO PARA CADA ESPACIO</span><h2>Tu negocio,<br>en orden.</h2><p>Muebles, ventas y pedidos.<br>Todo en un solo lugar.</p></div>
-            <div class="login-copy-recuperar" hidden><span class="login-sobretitulo-b">ESTAMOS PARA AYUDARTE</span><h2>Recupera<br>tu acceso.</h2><p>Contacta a un administrador por WhatsApp para volver a tu cuenta.</p></div>
+            <div class="login-copy-acceso"><h2>Tu negocio,<br>en orden.</h2><p>Muebles, ventas y pedidos.<br>Todo en un solo lugar.</p></div>
+            <div class="login-copy-recuperar" hidden><h2>Recupera<br>tu acceso.</h2><p>Contacta a un administrador por WhatsApp para volver a tu cuenta.</p></div>
             <button type="button" id="login-b-alternar" aria-controls="dialogo-contactar-admin" aria-expanded="false">Recuperar mi cuenta</button>
           </div>
           <p class="login-pie-b">Diseño · Calidad · Funcionalidad</p>
@@ -44,7 +44,7 @@
         <div class="login-contenido-b">
           <form id="form-login" class="login-form login-form-b">
             <h1>Iniciar sesión</h1>
-            <div class="subtitle">Bienvenido de nuevo. Accede a tu cuenta.</div>
+            <div class="subtitle">Accede a tu cuenta Melanova</div>
 
             <label for="login-email" class="input-box">
               <span class="etiqueta-login">Correo electrónico</span>
@@ -52,12 +52,13 @@
               <input type="email" id="login-email" placeholder="Correo electrónico" aria-label="Correo electrónico"
                 autocomplete="username" required>
             </label>
-            <label for="login-password" class="input-box">
-              <span class="etiqueta-login">Contraseña</span>
+            <div class="input-box input-password-melanova">
+              <label for="login-password" class="etiqueta-login">Contraseña</label>
               <i class="fa-solid fa-lock" aria-hidden="true"></i>
               <input type="password" id="login-password" placeholder="Contraseña" aria-label="Contraseña"
                 autocomplete="current-password" required>
-            </label>
+            <button type="button" id="alternar-password-melanova" aria-label="Mostrar contraseña" aria-controls="login-password" aria-pressed="false" title="Mostrar contraseña"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
 
             <div class="forgot">
               <label class="remember" for="recordarme"
@@ -965,6 +966,7 @@
   <script src="js/supabase-client.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/recuperacion-mueblex.js"></script>
+  <script src="js/acceso-password-melanova.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/productos.js"></script>
   <script src="js/categorias.js"></script>
