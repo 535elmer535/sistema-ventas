@@ -5,7 +5,8 @@ const base = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(base, 'index.html'), 'utf8');
 class Elemento {
   constructor(tag = 'div') { this.tagName = tag; this.value = ''; this.checked = false; this.hidden = false;
-    this.disabled = false; this.open = false; this.textContent = ''; this.children = []; this.eventos = {}; this.dataset = {}; this.style = {}; }
+    this.disabled = false; this.open = false; this.textContent = ''; this.children = []; this.eventos = {}; this.dataset = {}; this.style = {}; this.inert = false;
+    this.clases = new Set(); this.classList = { toggle: (clase, valor) => { const activar = valor ?? !this.clases.has(clase); if (activar) this.clases.add(clase); else this.clases.delete(clase); return activar; }, contains: clase => this.clases.has(clase) }; }
   addEventListener(tipo, fn) { (this.eventos[tipo] ||= []).push(fn); }
   async emitir(tipo) { for (const fn of this.eventos[tipo] || []) await fn({ currentTarget: this, preventDefault() {} }); }
   append(nodo) { this.children.push(nodo); }
@@ -14,11 +15,13 @@ class Elemento {
   add(opcion) { this.append(opcion); }
   focus() { this.enfocado = true; }
   showModal() { this.open = true; }
+  show() { this.open = true; }
+  setAttribute(nombre, valor) { this[nombre] = String(valor); }
   close() { this.open = false; this.emitir('close'); }
   removeAttribute(nombre) { delete this[nombre]; }
   checkValidity() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value); }
   querySelectorAll() { return this.controles || []; }
-  querySelector() { return (this.formularios || []).find(f => f.dataset.guardando === 'true') || null; }
+  querySelector(selector) { return this.selectores?.[selector] || (this.formularios || []).find(f => f.dataset.guardando === 'true') || null; }
   reset() { for (const campo of this.controles || []) { campo.value = ''; campo.checked = false; } }
   closest() { return this.dialogo; }
 }
@@ -30,6 +33,9 @@ for (const m of html.matchAll(/<([\w-]+)\b[^>]*\bid="([^"]+)"[^>]*>/g)) {
 for (const m of html.matchAll(/<form\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/form>/g)) {
   elementos[m[1]].controles = [...m[2].matchAll(/<(?:input|button|select)\b[^>]*\bid="([^"]+)"/g)].map(x => elementos[x[1]]);
 }
+assert.match(html, /class="login-copy-acceso"/);
+assert.match(html, /class="login-copy-recuperar"/);
+elementos['login-tarjeta-b'].selectores = { '.login-copy-acceso': new Elemento(), '.login-copy-recuperar': new Elemento() };
 const dialogos = [], cerrar = [];
 for (const m of html.matchAll(/<dialog\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/dialog>/g)) {
   const d = elementos[m[1]]; dialogos.push(d);
@@ -85,6 +91,8 @@ const comprobar = (nombre, accion) => { accion(); total++; };
   $('buscar-acceso').value = 'Ana'; await $('form-buscar-acceso').emitir('submit'); await flush();
   comprobar('búsqueda enviada', () => assert.equal(llamadas.filter(l => l.accion === 'listar').at(-1).buscar, 'Ana'));
   await $('enlace-recuperar').emitir('click');
+  comprobar('abre recuperación del diseño B', () => assert.equal($('login-tarjeta-b').classList.contains('recuperando'), true));
+  comprobar('login inerte mientras se recupera', () => assert.equal($('form-login').inert, true));
   comprobar('selección dos administradores', () => assert.equal($('rec-administrador').children.length, 3));
   $('rec-correo').value = 'persona+ventas@example.com'; $('rec-administrador').value = '1';
   await $('form-contactar-admin').emitir('submit');
@@ -94,7 +102,9 @@ const comprobar = (nombre, accion) => { accion(); total++; };
   await $('rec-administrador').emitir('change');
   comprobar('invalida enlace al cambiar destinatario', () => assert.equal($('rec-abrir-whatsapp').hidden, true));
   comprobar('borra href anterior', () => assert.equal($('rec-abrir-whatsapp').href, undefined));
-  $('dialogo-contactar-admin').close(); falloContactos = true; await $('enlace-recuperar').emitir('click');
+  $('dialogo-contactar-admin').close(); await flush();
+  comprobar('vuelve al login del diseño B', () => assert.equal($('form-login').inert, false));
+  falloContactos = true; await $('enlace-recuperar').emitir('click');
   comprobar('error contactos visible', () => assert.match($('mensaje-contactar-admin').textContent, /No se pudieron/));
   $('dialogo-contactar-admin').close(); falloContactos = false;
   await botones($('filas-accesos').children[1]).find(b => b.textContent === 'Restablecer contraseña').emitir('click');

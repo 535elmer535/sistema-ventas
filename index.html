@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/accesibilidad.css">
   <link rel="stylesheet" href="css/recuperacion-mueblex.css">
   <link rel="stylesheet" href="css/login-melanova.css">
+  <link rel="stylesheet" href="css/paneles-melanova.css">
 </head>
 
 <body>
@@ -144,7 +145,7 @@
 <section class="tarjeta-inicio tarjeta-semana-inicio" aria-labelledby="titulo-semana-inicio"><div class="titulo-tarjeta"><h2 id="titulo-semana-inicio">Ventas de los últimos 7 días</h2><strong id="total-semana-inicio">—</strong></div><div id="grafico-semana-inicio" class="grafico-operativo" aria-label="Ventas y pedidos activos por día"><p>Cargando gráfico…</p></div><p class="nota-inicio">Importes en Bs, abreviados en el gráfico. Ventas y pedidos activos; no es dinero cobrado ni ganancia.</p></section>
 </div>
 
-      <div id="vista-administracion" class="vista-panel" hidden aria-label="Administración">
+      <div id="vista-administracion" class="vista-panel panel-melanova" hidden aria-label="Administración">
 
     <section id="panel-categorias-admin" hidden class="modulo mod-categorias">
       <h2>Administrar categorías</h2>
@@ -242,35 +243,31 @@
     </section>
 
       </div>
-      <div id="vista-inventario" class="vista-panel" hidden aria-label="Inventario">
+      <div id="vista-inventario" class="vista-panel panel-melanova" hidden aria-label="Inventario">
         <section id="panel-registrar-mueble" class="modulo" hidden>
   <h2>Registrar mueble</h2>
 
   <form id="form-registrar-mueble">
-    <label for="nuevo-mueble-nombre">Nombre del mueble:</label>
-    <input
+    <div class="campo-melanova"><label for="nuevo-mueble-nombre">Nombre del mueble:</label><input
       type="text"
       id="nuevo-mueble-nombre"
       maxlength="200"
       required
-    >
+    ></div>
 
-    <label for="nuevo-mueble-categoria">Categoría:</label>
-    <select id="nuevo-mueble-categoria" required>
+    <div class="campo-melanova"><label for="nuevo-mueble-categoria">Categoría:</label><select id="nuevo-mueble-categoria" required>
       <option value="">Selecciona una categoría</option>
-    </select>
+    </select></div>
 
-    <label for="nuevo-mueble-precio">Precio de venta (Bs):</label>
-    <input
+    <div class="campo-melanova"><label for="nuevo-mueble-precio">Precio de venta (Bs):</label><input
       type="number"
       id="nuevo-mueble-precio"
       min="0.01"
       step="0.01"
       required
-    >
+    ></div>
 
-    <label for="nuevo-mueble-existencia">Existencia inicial:</label>
-    <input
+    <div class="campo-melanova"><label for="nuevo-mueble-existencia">Existencia inicial:</label><input
       type="number"
       id="nuevo-mueble-existencia"
       min="0"
@@ -278,7 +275,7 @@
       step="1"
       value="0"
       required
-    >
+    ></div>
 
     <button type="submit">Registrar mueble</button>
   </form>
@@ -326,39 +323,7 @@
   <p id="mensaje-reposicion-stock" role="status"></p>
 </section>
 
-<section class="modulo" id="panel-historial-reposiciones">
-  <h2>Historial de reposiciones</h2>
 
-  <button type="button" id="actualizar-historial-reposiciones">
-    Actualizar historial
-  </button>
-
-  <p id="mensaje-historial-reposiciones" role="status"></p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Mueble</th>
-        <th>Unidades ingresadas</th>
-        <th>Existencia anterior</th>
-        <th>Existencia nueva</th>
-        <th>Motivo</th>
-        <th>Registrado por</th>
-      </tr>
-    </thead>
-
-    <tbody id="cuerpo-historial-reposiciones"></tbody>
-  </table>
-
-  <button type="button" id="anteriores-reposiciones" disabled>
-    Anteriores
-  </button>
-
-  <button type="button" id="siguientes-reposiciones" disabled>
-    Siguientes
-  </button>
-</section>
 
     <section class="modulo mod-productos">
       <h2>Consultar existencia de muebles</h2>
@@ -405,11 +370,44 @@
 
       <p id="mensaje-producto" role="status"></p>
     </section>
+<section class="modulo" id="panel-historial-reposiciones">
+  <h2>Historial de reposiciones</h2>
+
+  <button type="button" id="actualizar-historial-reposiciones">
+    Actualizar historial
+  </button>
+
+  <p id="mensaje-historial-reposiciones" role="status"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Mueble</th>
+        <th>Unidades ingresadas</th>
+        <th>Existencia anterior</th>
+        <th>Existencia nueva</th>
+        <th>Motivo</th>
+        <th>Registrado por</th>
+      </tr>
+    </thead>
+
+    <tbody id="cuerpo-historial-reposiciones"></tbody>
+  </table>
+
+  <button type="button" id="anteriores-reposiciones" disabled>
+    Anteriores
+  </button>
+
+  <button type="button" id="siguientes-reposiciones" disabled>
+    Siguientes
+  </button>
+</section>
 
       </div>
-      <div id="vista-ventas" class="vista-panel" hidden aria-label="Ventas">
+      <div id="vista-ventas" class="vista-panel panel-melanova" hidden aria-label="Ventas">
     <section class="modulo mod-ventas">
-      <h2>Registrar venta de muebles en stock</h2>
+      <h2>Registrar venta</h2>
 
       <form id="form-venta">
         <label for="campo-producto">Producto:
@@ -453,7 +451,7 @@
       <p id="mensaje-venta" role="status"></p>
     </section>
 <section class="modulo" id="panel-historial-ventas">
-  <h2>Historial de ventas de stock</h2>
+  <h2>Historial de ventas</h2>
 
   <button type="button" id="actualizar-historial-ventas">
     Actualizar historial
@@ -509,21 +507,19 @@
   <form id="form-cobro-venta">
     <input type="hidden" id="cobro-venta-id-venta">
 
-    <label for="cobro-venta-monto">Monto recibido (Bs):</label>
-    <input
+    <div class="campo-melanova"><label for="cobro-venta-monto">Monto recibido (Bs):</label><input
       type="number"
       id="cobro-venta-monto"
       min="0.01"
       step="0.01"
       required
-    >
+    ></div>
 
-    <label for="cobro-venta-metodo">Método del cobro:</label>
-    <select id="cobro-venta-metodo" required>
+    <div class="campo-melanova"><label for="cobro-venta-metodo">Método del cobro:</label><select id="cobro-venta-metodo" required>
       <option value="efectivo">Efectivo</option>
       <option value="QR">QR</option>
       <option value="transferencia">Transferencia</option>
-    </select>
+    </select></div>
 
     <button type="submit" id="guardar-cobro-venta">
       Registrar pago
@@ -535,7 +531,7 @@
   </section>
 </section>
       </div>
-      <div id="vista-pedidos" class="vista-panel" hidden aria-label="Pedidos">
+      <div id="vista-pedidos" class="vista-panel panel-melanova" hidden aria-label="Pedidos">
     <section class="modulo mod-pedidos">
       <h2>Registrar pedido a medida</h2>
 
@@ -785,21 +781,19 @@
   <form id="form-cobro-pedido">
     <input type="hidden" id="cobro-pedido-id-venta">
 
-    <label for="cobro-pedido-monto">Monto recibido (Bs):</label>
-    <input
+    <div class="campo-melanova"><label for="cobro-pedido-monto">Monto recibido (Bs):</label><input
       type="number"
       id="cobro-pedido-monto"
       min="0.01"
       step="0.01"
       required
-    >
+    ></div>
 
-    <label for="cobro-pedido-metodo">Método del cobro:</label>
-    <select id="cobro-pedido-metodo" required>
+    <div class="campo-melanova"><label for="cobro-pedido-metodo">Método del cobro:</label><select id="cobro-pedido-metodo" required>
       <option value="efectivo">Efectivo</option>
       <option value="QR">QR</option>
       <option value="transferencia">Transferencia</option>
-    </select>
+    </select></div>
 
     <button type="submit" id="guardar-cobro-pedido">
       Registrar pago
@@ -811,7 +805,7 @@
   </section>
 </section>
       </div>
-      <div id="vista-clientes" class="vista-panel" hidden aria-label="Clientes">
+      <div id="vista-clientes" class="vista-panel panel-melanova" hidden aria-label="Clientes">
     <section class="modulo mod-clientes-alta">
       <h2>Registrar cliente</h2>
 
@@ -887,7 +881,7 @@
 
 
       </div>
-      <div id="vista-reportes" class="vista-panel" hidden aria-label="Reportes">
+      <div id="vista-reportes" class="vista-panel panel-melanova" hidden aria-label="Reportes">
     <section id="seccion-reportes" class="modulo mod-reportes">
       <h2>Reporte de ventas</h2>
       <div class="filtros-reportes">
@@ -965,6 +959,7 @@
   <script src="js/recuperacion-mueblex.js"></script>
   <script src="js/acceso-password-melanova.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/listados-melanova.js"></script>
   <script src="js/productos.js"></script>
   <script src="js/categorias.js"></script>
   <script src="js/clientes.js"></script>
@@ -973,6 +968,7 @@
   <script src="js/devoluciones-mueblex.js"></script>
   <script src="js/navegacion.js"></script>
   <script src="js/inicio-mueblex.js"></script>
+  <script src="js/paneles-melanova.js"></script>
 </body>
 
 </html>

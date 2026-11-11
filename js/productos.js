@@ -26,8 +26,7 @@ async function cargarProductos() {
   productosCache = [];
   llenarSelectProductos([]);
   try {
-    const { data, error } = await clientesupabase.from("productos").select();
-    if (error) throw error;
+    const data = await leerListadoMelanova("productos", "id_producto");
     productosCache = data;
     await prepararReposicionStock(data);
     llenarSelectProductos(data);

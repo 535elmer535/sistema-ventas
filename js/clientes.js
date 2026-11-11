@@ -11,8 +11,7 @@ async function probarClientes() {
   clientesCache = [];
   llenarSelectClientes([]);
   try {
-    const { data, error } = await clientesupabase.from("clientes").select();
-    if (error) throw error;
+    const data = await leerListadoMelanova("clientes", "id_cliente");
     clientesCache = data;
     llenarSelectClientes(data);
     if (!guardandoPedido && data.some((cliente) => String(cliente.id_cliente) === clienteAnterior)) {

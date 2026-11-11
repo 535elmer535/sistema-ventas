@@ -6,10 +6,10 @@ Desarrollado por Elmer para utilizarlo en un negocio de muebles de melamina, tom
 
 ## Estado del proyecto
 
-**Publicado en Netlify — Guía 23 en proceso de cierre documental.**
+**Publicado en Netlify. Guías 1 a 24 cerradas por el usuario; mejoras posteriores en curso.**
 
-La marca elegida es Melanova. La interfaz todavía muestra MUEBLEX; su cambio visual
-y la elección del logo se realizarán después.
+La interfaz utiliza el nombre y el logo Melanova. Este paquete mejora las seis
+secciones internas y mantiene los diseños de acceso e Inicio del proyecto recibido.
 
 La versión actual utiliza datos de prueba. Se comprobó una venta de dos unidades
 como administrador, su guardado en Supabase y el descuento de stock, el rechazo de
@@ -39,7 +39,7 @@ publicación utilizan la misma base de datos de Supabase.
 - **Anulaciones y devoluciones**. Operaciones protegidas para el administrador, con validaciones sobre cobros y recuperación del stock cuando corresponde.
 - **Reportes**. Ventas y pedidos por período, dinero cobrado, devoluciones, neto cobrado y muebles vendidos.
 - **Acceso del personal**. Inicio y cierre de sesión, opción Recordarme, cambio de contraseña y creación administrativa de cuentas.
-- **Interfaz**. Navegación adaptable a pantallas pequeñas y buscador de productos, clientes y ventas.
+- **Interfaz**. Navegación adaptable a pantallas pequeñas y buscador de productos, clientes y ventas. Los listados de muebles y clientes incluyen búsqueda local y páginas de ocho filas; se consultan por lotes para evitar el recorte de una sola respuesta.
 
 Los reportes distinguen el valor vendido del dinero efectivamente cobrado. El neto cobrado corresponde a cobros menos devoluciones. El cálculo de ganancia requiere considerar también los costos y gastos del negocio.
 
@@ -115,10 +115,14 @@ Los módulos de la interfaz actual se integran desde `index.html`. El orden de l
 - [Reorganización del código y pruebas posteriores](docs/21-refactor.md).
 - [Preparación para publicación y revisión de seguridad](docs/22-checklist-publicacion.md).
 - [Publicación en Netlify y resultados de pruebas](docs/23-publicacion.md).
+- [Manual de usuario](docs/manual-usuario.md).
+- [Cierre del proyecto](docs/24-cierre-proyecto.md).
+- [Mejoras de paneles y listados](docs/mejoras-paneles-melanova.md).
+- [Respaldo y mejoras siguientes](docs/respaldo-y-pendientes-melanova.md).
 
 Después de reorganizar el código se comprobaron una venta de stock, un pedido a medida con anticipo y el rechazo de ventas sin sesión, incluyendo consultas de verificación en Supabase. Las pruebas de administración de categorías y de registro de cuentas se documentaron posteriormente en la Guía 22.
 
-Los documentos registran el alcance y los resultados de cada comprobación. El estado de las pruebas de la web publicada y el cierre pendiente se siguen en el registro de la Guía 23.
+Los documentos registran el alcance y los resultados de cada comprobación. El cierre de las guías se conserva en docs/24-cierre-proyecto.md. Las comprobaciones posteriores del panel se registran en docs/mejoras-paneles-melanova.md.
 
 ## Respaldo y puesta en uso
 

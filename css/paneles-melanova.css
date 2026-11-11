@@ -1,0 +1,205 @@
+/* Melanova · medidas compartidas de Inventario, Ventas, Pedidos, Clientes, Reportes y Administración.
+   Inicio y pantalla de acceso conservan su diseño. */
+#seccion-app .panel-melanova { width:100%; max-width:1240px; margin-inline:auto; gap:20px; align-items:start; justify-items:stretch; }
+#seccion-app .panel-melanova > .modulo { width:100%; max-width:none; min-width:0; padding:24px; border:1px solid #e8ddcd; border-radius:18px; background:#fffcf7; box-shadow:0 5px 20px #4e392009; }
+#seccion-app .panel-melanova .modulo h2 { font-size:23px; line-height:1.3; margin:0 0 18px; letter-spacing:-.025em; }
+#seccion-app .panel-melanova .modulo h2::after { width:34px; height:2px; margin-top:10px; }
+#seccion-app .panel-melanova .modulo h3 { font-size:17px; line-height:1.4; margin:24px 0 12px; }
+#seccion-app .panel-melanova .modulo h4 { font-size:15px; margin:20px 0 12px; }
+#seccion-app .panel-melanova p,#seccion-app .panel-melanova .modulo > p:not([id]) { font-size:14px; line-height:1.65; margin:10px 0; }
+#seccion-app .panel-melanova form { width:100%; max-width:none; margin-inline:0; }
+#seccion-app .panel-melanova form label { font-size:13px; line-height:1.5; margin:0; gap:6px; }
+#seccion-app .panel-melanova :is(input:not([type=hidden]),select,textarea) { width:100%; max-width:100%; min-width:0; min-height:44px; padding:10px 12px; font-size:14px; line-height:1.5; border-radius:9px; background:#fffefa; }
+#seccion-app .panel-melanova input[readonly] { background:#f0eee7; color:#647168; }
+#seccion-app .panel-melanova button { min-height:42px; padding:10px 15px; font-size:13px; line-height:1.4; white-space:normal; }
+#seccion-app .panel-melanova button:not(:disabled):hover { transform:none; }
+#seccion-app .panel-melanova :is(button,.tabla-desplazable):focus-visible { outline:3px solid #b58a4e; outline-offset:3px; }
+#seccion-app .panel-melanova .campo-melanova { min-width:0; display:flex; flex-direction:column; gap:6px; }
+#seccion-app .panel-melanova .campo-melanova label { display:block; width:auto; }
+#seccion-app .panel-melanova form > p { margin:0; }
+#seccion-app .panel-melanova :is(#form-registrar-mueble,#form-reposicion-stock,#form-nuevo-usuario,#form-cambiar-password,#form-editar-producto,#form-editar-cliente,#form-entrega-pedido,#form-cobro-venta,#form-cobro-pedido) { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:end; }
+#seccion-app .panel-melanova :is(#form-nuevo-usuario,#form-cambiar-password) p label { width:100%; margin:0; }
+#seccion-app .panel-melanova :is(#form-reposicion-stock > p,#form-editar-producto > p,#form-editar-cliente > p) { grid-column:1/-1; }
+#seccion-app .panel-melanova :is(#form-registrar-mueble,#form-reposicion-stock,#form-nuevo-usuario,#form-cambiar-password) > button { grid-column:1/-1; justify-self:start; margin:0; }
+#seccion-app .panel-melanova #form-reposicion-stock label:has(#reposicion-motivo) { grid-column:1/-1; }
+#seccion-app .panel-melanova #form-cliente { display:grid; gap:16px; }
+#seccion-app .panel-melanova #form-cliente button { justify-self:start; }
+#seccion-app .panel-melanova #form-venta { display:grid; grid-template-columns:minmax(0,2fr) minmax(90px,1fr) auto; gap:16px; align-items:end; }
+#seccion-app .panel-melanova #form-venta > :is(h3,.tabla-desplazable,table,p) { grid-column:1/-1; margin:0; }
+#seccion-app .panel-melanova #form-venta #confirmar-venta { grid-column:1/-1; justify-self:start; margin:0; }
+#seccion-app .panel-melanova #form-pedido { display:grid; gap:18px; }
+#seccion-app .panel-melanova #form-pedido > label { width:min(100%,420px); }
+#seccion-app .panel-melanova #form-pedido fieldset { width:100%; margin:0; padding:18px; border-radius:12px; background:#f9f4ec; }
+#seccion-app .panel-melanova #form-pedido fieldset p { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0 0 14px; }
+#seccion-app .panel-melanova #form-pedido fieldset p:first-of-type { grid-template-columns:1fr; }
+#seccion-app .panel-melanova #form-pedido fieldset p label { width:100%; margin:0; }
+#seccion-app .panel-melanova #form-pedido > p label { width:min(100%,420px); }
+#seccion-app .panel-melanova #form-pedido button { justify-self:start; margin:0; }
+#seccion-app .panel-melanova :is(#form-venta,#form-pedido) > p:has(:is(#total-venta,#total-pedido,#saldo-pedido)) { font-size:18px; padding:10px 14px; border-radius:10px; }
+#seccion-app .panel-melanova .tabla-desplazable { width:100%; min-width:0; max-width:100%; overflow:auto; border-radius:12px; margin:16px 0; scrollbar-color:#adb8a7 #f3ecdf; }
+#seccion-app .panel-melanova table.tabla-melanova { display:table; width:100%; max-width:none; margin:0; overflow:visible; border-spacing:0; border-collapse:separate; font-size:14px; white-space:normal; }
+#seccion-app .panel-melanova table.tabla-melanova th { font-size:11px; line-height:1.4; letter-spacing:.04em; padding:12px; background:#f0e7d9; white-space:normal; }
+#seccion-app .panel-melanova table.tabla-melanova td { min-width:0; max-width:none; padding:13px 12px; line-height:1.55; border:0; border-bottom:1px solid #eadecf; border-radius:0!important; overflow-wrap:break-word; }
+#seccion-app .panel-melanova table.tabla-melanova tr:last-child td { border-bottom:0; }
+#seccion-app .panel-melanova table.tabla-melanova tbody tr:not([hidden]):hover td { background:#f0f4ec; }
+#seccion-app .panel-melanova table.tabla-melanova td button { min-height:36px; padding:7px 10px; margin:2px 4px 2px 0; font-size:12px; white-space:nowrap; }
+#seccion-app .panel-melanova table.tabla-melanova th:last-child { min-width:112px; }
+#seccion-app .panel-melanova .tabla-amplia { min-width:780px; }
+#seccion-app .panel-melanova :is(#tabla-productos,#tabla-clientes) { min-width:620px; }
+#seccion-app .panel-melanova .lista-clientes-scroll { max-height:none; margin:16px 0; overflow:auto; }
+#seccion-app .panel-melanova :is(#tabla-productos,#tabla-clientes) td:first-child { width:30%; }
+#seccion-app .panel-melanova #tabla-clientes td:last-child { min-width:155px; }
+#seccion-app .panel-melanova :is(#panel-edicion,#panel-edicion-cliente) { max-width:none; padding:18px; margin:18px 0 0; border:1px solid #e1d5c1; border-radius:12px; box-shadow:none; }
+#seccion-app .panel-melanova :is(#detalle-venta-stock,#detalle-pedido-medida) { margin-top:24px; padding-top:18px; border-top:2px solid #dbc6a7; }
+#seccion-app .panel-melanova :is(#panel-cobro-venta,#panel-cobro-pedido,#panel-entrega-pedido) { padding:18px; margin-top:20px; border:1px solid #e4d8c8; border-radius:12px; background:#f7f3ec; }
+#seccion-app .panel-melanova [role=status]:empty { display:none; }
+#seccion-app .panel-melanova [role=status]:not(:empty) { margin-top:12px; font-size:13px; line-height:1.6; }
+#seccion-app .panel-melanova .listado-herramientas { display:flex; flex-wrap:wrap; align-items:end; gap:12px; margin:16px 0 8px; }
+#seccion-app .panel-melanova .listado-herramientas label { display:flex; flex-direction:column; gap:6px; font-size:13px; flex:1 1 220px; max-width:440px; }
+#seccion-app .panel-melanova .listado-paginas { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:12px 0 0; font-size:13px; }
+#seccion-app .panel-melanova .stock-estado { display:inline-block; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; }
+#seccion-app .panel-melanova .stock-bajo { color:#775115; background:#f7e9c8; }
+#seccion-app .panel-melanova .stock-agotado { color:#913f36; background:#f8e2dd; }
+#seccion-app .panel-melanova .stock-disponible { color:#365842; background:#e8f0e3; }
+#seccion-app #vista-inventario.panel-melanova { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#seccion-app #vista-inventario.panel-melanova > :is(#panel-registrar-mueble,#panel-reposicion-stock) { grid-column:auto; }
+#seccion-app #vista-clientes.panel-melanova { grid-template-columns:minmax(260px,310px) minmax(0,1fr); gap:20px; }
+#seccion-app #vista-clientes.panel-melanova > .mod-clientes-alta { grid-column:1; grid-row:1; }
+#seccion-app #vista-clientes.panel-melanova > .mod-clientes { grid-column:2; grid-row:1; }
+#seccion-app #vista-administracion.panel-melanova,#seccion-app #vista-reportes.panel-melanova { max-width:1100px; }
+#seccion-app #vista-administracion.panel-melanova > :is(#panel-categorias-admin,#panel-recuperacion-admin,.mod-usuarios,.mod-seguridad) { width:100%; max-width:none; }
+#seccion-app .panel-melanova #form-categoria { width:100%; margin:0; }
+#seccion-app .panel-melanova #form-buscar-acceso { width:100%; margin:0; align-items:end; }
+#seccion-app .panel-melanova #form-buscar-acceso label { margin:0; max-width:480px; }
+#seccion-app .panel-melanova #panel-recuperacion-admin .rec-fila button { white-space:normal; }
+#seccion-app .panel-melanova #seccion-reportes .filtros-reportes { gap:16px; margin:18px 0; }
+#seccion-app .panel-melanova :is(#resumen-ventas,#productos-vendidos) { padding:20px; margin:18px 0 0; background:#f8f3eb; border-radius:12px; }
+#seccion-app .panel-melanova #resumen-ventas > h3 { padding-top:18px; border-top:1px solid #e3d6c5; }
+#seccion-app .panel-melanova #resumen-ventas > h3:first-child { border:0; padding-top:0; margin-top:0; }
+#seccion-app .panel-melanova #resumen-ventas ul { columns:2; column-gap:30px; }
+#seccion-app .panel-melanova #resumen-ventas li { break-inside:avoid; margin:6px 0; }
+@media(max-width:1150px) {
+ #seccion-app #vista-inventario.panel-melanova,#seccion-app #vista-clientes.panel-melanova { grid-template-columns:minmax(0,1fr); }
+ #seccion-app #vista-clientes.panel-melanova > :is(.mod-clientes-alta,.mod-clientes) { grid-column:1; grid-row:auto; }
+ #seccion-app #vista-clientes.panel-melanova #form-cliente { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:699px) {
+ #seccion-app .panel-melanova { gap:16px; }
+ #seccion-app .panel-melanova > .modulo { padding:20px 16px; border-radius:15px; }
+ #seccion-app .panel-melanova .modulo h2 { font-size:21px; }
+ #seccion-app .panel-melanova :is(input:not([type=hidden]),select,textarea) { font-size:16px; }
+ #seccion-app .panel-melanova :is(button,table.tabla-melanova td button) { min-height:44px; }
+ #seccion-app .panel-melanova :is(#form-registrar-mueble,#form-reposicion-stock,#form-nuevo-usuario,#form-cambiar-password,#form-editar-producto,#form-editar-cliente,#form-entrega-pedido,#form-cobro-venta,#form-cobro-pedido,#form-venta),#seccion-app #vista-clientes.panel-melanova #form-cliente { grid-template-columns:minmax(0,1fr); gap:14px; }
+ #seccion-app .panel-melanova #form-pedido fieldset p { grid-template-columns:minmax(0,1fr); }
+ #seccion-app .panel-melanova #form-venta > * { grid-column:1; }
+ #seccion-app .panel-melanova #resumen-ventas ul { columns:1; }
+ #seccion-app .panel-melanova table.tabla-tarjetas { display:block; min-width:0!important; }
+ #seccion-app .panel-melanova table.tabla-tarjetas thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+ #seccion-app .panel-melanova table.tabla-tarjetas tbody { display:grid; gap:12px; }
+ #seccion-app .panel-melanova table.tabla-tarjetas tr { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; padding:12px; border:1px solid #e8ddcd; border-radius:12px; background:#fffdf8; }
+ #seccion-app .panel-melanova table.tabla-tarjetas td { display:block; border:0; padding:6px 0; width:auto; white-space:normal; }
+ #seccion-app .panel-melanova table.tabla-tarjetas td:first-child,#seccion-app .panel-melanova table.tabla-tarjetas td:last-child,#seccion-app .panel-melanova table.tabla-tarjetas td[colspan] { grid-column:1/-1; }
+ #seccion-app .panel-melanova table.tabla-tarjetas td[data-etiqueta]::before { content:attr(data-etiqueta); display:block; font-size:10px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#7b6953; margin-bottom:4px; }
+ #seccion-app .panel-melanova table.tabla-tarjetas tr td { background:transparent; }
+ #seccion-app #panel-recuperacion-admin table.tabla-melanova { display:block; min-width:0; }
+ #seccion-app #panel-recuperacion-admin table.tabla-melanova td { padding:7px 0; background:transparent; border:0; }
+}
+@media print { #seccion-app .panel-melanova :is(.listado-herramientas,.listado-paginas) { display:none; } }
+
+/* Sustituir los anchos fijos anteriores en los controles y tablas principales. */
+#seccion-app .panel-melanova :is(#form-venta,#form-pedido,#form-registrar-mueble,#form-reposicion-stock,#form-cliente,#form-editar-cliente,#form-nuevo-usuario,#form-cambiar-password,#form-cobro-venta,#form-cobro-pedido,#form-entrega-pedido) :is(input:not([type=hidden]),select,textarea) { width:100%; min-width:0; max-width:100%; }
+#seccion-app .panel-melanova :is(#form-venta,#form-pedido) table.tabla-melanova,#seccion-app .panel-melanova table.tabla-melanova:is(#tabla-productos,#tabla-clientes,#tabla-categorias) { width:100%; margin:0; }
+#seccion-app .panel-melanova #form-venta > label { margin:0; width:100%; }
+
+#seccion-app .panel-melanova #resumen-ventas.informe-cuadricula { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; background:transparent; border:0; padding:0; box-shadow:none; }
+#seccion-app .panel-melanova .informe-bloque { min-width:0; padding:18px; border:1px solid #e6dbc9; border-radius:12px; background:#f8f3eb; }
+#seccion-app .panel-melanova .informe-bloque > h3:first-child { margin-top:0; }
+#seccion-app .panel-melanova .informe-bloque:last-child:nth-child(odd) { grid-column:1/-1; }
+#seccion-app .panel-melanova .informe-bloque strong { font-size:17px; }
+@media(max-width:1399px) {
+ #seccion-app #vista-clientes.panel-melanova { grid-template-columns:minmax(0,1fr); }
+ #seccion-app #vista-clientes.panel-melanova > :is(.mod-clientes-alta,.mod-clientes) { grid-column:1; grid-row:auto; }
+ #seccion-app #vista-clientes.panel-melanova #form-cliente { grid-template-columns:repeat(3,minmax(0,1fr)); align-items:end; }
+ #seccion-app #vista-clientes.panel-melanova #form-cliente button { grid-column:1/-1; }
+}
+@media(max-width:699px) {
+ #seccion-app #vista-clientes.panel-melanova #form-cliente,#seccion-app .panel-melanova #resumen-ventas.informe-cuadricula { grid-template-columns:minmax(0,1fr); }
+ #seccion-app .panel-melanova .informe-bloque { padding:16px; }
+}
+
+#seccion-app #vista-administracion.panel-melanova { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#seccion-app #vista-administracion.panel-melanova > :is(.mod-usuarios,.mod-seguridad) { grid-column:auto; }
+#seccion-app .panel-melanova #form-pedido fieldset p label:has(#campo-precio-pedido) { width:100%; }
+@media(max-width:1000px) {
+ #seccion-app #vista-administracion.panel-melanova { grid-template-columns:minmax(0,1fr); }
+}
+
+/* Registro de venta vertical · mantener el historial independiente. */
+#seccion-app #vista-ventas.panel-melanova > .mod-ventas {
+  width:min(100%,520px); max-width:520px; justify-self:center;
+  padding:26px 28px; border-radius:30px;
+}
+#seccion-app .panel-melanova #form-venta {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px; align-items:end;
+}
+#seccion-app .panel-melanova #form-venta > label:has(#campo-producto) { grid-column:1/-1; }
+#seccion-app .panel-melanova #form-venta > label:has(#campo-cantidad) { grid-column:1; }
+#seccion-app .panel-melanova #form-venta #agregar-mueble { grid-column:2; width:100%; min-height:44px; margin:0; }
+#seccion-app .panel-melanova #form-venta > h3 { margin-top:4px; font-size:16px; }
+#seccion-app .panel-melanova #form-venta > .tabla-desplazable { margin:0; overflow:visible; }
+#seccion-app .panel-melanova #form-venta table.tabla-melanova { display:block; min-width:0; width:100%; }
+#seccion-app .panel-melanova #form-venta table thead {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+}
+#seccion-app .panel-melanova #form-venta table tbody { display:grid; gap:12px; }
+#seccion-app .panel-melanova #form-venta table tr {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 18px; padding:16px; border:1px solid #e6daca;
+  border-radius:12px; background:#f8f3eb;
+}
+#seccion-app .panel-melanova #form-venta table.tabla-melanova td {
+  display:block; min-width:0; width:auto; padding:0; border:0;
+  background:transparent; overflow-wrap:anywhere;
+}
+#seccion-app .panel-melanova #form-venta table td:first-child { grid-column:1/-1; font-weight:600; font-size:15px; }
+#seccion-app .panel-melanova #form-venta table td[colspan] { grid-column:1/-1; font-weight:400; font-size:14px; }
+#seccion-app .panel-melanova #form-venta table td[data-etiqueta]::before {
+  content:attr(data-etiqueta); display:block; font-size:10px; font-weight:600;
+  letter-spacing:.04em; text-transform:uppercase; color:#796a55; margin-bottom:4px;
+}
+#seccion-app .panel-melanova #form-venta table td:last-child:not([colspan]) { align-self:end; text-align:right; }
+#seccion-app .panel-melanova #form-venta table td:last-child::before { content:none; }
+#seccion-app .panel-melanova #form-venta table td button { margin:0; min-height:40px; }
+#seccion-app .panel-melanova #form-venta > p:has(#total-venta) { justify-self:start; margin:6px 0; }
+#seccion-app .panel-melanova #form-venta #confirmar-venta { width:100%; justify-self:stretch; min-height:46px; }
+@media(max-width:699px) {
+ #seccion-app #vista-ventas.panel-melanova > .mod-ventas { padding:22px 18px; border-radius:22px; }
+ #seccion-app .panel-melanova #form-venta #agregar-mueble { min-height:46px; }
+}
+
+/* Ventas: registro a la izquierda e historial a la derecha, como Clientes. */
+#seccion-app #vista-ventas.panel-melanova {
+  max-width:1400px; grid-template-columns:minmax(310px,360px) minmax(0,1fr);
+  gap:20px; align-items:start; justify-items:stretch;
+}
+#seccion-app #vista-ventas.panel-melanova > .mod-ventas {
+  grid-column:1; grid-row:1; width:100%; max-width:none;
+  justify-self:stretch; padding:24px; border-radius:18px;
+}
+#seccion-app #vista-ventas.panel-melanova > #panel-historial-ventas {
+  grid-column:2; grid-row:1; width:100%; max-width:none; min-width:0;
+}
+#seccion-app #panel-historial-ventas > .tabla-desplazable > table.tabla-amplia { min-width:720px; }
+#seccion-app #vista-ventas .mod-ventas h2 { font-size:22px; }
+#seccion-app #vista-ventas #form-venta { gap:16px; }
+#seccion-app #vista-ventas #form-venta #agregar-mueble { padding-inline:10px; }
+@media(max-width:1199px) {
+ #seccion-app #vista-ventas.panel-melanova { grid-template-columns:minmax(0,1fr); }
+ #seccion-app #vista-ventas.panel-melanova > .mod-ventas { grid-column:1; grid-row:1; width:min(100%,520px); justify-self:center; }
+ #seccion-app #vista-ventas.panel-melanova > #panel-historial-ventas { grid-column:1; grid-row:2; }
+}
+@media(max-width:699px) {
+ #seccion-app #vista-ventas.panel-melanova > .mod-ventas { width:100%; padding:20px 16px; border-radius:16px; }
+}
