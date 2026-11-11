@@ -4,6 +4,10 @@ Sistema web para administrar muebles de catálogo y pedidos fabricados a medida.
 
 Desarrollado por Elmer para utilizarlo en un negocio de muebles de melamina, tomando las guías del curso como referencia y adaptándolas a las necesidades del proyecto.
 
+## Referencia documental actual
+
+Consulta [Estado actual y trazabilidad](docs/estado-actual-melanova.md) para distinguir funciones, evidencias históricas y pendientes. El [procedimiento de instalación y respaldo](docs/instalacion-y-respaldo.md) explica lo que aún falta obtener de Supabase.
+
 ## Estado del proyecto
 
 **Publicado en Netlify. Guías 1 a 24 cerradas por el usuario; mejoras posteriores en curso.**
@@ -109,7 +113,7 @@ Los módulos de la interfaz actual se integran desde `index.html`. El orden de l
 
 ## Pruebas y documentación
 
-- [Plan de pruebas adaptado a Mueblex](docs/18-plan-pruebas.md).
+- [Plan de pruebas de Melanova](docs/18-plan-pruebas.md).
 - [Ejecución de pruebas y correcciones](docs/19-ejecucion-pruebas.md).
 - [Diseño responsive y accesibilidad](docs/20-mejoras-interfaz.md).
 - [Reorganización del código y pruebas posteriores](docs/21-refactor.md).
@@ -143,3 +147,7 @@ en el documento de recuperación. La interfaz ya está publicada en Netlify.
 
 - [Instalación por bloques](LEEME-RECUPERACION-WHATSAPP.md)
 - [Funcionamiento y resultados de pruebas](docs/recuperacion-whatsapp.md)
+
+## Corrección documental del 11/11/2026
+
+Se actualizaron RF/RNF, HU, CU, modelo, interfaz, manual y estados de guías sin borrar la evidencia histórica. El reporte de muebles vendidos ahora consulta por lotes; se comprobó con ocho escenarios simulados. Para repetirlos: `node tests/reporte-vendidos-melanova.cjs`. No se aplicó SQL, no se modificó Supabase y no se creó un respaldo remoto. Los archivos vacíos de pages/ son reservas sin pantallas activas.

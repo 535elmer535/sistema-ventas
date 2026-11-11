@@ -1,5 +1,8 @@
 # Melanova — Mejoras de paneles y listados
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 Fecha: 10 de noviembre de 2026.
 
 ## Cambios del paquete

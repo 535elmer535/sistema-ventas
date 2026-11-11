@@ -1,12 +1,12 @@
-# Guía 4 — Historias de usuario de Mueblex
+# Guía 4 — Historias de usuario de Melanova
 
-Actualización: 28/10/2026.
+Actualización documental: 11/11/2026.
 
 ## Historias y criterios de aceptación
 
 ### HU-01
 
-Como vendedor, quiero registrar ventas y pedidos con sus muebles y pagos iniciales.
+Como vendedor, quiero registrar ventas y pedidos con sus muebles; en pedidos, también un pago inicial opcional.
 
 - Requerimiento: **RF-03**.
 - Caso de uso: **CU-01**.
@@ -42,7 +42,7 @@ Como administrador, quiero revisar el negocio desde mi celular.
 
 - Requerimiento: **RF-05**.
 - Caso de uso: **CU-05**.
-- Aceptación: Verificar el despliegue accesible y la navegación en un dispositivo real; sigue pendiente esa comprobación.
+- Aceptación: Conservar la publicación y las pruebas móviles registradas en la Guía 23; repetir navegación en dispositivos identificados después de los cambios de diseño.
 
 ### HU-06
 
@@ -140,7 +140,7 @@ El inicio y cierre de sesión se documentan en CU-08 y RNF-03 como regla transve
 
 1. Conservar evidencias de los flujos ya comprobados: operaciones, pagos, devoluciones, inventario y recuperación tras desconexión.
 2. Completar pruebas de pérdida de respuesta después de una confirmación del servidor, acceso simultáneo y uso desde distintas cuentas.
-3. Verificar acceso desde una dirección desplegada y navegación en celulares reales.
+3. Ampliar las pruebas móviles de la publicación al diseño actual y registrar dispositivo y navegador.
 4. Revisar reglas futuras: entrega con saldo, correcciones de taller, ajustes de inventario y devoluciones parciales.
 
 ## Límites de la recuperación
@@ -150,3 +150,22 @@ HU-16 conserva solicitudes que se intentaron enviar. No guarda de forma general 
 ## Reflexión
 
 Se conservaron HU-01 a HU-07 y se ampliaron las historias hasta HU-16. Cada historia se vincula con un requerimiento y un caso de uso. Los criterios describen qué verificar y distinguen las funciones del código de las comprobaciones todavía pendientes.
+
+## Historias incorporadas al estado actual
+
+### HU-17
+Como administrador, quiero crear y renombrar categorías para clasificar los muebles sin alterar sus asociaciones.
+- Requerimiento: **RF-17**. Caso de uso: **CU-17**.
+- Aceptación: validación en servidor; vendedor y visitante no escriben; el identificador se conserva; los duplicados se informan; Inventario muestra el nombre actualizado.
+
+### HU-18
+Como integrante del personal que olvidó su contraseña, quiero elegir un administrador de ayuda y recuperar mi acceso mediante una contraseña temporal.
+- Requerimiento: **RF-18**. Caso de uso: **CU-18**.
+- Aceptación: WhatsApp requiere envío manual; el administrador verifica identidad; una cuenta temporal debe crear su contraseña antes del panel; el historial no registra contraseñas; vendedor y visitante no administran recuperaciones.
+
+### HU-19
+Como usuario autorizado, quiero consultar el resumen de Inicio para identificar cobros pendientes, existencias bajas y entregas por atender.
+- Requerimiento: **RF-19**. Caso de uso: **CU-19**.
+- Aceptación: distinguir ventas de cobros y ganancia; incluir agotados en el indicador de 0 a 3; excluir de pendientes los pedidos con todos sus muebles entregados; verificar totales con datos de prueba conocidos.
+
+La evidencia existente y los pendientes se resumen en [estado-actual-melanova.md](estado-actual-melanova.md). La recuperación de acceso HU-18 no sustituye HU-16.

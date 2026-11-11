@@ -1,5 +1,8 @@
 # Guía 21 — Refactorización de Mueblex
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Actividad A — Identificar duplicación y código sin uso
 
 - **Patrón repetido.** El inventario y la lista de ventas del reporte usan `map(...).join("")` para convertir registros en fragmentos de HTML y unirlos. Los bloques terminan en las líneas 300 y 2056 de `js/app.js`.
@@ -180,4 +183,4 @@ La aplicación de la reorganización al proyecto propio ya se realizó sobre Mue
 - En los cinco módulos comentados, el contenido anterior se conserva exactamente después de las cabeceras añadidas.
 - Los demás archivos del proyecto se conservaron sin cambios, salvo esta actualización del documento.
 - No se ejecutaron nuevas operaciones en Supabase durante la preparación del ZIP. Las pruebas funcionales registradas en los apartados anteriores corresponden a las realizadas con el usuario antes de añadir las cabeceras.
-- El commit, el push y la verificación final en GitHub quedan pendientes para el cierre de la guía.
+- Esta era la tarea de cierre de ese bloque. El usuario realizó después el commit y push de la Guía 21, antes de las guías 22 a 24. El nuevo ZIP necesita guardado propio al terminar la revisión.

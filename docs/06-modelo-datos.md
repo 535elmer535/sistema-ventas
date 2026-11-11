@@ -1,104 +1,84 @@
-# Guía 6 — Modelo de datos (Mueblería de Melamina)
+# Guía 6 — Modelo de datos de Melanova
 
-## Entidades
+Actualización documental: 11/11/2026. Este modelo describe el código y los SQL del ZIP; no es una exportación ni certificación del esquema remoto. Los tipos, valores predeterminados y restricciones completos deben obtenerse del respaldo de Supabase.
 
-- **categorias**: Clasificación de los muebles de catálogo (ej. Roperos, Escritorios, Centros de TV).
-- **productos**: Muebles de melamina en stock listos para venta directa (CU-01, CU-02, CU-03).
-- **clientes**: Clientes que realizan compras de stock o mandan a fabricar muebles a medida (Guía 2, CU-01).
-- **usuarios**: Personal de la mueblería que opera el sistema: Vendedor o Administrador (CU-01, CU-03, CU-04).
-- **ventas**: Registro general de cada transacción comercial (CU-01, CU-04).
-- **detalle_venta**: Muebles de stock y cantidades específicas incluidas en una venta (relación N:N).
-- **pedidos_personalizados**: Especificaciones técnicas (medidas, color de melamina, estado en taller) para la fabricación de muebles a medida y generación de notas de pedido (CU-01, CU-07).
-- **pagos**: Historial de transacciones de dinero (anticipos, saldos finales, métodos de pago) vinculados a cada venta.
+## Tablas y campos utilizados
 
-## Atributos
+| Tabla | Identificador | Información principal y relaciones |
+| --- | --- | --- |
+| categorias | id_categoria | nombre, descripcion opcional. Clasifica productos. El administrador crea o renombra mediante guardar_categoria_segura. |
+| productos | id_producto | id_categoria → categorias.id_categoria; nombre, precio, existencia, fecha_registro según el modelo base. Muebles de catálogo. |
+| clientes | id_cliente | nombre, contacto, direccion opcional. Se utiliza al registrar pedidos; el formulario actual de venta de stock no permite elegir cliente. |
+| usuarios | id_usuario | id_auth → auth.users.id; nombre, correo, rol, contacto y fecha_registro según el modelo base; whatsapp_recuperacion para publicar voluntariamente el teléfono de ayuda. |
+| ventas | id_venta | id_usuario → usuarios.id_usuario; id_cliente → clientes.id_cliente; fecha_venta, tipo_venta, total, estado_pago. Es la cabecera tanto de ventas de stock como de pedidos. |
+| detalle_ventas | id_detalle | id_venta → ventas.id_venta; id_producto → productos.id_producto; cantidad, precio_unitario, subtotal. Contiene muebles de ventas de stock. El nombre real es plural. |
+| pedidos_personalizados | id_pedido | id_venta → ventas.id_venta; descripcion_mueble, medidas, color_melamina, cantidad, precio_unitario, subtotal, estado_taller, fecha_entrega_estimada. Una fila por mueble especificado en el pedido. |
+| pagos | id_pago | id_venta → ventas.id_venta; id_usuario → usuarios.id_usuario; monto, metodo_pago, tipo_pago, fecha_pago y solicitud_id. Movimientos de dinero recibido. |
+| historial_estados_pedidos | id_historial | id_pedido → pedidos_personalizados.id_pedido; id_usuario → usuarios.id_usuario; estado_anterior, estado_nuevo, fecha_cambio. |
+| movimientos_stock | id_movimiento | id_producto → productos.id_producto; id_usuario → usuarios.id_usuario; solicitud_id, tipo, cantidad, existencia_anterior, existencia_nueva, motivo, fecha_movimiento. El flujo incluido registra reposiciones. |
+| devoluciones | id_devolucion | id_venta → ventas.id_venta; id_usuario → usuarios.id_usuario; solicitud_id, monto, metodo_devolucion, motivo, fecha_devolucion. El SQL limita a una devolución completa por operación en este flujo. |
+| historial_recuperaciones_mueblex | id | fecha, operacion, tipo, id_cuenta, nombre_cuenta, correo_cuenta, id_responsable, nombre_responsable. Conserva los UUID de Auth y nombres históricos; el SQL incluido no declara claves foráneas para esos UUID. Nunca guarda contraseñas. |
 
-### categorias
+Son doce tablas públicas de negocio identificadas en el código y las mejoras SQL. auth.users pertenece a Authentication y no se gestiona como una tabla pública de clientes. El esquema privado mueblex_respaldo guarda definiciones previas de funciones; no es otra tabla del negocio ni un respaldo completo.
 
-- id_categoria: identificador (clave primaria)
-- nombre: texto (ej. Roperos, Escritorios, Cocinas)
-- descripcion: texto (opcional)
+## Campos adicionales de ventas
 
-### productos
+- Reintentos: solicitud_id y solicitud_datos. Se conserva la referencia para reconocer una operación ya procesada.
+- Inventario: stock_descontado, stock_reintegrado y detalle_reintegro_stock.
+- Anulación: estado_operacion, motivo_anulacion, fecha_anulacion e id_usuario_anulacion → usuarios.id_usuario.
+- Entrega: modalidad_entrega, direccion_entrega, referencia_entrega, nombre_receptor, contacto_receptor y entrega_version.
 
-- id_producto: identificador (clave primaria)
-- id_categoria: clave foránea -> categorias
-- nombre: texto
-- precio: número decimal
-- existencia: número entero
-- fecha_registro: fecha / hora (para seguimiento de rotación de inventario)
+Los datos de entrega se guardan en ventas, la cabecera de la operación; no sustituyen automáticamente la dirección del cliente. entrega_version detecta modificaciones concurrentes.
 
-### clientes
+## Valores utilizados por la aplicación
 
-- id_cliente: identificador (clave primaria)
-- nombre: texto
-- contacto: texto
-- direccion: texto (opcional, para entregas a domicilio)
+- tipo_venta: directa_stock / pedido_medida.
+- estado_operacion: activa / anulada.
+- estado_pago: pendiente / anticipo_cobrado / pagado.
+- estado_taller: pendiente → en_fabricacion → listo → entregado. La pantalla traduce en_fabricacion a texto legible; no utiliza en_taller como valor persistido.
+- modalidad_entrega: retiro_tienda / domicilio según la validación de entrega incluida; confirmar el valor exacto con la función SQL al instalar.
+- tipo de recuperación: restablecimiento / cambio_completado.
 
-### usuarios
-
-- id_usuario: identificador (clave primaria)
-- nombre: texto
-- rol: texto (vendedor / administrador)
-- fecha_registro: fecha
-- contacto: texto
-
-### ventas
-
-- id_venta: identificador (clave primaria)
-- fecha_venta: fecha / hora
-- id_usuario: clave foránea -> usuarios
-- id_cliente: clave foránea -> clientes (opcional para venta directa, obligatorio para pedidos a medida)
-- tipo_venta: texto (directa_stock / pedido_medida)
-- total: número decimal
-- estado_pago: texto (pendiente / pagado / anticipo_cobrado)
-
-### detalle_ventas
-
-- id_detalle: identificador (clave primaria)
-- id_venta: clave foránea -> ventas
-- id_producto: clave foránea -> productos
-- cantidad: número entero
-- precio_unitario: número decimal
-- subtotal: número decimal
-
-### pedidos_personalizados
-
-- id_pedido: identificador (clave primaria)
-- id_venta: clave foránea -> ventas
-- descripcion_mueble: texto
-- medidas: texto (alto x ancho x profundidad en cm)
-- color_melamina: texto
-- estado_taller: texto (pendiente / en_taller / listo / entregado)
-- fecha_entrega_estimada: fecha
-- cantidad: número entero, obligatorio.
-- precio_unitario: número decimal, obligatorio; precio acordado por unidad.
-- subtotal: número decimal, obligatorio; cantidad × precio_unitario.
-
-### pagos
-
-- id_pago: identificador (clave primaria)
-- id_venta: clave foránea -> ventas
-- monto: número decimal
-- metodo_pago: texto (efectivo / QR / transferencia)
-- tipo_pago: texto (anticipo / saldo_final / pago_total)
-- fecha_pago: fecha / hora
+Los importes almacenados son numéricos; las funciones comerciales reciben centavos enteros cuando así lo exige su contrato. No guardar contraseñas en estas tablas.
 
 ## Relaciones
 
-- productos.id_categoria -> categorias.id (una categoría agrupa varios productos)
-- ventas.id_usuario -> usuarios.id (un usuario o vendedor registra muchas ventas)
-- ventas.id_cliente -> clientes.id (un cliente puede realizar muchas compras o pedidos)
-- detalle_venta.id_venta -> ventas.id (una venta directa de stock puede contener varios muebles)
-- detalle_venta.id_producto -> productos.id (un producto de catálogo puede venderse en diferentes ventas)
-- pedidos_personalizados.id_venta -> ventas.id (una venta de tipo pedido a medida se vincula a su orden de fabricación en taller)
-- pagos.id_venta -> ventas.id (una venta puede recibir múltiples pagos, como el anticipo y el saldo pendiente)
+- categorias.id_categoria ← productos.id_categoria: una categoría clasifica varios muebles.
+- usuarios.id_usuario ← ventas.id_usuario: un integrante del personal registra varias operaciones.
+- clientes.id_cliente ← ventas.id_cliente: un cliente puede tener varios pedidos u operaciones asociadas.
+- ventas.id_venta ← detalle_ventas.id_venta → productos.id_producto mediante id_producto: una venta de stock puede incluir varios muebles.
+- ventas.id_venta ← pedidos_personalizados.id_venta: un pedido puede contener varias especificaciones de muebles.
+- ventas.id_venta ← pagos.id_venta: una operación puede recibir varios pagos.
+- pedidos_personalizados.id_pedido ← historial_estados_pedidos.id_pedido: historial de fabricación.
+- productos.id_producto ← movimientos_stock.id_producto: historial de reposiciones.
+- ventas.id_venta ← devoluciones.id_venta: devolución del flujo de anulación.
 
-## Reflexión breve
+## Diagrama lógico actual
 
-Sí, el modelo actual lo permite con total precisión. Al conectar las tablas `clientes` -> `ventas` -> `detalle_venta` -> `productos` (para muebles de catálogo) y `ventas` -> `pedidos_personalizados` (para muebles a medida), se puede consultar mediante consultas SQL con agrupación (`GROUP BY`) qué productos o tipos de muebles compra con mayor frecuencia cada cliente.
+```mermaid
+erDiagram
+  categorias ||--o{ productos : clasifica
+  usuarios ||--o{ ventas : registra
+  clientes o|--o{ ventas : asociado
+  ventas ||--o{ detalle_ventas : contiene
+  productos ||--o{ detalle_ventas : vendido
+  ventas ||--o{ pedidos_personalizados : especifica
+  ventas ||--o{ pagos : recibe
+  usuarios ||--o{ pagos : registra
+  pedidos_personalizados ||--o{ historial_estados_pedidos : conserva
+  usuarios ||--o{ historial_estados_pedidos : registra
+  productos ||--o{ movimientos_stock : recibe
+  usuarios ||--o{ movimientos_stock : registra
+  ventas ||--o| devoluciones : devuelve
+  usuarios ||--o{ devoluciones : registra
+```
 
-## Desafíos opcionales
+El diagrama representa relaciones lógicas del código. No añade restricciones ni reemplaza el DDL remoto. El historial de recuperación conserva instantáneas de cuenta y responsable; no se dibujan claves foráneas inexistentes.
 
-- **Atributo `fecha_registro` en `productos`:** Permite saber cuándo se dio de alta un producto en el inventario para medir la velocidad de rotación de stock en tienda.
-- **Normalización y Control Financiero (Tablas `categorias`, `pedidos_personalizados` y `pagos`):** Permite separar los productos de catálogo rápido de los muebles fabricados bajo pedido en taller[cite: 16]. Además, la tabla `pagos` permite un control financiero estricto para registrar cobros parciales (anticipos y saldos) con su respectivo método de pago (QR, transferencia, efectivo)[cite: 16].
+## Alcance y límites
+
+Las ventas de stock descuentan inventario; los pedidos no descuentan el catálogo. Los pagos y devoluciones son movimientos separados del total vendido. No se calcula ganancia porque no existe un módulo de costos y gastos.
+
+La estructura admite relacionar clientes y ventas, pero el formulario actual de stock no solicita cliente. Por eso no se puede prometer un análisis completo de compras por cliente hasta implementar esa asociación en interfaz y servidor. Los pedidos sí utilizan cliente.
+
+Los diagramas de etapas anteriores en diagramas/ son antecedentes. Para restaurar el sistema hace falta exportar el esquema vigente, incluidas funciones, triggers, RLS, permisos y Auth; véase [respaldo-y-pendientes-melanova.md](respaldo-y-pendientes-melanova.md).

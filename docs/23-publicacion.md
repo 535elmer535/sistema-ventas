@@ -1,5 +1,8 @@
 # Guía 23 — Publicación de Melanova
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Estado
 
 Sistema publicado en Netlify y probado por el usuario el 9 de noviembre de 2026.
@@ -138,8 +141,8 @@ lugar de suponer que bastaba con que funcionara en Live Server.
 
 ## Próximos pasos
 
-- Continuar con la Guía 24: manual de usuario y documentación de cierre.
-- Realizar más adelante el cambio visual de MUEBLEX a Melanova y elegir el logo.
+- La Guía 24 se cerró después con el manual y el documento de cierre; se conserva aquí la evidencia de la publicación inicial.
+- La marca y el logo ya se actualizaron a Melanova después de esta publicación inicial.
 - Conservar los datos de prueba mientras se verifica el sistema. Antes de cargar
   operaciones reales, preparar un respaldo de Supabase y autorizar una limpieza
   controlada. No se ha realizado ni autorizado una limpieza de datos en esta guía.

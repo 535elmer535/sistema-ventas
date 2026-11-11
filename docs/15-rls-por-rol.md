@@ -1,5 +1,8 @@
 # Guía 15 — Permisos por rol
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado. No volver a aplicar configuraciones iniciales de permisos sin compararlas con las protecciones posteriores de categorías y recuperación.
+
+
 ## Vinculación de usuarios con Authentication
 
 Se agregó la columna `id_auth` a la tabla `usuarios`, como clave

@@ -1,5 +1,8 @@
 # Guía 14 — Autenticación de usuarios
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Actividad A — Cuentas de prueba
 
 Conservé la cuenta de prueba que ya utilizaba y creé

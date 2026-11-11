@@ -4,8 +4,8 @@
 
 Instalada en el Supabase del usuario y probada desde Live Server. La recuperación
 por WhatsApp, el restablecimiento, el cambio obligatorio y el historial fueron
-comprobados con una cuenta de vendedor de prueba. La publicación en Netlify sigue
-pendiente de la Guía 23. Las pruebas adicionales sin ejecutar se conservan abajo.
+comprobados con una cuenta de vendedor de prueba. La interfaz se publicó posteriormente en Netlify según la Guía 23.
+No se registró una repetición completa del flujo de recuperación en producción. Las pruebas adicionales sin ejecutar se conservan abajo.
 
 ## Funcionamiento
 

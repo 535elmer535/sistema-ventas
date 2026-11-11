@@ -1,5 +1,8 @@
 # Instalar las mejoras de Melanova
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](docs/estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 Este paquete contiene los archivos que debes agregar o reemplazar, no una copia completa del proyecto.
 
 1. Conserva una copia de tu carpeta actual sistema-ventas.

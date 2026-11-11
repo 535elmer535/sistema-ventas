@@ -1,5 +1,8 @@
 # Guía 9B — Fundamentos de JavaScript
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Actividad B — Destructuring y template strings
 
 Creé un objeto producto con nombre, precio y existencia.

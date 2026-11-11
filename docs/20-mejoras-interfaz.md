@@ -1,5 +1,8 @@
 # Guía 20 — Mejoras de interfaz y experiencia de Mueblex
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 **Estado al cierre de las pruebas:** mejoras aplicadas y verificaciones descritas completadas; pendiente revisar git status, hacer commit y push en la PC del usuario. Las notas iniciales de pendientes se conservan como registro cronológico y sus resultados posteriores se detallan en cada sección.
 
 ## 1. Entorno y alcance

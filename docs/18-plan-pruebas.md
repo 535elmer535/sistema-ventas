@@ -1,5 +1,8 @@
 # Guía 18 — Plan de pruebas de Mueblex
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## 1. Objetivo y alcance
 
 Documentar las situaciones que se comprobarán en Mueblex, aplicación web interna para una mueblería de melamina. El plan se basa en los casos de uso de docs/05-casos-uso.md y en las funciones actuales del proyecto.
@@ -454,3 +457,19 @@ El segundo desafío opcional, redactar un plan completo de todo el emprendimient
 
 La actividad D consiste en guardar la versión final de este archivo mediante commit y push y verificar que aparece en GitHub. La ejecución formal de los casos y el registro de resultados corresponden a la Guía 19.
 
+
+## Ampliación posterior — 11/11/2026
+
+Los CP-01 a CP-14 anteriores conservan sus identificadores y sus resultados históricos en la Guía 19. Los siguientes casos se añaden por las mejoras posteriores; no se presentan como una nueva ejecución real.
+
+| Caso | Requerimiento / caso de uso | Comprobación y resultado esperado | Evidencia y estado |
+| --- | --- | --- | --- |
+| CP-15 | RF-17 / HU-17 / CU-17 | Administrador crea y renombra categoría; mismo identificador, productos conservados y selector actualizado; vacío/duplicado/control concurrente tratados. | Guía 22 registra creación, edición y duplicados. Repetición integral del caso ampliado pendiente. |
+| CP-16 | RF-17, RNF-03 / CU-17 | Vendedor y visitante no pueden crear/editar mediante llamada directa; no basta ocultar el formulario. | Rechazos registrados en Guía 22. Nueva ejecución no realizada en este ZIP. |
+| CP-17 | RF-18 / HU-18 / CU-18 | Elegir administrador, enviar manualmente por WhatsApp; temporal → cambio obligatorio → reingreso; historial sin contraseñas; temporal vieja rechazada. | Flujo básico local documentado en recuperacion-whatsapp.md. Repetición completa en Netlify pendiente. |
+| CP-18 | RF-18, RNF-03 / CU-18 | Probar dos contactos, retirar contacto, gestión sin sesión, historial con vendedor, RPC/tablas con acceso temporal y sesión anterior al restablecimiento. Deben cumplirse los bloqueos previstos. | Pendiente en instalación real; conservar la lista detallada de recuperacion-whatsapp.md. Usar cuentas de prueba, no bloquear la única cuenta administradora. |
+| CP-19 | RF-19 / HU-19 / CU-19 | Con un conjunto conocido, cotejar valor vendido diario/semanal, saldo activo, 0–3 unidades y pedidos no completamente entregados; verificar vacíos y fallos de conexión. | Pendiente de prueba integral contra Supabase. No interpretar capturas de diseño como cotejo de importes. |
+| CP-20 | RF-04, RNF-05 / CU-04 | Reporte de muebles vendidos con más filas que el límite de respuesta; incluir productos presentes solo en el último lote; no publicar totales parciales ante error. | Nueva prueba automatizada con cliente simulado en tests/reporte-vendidos-melanova.cjs. Prueba con historial real grande pendiente. |
+| CP-21 | RNF-07 | Restaurar esquema, funciones, permisos, datos y configuración necesarios en otro entorno de prueba; verificar acceso y operaciones sin tocar producción. | Pendiente. El ZIP no es respaldo de Supabase; ver instalacion-y-respaldo.md. |
+
+Para cada nueva ejecución anotar fecha, versión/commit, entorno, rol, dispositivo, datos iniciales, resultado observado y evidencia. No completar una casilla por estimación.

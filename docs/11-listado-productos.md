@@ -1,5 +1,8 @@
 # Guía 11 — Listado de muebles
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Estado cargando
 
 Antes de consultar Supabase, la tabla muestra

@@ -1,5 +1,8 @@
 # Rediseño del panel interno — 25 octubre 2026
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](docs/estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 ## Archivos modificados
 - `index.html`: se agregaron siete referencias CSS y clases de presentación a ocho secciones existentes. **No se borraron formularios, campos, identificadores, secciones o scripts**.
 - `css/styles.css`: estaba vacío; ahora contiene los estilos generales del panel y las reglas responsive.

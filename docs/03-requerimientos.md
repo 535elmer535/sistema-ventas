@@ -1,16 +1,16 @@
-# Guía 3 — Análisis de requerimientos de Mueblex
+# Guía 3 — Análisis de requerimientos de Melanova
 
-Actualización: 28/10/2026.
+Actualización documental: 11/11/2026. Estado de referencia: [estado-actual-melanova.md](estado-actual-melanova.md).
 
 ## Alcance
 
-Mueblex es una aplicación web interna para una mueblería de melamina. Administrador y vendedores gestionan muebles terminados, clientes, ventas, pedidos a medida, cobros y entregas. El catálogo de Inicio pertenece al panel interno; no es una tienda pública.
+Melanova es una aplicación web interna para una mueblería de melamina. Administrador y vendedores gestionan muebles terminados, clientes, ventas, pedidos a medida, cobros y entregas. Inicio es un resumen interno; no es una tienda pública.
 
 ## Requerimientos funcionales (RF)
 
 - **RF-01:** Registrar muebles de catálogo con nombre, categoría, precio positivo y existencia inicial entera no negativa.
 - **RF-02:** Consultar nombre, precio y existencias, con búsqueda por nombre.
-- **RF-03:** Registrar ventas de varios muebles de stock o pedidos a medida, con anticipo opcional, como operaciones indivisibles y con el usuario de la sesión.
+- **RF-03:** Registrar ventas de varios muebles de stock o pedidos a medida, con anticipo opcional solo para pedidos, como operaciones indivisibles y con el usuario de la sesión.
 - **RF-04:** Consultar por período las operaciones activas, el valor vendido, los cobros originales, las devoluciones y el neto cobrado, diferenciados por método.
 - **RF-05:** Consultar el sistema desde un navegador de celular cuando exista una dirección accesible y una cuenta autorizada.
 - **RF-06:** Mostrar existencias agotadas cuando son cero y stock bajo entre una y tres unidades.
@@ -25,14 +25,20 @@ Mueblex es una aplicación web interna para una mueblería de melamina. Administ
 - **RF-15:** Crear cuentas autorizadas mediante el servicio de administración de usuarios y asociarlas con su perfil y rol.
 - **RF-16:** Conservar en el navegador solicitudes enviadas de ventas, pedidos y cobros cuyo resultado quede incierto y permitir confirmarlas con el mismo identificador.
 
+- **RF-17:** Permitir al administrador crear y renombrar categorías sin perder su identificador ni las asociaciones de productos; impedir escrituras no autorizadas y nombres duplicados.
+- **RF-18:** Permitir solicitar ayuda de acceso por WhatsApp al administrador elegido, restablecer contraseñas solo mediante un administrador autorizado y exigir el cambio de la contraseña temporal antes de acceder al negocio, conservando un historial sin contraseñas.
+- **RF-19:** Mostrar en Inicio ventas del día, saldo de operaciones activas, cantidad de muebles con existencia de 0 a 3, pedidos con muebles aún no entregados, últimas ventas, próximas entregas y ventas de los últimos siete días, con accesos a las tareas correspondientes.
+
 ## Requerimientos no funcionales (RNF)
 
 - **RNF-01 — Usabilidad:** formularios con validaciones, mensajes de resultado, estados de carga y prevención de reenvíos durante el procesamiento.
 - **RNF-02 — Disponibilidad:** ejecución en un navegador moderno, sin instalar una aplicación; las operaciones del servidor requieren conexión. La recuperación de una solicitud no equivale a operar completamente sin Internet.
 - **RNF-03 — Seguridad:** acceso mediante Supabase Auth y perfiles autorizados; comprobar roles y permisos en el servidor y aplicar RLS. Ocultar controles no sustituye la autorización.
-- **RNF-04 — Compatibilidad:** uso en computadora y celular; verificar navegación, tablas y formularios en dispositivos reales. La accesibilidad remota y la validación móvil siguen pendientes de comprobación.
+- **RNF-04 — Compatibilidad:** uso en computadora y celular; verificar navegación, tablas y formularios en dispositivos reales. La publicación y el uso móvil fueron confirmados por el usuario en la Guía 23; queda pendiente ampliar la cobertura a dispositivos reales identificados y al diseño posterior.
 - **RNF-05 — Integridad:** registrar atómicamente las operaciones comerciales y manejar importes con hasta dos decimales. El servidor comprueba existencias y saldos actuales.
 - **RNF-06 — Trazabilidad:** conservar responsables, fechas, pagos, anulaciones, devoluciones, movimientos de reposición y cambios de taller. Los registros históricos anteriores a estas mejoras pueden carecer de algunos datos.
+
+- **RNF-07 — Recuperabilidad:** disponer de un respaldo completo y comprobar su restauración antes de limpiar datos de prueba o comenzar con datos reales. Es un requisito pendiente de verificación; el ZIP no sustituye el respaldo de Supabase.
 
 ## Reglas de negocio
 
@@ -67,3 +73,7 @@ Las pruebas manuales compartidas comprobaron registro y recuperación después d
 ## Reflexión
 
 Se mantienen RF-01 a RF-07 y se incorporan RF-08 a RF-16 para representar las mejoras del negocio. El valor vendido, el movimiento de caja y el avance de fabricación se documentan por separado para evitar confundir sus resultados.
+
+## Ampliación del 11/11/2026
+
+Se conservan RF-01 a RF-16. RF-17 a RF-19 se enlazan con HU-17 a HU-19 y CU-17 a CU-19. RF-16 trata solicitudes comerciales inciertas; RF-18 trata acceso y contraseñas. Las pruebas nuevas se planifican en CP-15 a CP-21, sin declararlas aprobadas en la base real.

@@ -2,16 +2,16 @@
 
 **Dirección del sistema:** https://mela-nova.netlify.app
 
-Este manual explica cómo realizar las tareas del negocio. La marca elegida es
-Melanova; las pantallas actuales todavía muestran MUEBLEX. Las capturas pertenecen
-al sistema real durante sus pruebas: sus nombres, cantidades y operaciones son
-ejemplos y no un catálogo definitivo del negocio.
+Actualización de instrucciones: 11/11/2026. La interfaz actual utiliza Melanova.
+Las capturas conservadas muestran pruebas de etapas anteriores y pueden mostrar
+MUEBLEX u otra distribución. Sus cantidades y operaciones son ejemplos, no datos
+reales del negocio. Pendiente renovar las capturas al aprobar el diseño definitivo.
 
 ## 1. Entrar y salir del sistema
 
 1. Abre la dirección del sistema en tu navegador.
 2. Escribe el correo de tu cuenta y tu contraseña.
-3. Activa **Recordarme** solo si quieres conservar el acceso en ese navegador.
+3. **Recordarme empieza desactivado.** Actívalo solo si quieres conservar el acceso en ese navegador. El ojo del campo Contraseña permite mostrar u ocultar lo escrito; no cambia tu contraseña.
 4. Pulsa **Ingresar** y espera a que aparezca el inicio.
 5. Al terminar, pulsa **Cerrar sesión** en el menú lateral.
 
@@ -59,7 +59,7 @@ Si cierras sesión sin terminar el cambio, tendrás que completarlo al volver a 
 
 En un celular, abre **Menú** para cambiar de sección. El buscador superior permite
 buscar muebles, clientes y ventas. Escribe al menos dos caracteres y pulsa **Buscar**.
-La ayuda debajo del buscador indica los formatos de número de venta y fecha.
+Puedes buscar por nombre, teléfono, número de venta (por ejemplo V-22) o fecha (AAAA-MM-DD). La ayuda puede estar oculta en Inicio para aprovechar el espacio.
 
 Los administradores ven controles que los vendedores no tienen. Si una acción no
 está disponible para tu cuenta, solicita ayuda a un administrador.
@@ -67,7 +67,7 @@ está disponible para tu cuenta, solicita ayuda a un administrador.
 ## 5. Consultar existencias
 
 1. Abre **Inventario**.
-2. Busca el mueble en **Consultar existencia de muebles**.
+2. En **Consultar existencia de muebles**, utiliza **Buscar en muebles** para filtrar por el texto de las filas. Pulsa **Limpiar** para volver a verlas y **Actualizar** para consultar de nuevo. Usa **Anteriores / Siguientes**: se muestran ocho filas por página.
 3. Revisa su precio, existencia y estado.
 
 - **Agotado:** no tiene unidades disponibles.
@@ -144,7 +144,7 @@ recibiste dinero, utiliza el registro de pago explicado en la sección 11.
 
 ### Revisar una venta e imprimir su comprobante
 
-1. En **Historial de ventas de stock**, pulsa **Actualizar historial** si hace falta.
+1. En **Historial de ventas**, pulsa **Actualizar historial** si hace falta.
 2. Localiza la venta por su número y pulsa **Ver detalle**.
 3. Revisa muebles, responsable, total, cobros y saldo.
 4. Para imprimir, pulsa **Imprimir comprobante** y elige la impresora o guardar como PDF.
@@ -318,3 +318,22 @@ En otras tablas anchas, desliza la tabla horizontalmente para ver más columnas.
 Si necesitas ayuda, comparte el mensaje de error y el número de operación con
 el responsable. No compartas contraseñas ni confirmes de nuevo un cobro sin revisar
 si ya aparece en su historial.
+
+## 19. Entender el resumen de Inicio
+
+- **Ventas de hoy:** valor registrado en ventas y pedidos activos del día; no significa dinero recibido.
+- **Saldo por cobrar:** diferencia entre total y cobros de operaciones activas.
+- **Muebles con stock bajo:** cantidad de muebles con entre cero y tres unidades; incluye agotados.
+- **Pedidos por entregar:** pedidos activos con al menos un mueble sin entregar.
+- **Gráfico semanal:** valor vendido de operaciones activas de los últimos siete días.
+- **Últimas ventas y próximas entregas:** accesos de consulta; abrir sus secciones para realizar cambios.
+
+Pulsa **Actualizar resumen** para consultar de nuevo. Un fallo de consulta no debe interpretarse como ausencia de operaciones.
+
+## 20. Buscar y recorrer clientes
+
+En **Clientes**, escribe en la búsqueda local, usa **Limpiar** para quitar el filtro y **Actualizar** para consultar de nuevo. El listado muestra ocho filas por página; utiliza **Anteriores / Siguientes**. El buscador superior busca en varias secciones y no reemplaza estos controles locales.
+
+## 21. Alcance de las capturas
+
+Las figuras 1 a 21 se conservan para explicar las tareas y mantener la evidencia. No son una garantía visual del diseño de noviembre actualizado. Su sustitución por capturas nuevas se realizará después de comprobar el ZIP en el navegador; no hace falta crear ventas reales para actualizar imágenes de formularios.

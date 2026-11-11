@@ -1,5 +1,8 @@
 # Guía 2 — Comprender el problema
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 ## Quiénes están involucrados
 
 - Marcelo (dueño)
@@ -28,7 +31,7 @@
 
 ## Planteamiento del problema
 
-### Ferretería San Martín
+### Ejemplo didáctico del curso — Ferretería San Martín (no es Melanova)
 
 [Don Ernesto y sus empleados] tienen el problema de [llevar el registro de ventas e inventario a mano en cuadernos], lo cual [causa pérdida de tiempo al sumar ventas, falta de stock sorpresiva frente a los clientes y errores por mala caligrafía]. Una solución exitosa debería [permitir registrar ventas de forma rápida y mostrar el total vendido y el inventario actualizado desde un celular.]
 

@@ -6,9 +6,9 @@ Fecha de esta revisión: 9 de noviembre de 2026.
 
 ## Estado del cierre
 
-La Guía 23 fue guardada y subida a GitHub con el commit 6253810. Las capturas compartidas muestran el árbol de trabajo limpio y el despliegue de ese mismo commit publicado en Netlify. La interfaz conserva la marca MUEBLEX; el cambio visual a Melanova queda para una mejora posterior.
+La Guía 23 fue guardada y subida a GitHub con el commit 6253810. Las capturas compartidas muestran el árbol de trabajo limpio y el despliegue de ese mismo commit publicado en Netlify. La interfaz fue actualizada posteriormente a Melanova; las capturas previas conservan la marca de su etapa.
 
-El manual de usuario está en [manual-usuario.md](manual-usuario.md), acompañado de sus capturas. El usuario confirmó que las instrucciones y las imágenes se ven bien. Este documento de cierre se completa por bloques; no declara terminada la Guía 24.
+El manual de usuario está en [manual-usuario.md](manual-usuario.md), acompañado de sus capturas. El usuario confirmó que las instrucciones y las imágenes se ven bien. El usuario cerró la guía, hizo commit y push y mostró la publicación en Netlify del commit 9ba7e31. La guía terminada no equivale a todas las pruebas de seguridad y dispositivos ejecutadas.
 
 ## Actividad B — De la necesidad del negocio a la prueba
 
@@ -65,7 +65,7 @@ Las pruebas documentadas compararon la información de la página con Supabase y
 
 ### 6. Estado actual y continuación
 
-El sistema está publicado en Netlify y cuenta con un manual de usuario. Se mantienen datos de prueba; el cambio visual a Melanova, otras mejoras y la preparación para cargar datos reales continuarán después del cierre de las guías.
+El sistema está publicado en Netlify y cuenta con un manual de usuario. Se mantienen datos de prueba; la marca ya se cambió a Melanova y continúan las mejoras y la preparación para cargar datos reales.
 
 ## Preguntas y respuestas para explicar las decisiones
 
@@ -105,8 +105,12 @@ Si empezara otro sistema, prepararía mejor las tablas de la base de datos desde
 
 - Si se requiere completar el ensayo del curso, practicar la demostración y anotar el tiempo realmente empleado.
 - Revisión local de documentación realizada: manual, imágenes y documentos enlazados accesibles; README con URL pública correcta.
-- Pendiente: guardar y subir la Guía 24 en Git y confirmar la publicación automática en Netlify.
+- Cierre histórico confirmado por el usuario: commit 9ba7e31 y publicación en Netlify. Este ZIP corregido es posterior: todavía requiere su propio commit, push y comprobación del nuevo despliegue.
 
 ## Uso posterior del proyecto
 
 Terminar esta guía no impide seguir añadiendo funciones, cambiar el diseño o actualizar la marca. Los datos actuales son de prueba. La carga de datos reales y cualquier limpieza se realizarán por separado, con respaldo y autorización del usuario.
+
+## Estado posterior al cierre
+
+La marca, el acceso y los paneles evolucionaron después de la guía. La referencia vigente es [estado-actual-melanova.md](estado-actual-melanova.md). Se mantienen los dos ejemplos de trazabilidad originales; la cobertura ampliada se relaciona en ese documento y en CP-15 a CP-21. El ensayo de 3 a 5 minutos sigue siendo una estimación, no una medición realizada.

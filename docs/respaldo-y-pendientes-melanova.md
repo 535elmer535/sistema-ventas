@@ -25,3 +25,7 @@ El paso pendiente es obtener un respaldo completo mediante un método oficial de
 5. Actualizar las capturas del manual cuando se elija definitivamente el diseño.
 
 No se añadieron costos/gastos, bajas por daños, devolución parcial ni cambios de la regla de entrega con saldo pendiente. Son decisiones independientes del diseño y necesitan definir primero su comportamiento con el negocio.
+
+## Actualización documental del 11/11/2026
+
+El modelo y los requisitos se actualizaron; la lectura completa del reporte de muebles vendidos se corrigió con consulta por lotes y pruebas simuladas. El respaldo completo sigue pendiente de obtener de Supabase. Procedimiento y límites en [instalacion-y-respaldo.md](instalacion-y-respaldo.md); seguimiento general en [estado-actual-melanova.md](estado-actual-melanova.md).

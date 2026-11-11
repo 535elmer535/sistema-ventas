@@ -1,8 +1,11 @@
 # Guía 22 — Preparación de Mueblex para publicación
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## Estado
 
-Revisión en curso. La publicación y el cierre de Git quedan pendientes. Las verificaciones documentadas corresponden al código de la Guía 21 y a las consultas realizadas por el usuario en Supabase.
+Guía cerrada por el usuario y publicada posteriormente según las evidencias de las guías 23 y 24. Los apartados siguientes conservan verificaciones realizadas en su etapa. No certifican por sí solos la configuración remota actual. Estado consolidado en [estado-actual-melanova.md](estado-actual-melanova.md).
 
 ## Actividad A — Seguridad
 
@@ -24,7 +27,7 @@ Se comprueban nombres vacíos y duplicados sin distinguir mayúsculas al crear o
 
 La lista de Administración actualiza también el selector de categorías de Inventario, conservando la selección actual.
 
-### Pendiente en la instalación del usuario
+### Lista de comprobación inicial — resuelta después según las pruebas reales
 
 - Aplicar el SQL de categorías y comprobar los permisos resultantes.
 - Comprobar creación y edición con administrador y rechazo con vendedor y sin sesión.
@@ -39,11 +42,11 @@ La lista de Administración actualiza también el selector de categorías de Inv
 - Datos de prueba: se conservarán durante las verificaciones.
 - README y rutas: revisados.
 - Alojamiento elegido: Netlify.
-- Pendiente: reflexión final y guardado en Git/GitHub.
+- Reflexión incluida al final; cierre en Git realizado por el usuario antes de continuar con la Guía 23.
 
 Antes de publicar:
 
-- Cambiar las contraseñas repetidas, según lo acordado.
+- El usuario confirmó el cambio de las contraseñas antes de publicar. Sus valores no se verifican ni se guardan en este documento.
 
 Antes de ingresar datos reales:
 
@@ -56,7 +59,7 @@ Se comprobaron la sintaxis de los 12 archivos JavaScript, las rutas locales de s
 
 Pasaron 32 comprobaciones con un DOM y respuestas de Supabase simulados sobre las funciones y eventos reales del módulo. Incluyeron carga por rol, creación, renombrado, conservación de la selección de Inventario, duplicados, cancelación, nombres vacíos, representación de texto HTML, conflictos de edición, respuesta incierta, fallo de consulta posterior al guardado y bloqueo de doble envío.
 
-Estas comprobaciones no ejecutaron el SQL en la base real. El navegador de pruebas no pudo iniciarse en el entorno de preparación. La comprobación visual en escritorio y móvil, la aplicación del SQL y las pruebas con cuentas reales quedan pendientes.
+Estas comprobaciones no ejecutaron el SQL en la base real. El navegador de pruebas no pudo iniciarse en el entorno de preparación. En ese momento quedaban pendientes la comprobación visual, el SQL y las cuentas reales; sus resultados posteriores se registran en los siguientes apartados.
 
 ### Pruebas reales de administración de categorías
 
@@ -76,7 +79,7 @@ Con administrador se creó la cuenta “Vendedor prueba Guía 22”. La cuenta p
 
 Desde esa cuenta se intentó llamar directamente a `registrar-usuario` con una solicitud vacía. El servidor rechazó la llamada con HTTP 403, resultado null y mensaje “No autorizado”.
 
-El cambio de las contraseñas repetidas queda pendiente por decisión del usuario, para realizarlo al final y antes de publicar Mueblex.
+La decisión inicial fue posponer las contraseñas; el usuario confirmó su cambio antes de la publicación de la Guía 23.
 
 ### Actividad B — Datos de prueba
 

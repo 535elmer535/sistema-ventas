@@ -1,9 +1,12 @@
 # Guía 1 - Mi propio caso de negocio
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 ## Datos del negocio
 
-- Nombre del negocio: Tienda de Muebles de Melamina
-- Quién lo dirige: Marcelo
+- Nombre del sistema y marca actual: Melanova. Actividad: venta de muebles de melamina y pedidos a medida.
+- Quién lo dirige: responsable del negocio; el documento inicial utilizó el nombre Marcelo, pendiente de confirmar para una presentación formal.
 
 ## Situación actual
 

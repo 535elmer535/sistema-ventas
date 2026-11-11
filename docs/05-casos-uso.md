@@ -1,8 +1,8 @@
-# Guía 5 — Casos de uso de Mueblex
+# Guía 5 — Casos de uso de Melanova
 
 ## 1. Descripción del sistema
 
-Mueblex es una aplicación web para administrar una mueblería
+Melanova es una aplicación web para administrar una mueblería
 de melamina.
 
 Permite gestionar muebles de catálogo, ventas, clientes,
@@ -11,7 +11,7 @@ pedidos a medida, pagos y reportes mediante cuentas autorizadas.
 Este documento describe el comportamiento que debe alcanzar
 el proyecto y distingue las funciones existentes de las pendientes.
 
-Actualización: 28/10/2026. Se revisaron app.js e index.html y las evidencias manuales compartidas. Las funciones SQL se contrastan con los respaldos del proyecto; no se ejecutaron nuevas consultas del servidor durante esta revisión. Las pruebas formales siguen siendo necesarias para escenarios no comprobados.
+Base histórica: 28/10/2026. Actualización documental: 11/11/2026, contrastada con index.html, módulos JavaScript y SQL del ZIP y evidencias manuales anteriores. Las funciones SQL se contrastan con los respaldos del proyecto; no se ejecutaron nuevas consultas del servidor durante esta revisión. Las pruebas formales siguen siendo necesarias para escenarios no comprobados.
 
 ## 2. Actores
 
@@ -172,7 +172,7 @@ El mueble queda disponible para consulta y venta.
 
 ### Situación actual
 
-El administrador registra los muebles desde Mueblex, sin utilizar el Table Editor. Se validan categoría, precio y existencia inicial; la autorización también se comprueba en la función SQL.
+El administrador registra los muebles desde Melanova, sin utilizar el Table Editor. Se validan categoría, precio y existencia inicial; la autorización también se comprueba en la función SQL.
 
 ---
 
@@ -230,7 +230,7 @@ El administrador distingue cuánto se vendió de cuánto se cobró.
 
 La función consultar_resumen_negocio agrega ventas activas, pagos y devoluciones en el servidor. Los límites diarios usan America/La_Paz. Se comprobó que una devolución realizada en fecha diferente del cobro produce el neto correspondiente.
 
-Inicio muestra valor vendido de operaciones activas, no dinero cobrado. El conteo de pedidos activos incluye pedidos entregados que no fueron anulados; no equivale a pedidos pendientes de fabricación.
+Inicio muestra valor vendido de operaciones activas, no dinero cobrado. El indicador de pedidos por entregar cuenta operaciones activas con al menos un mueble aún no entregado; excluye los pedidos completamente entregados. Véase CU-19.
 
 ---
 
@@ -239,14 +239,13 @@ Inicio muestra valor vendido de operaciones activas, no dinero cobrado. El conte
 - Historia relacionada: HU-05.
 - Requerimiento relacionado: RF-05.
 - Actor principal: Administrador.
-- Estado: Diseño adaptable incorporado; funcionamiento móvil
-  y acceso remoto pendientes de verificación.
+- Estado: Publicación y uso móvil confirmados por el usuario en la Guía 23. Pendiente ampliar dispositivos identificados y repetir el diseño posterior.
 - Precondición: Cuenta autorizada, conexión a Internet
   y dirección del sistema accesible desde el dispositivo.
 
 ### Flujo principal
 
-1. El administrador abre Mueblex desde el navegador del celular.
+1. El administrador abre Melanova desde el navegador del celular.
 2. Inicia sesión.
 3. Accede al inicio, reportes o consulta de pedidos.
 4. El sistema presenta los datos adaptados a la pantalla.
@@ -638,6 +637,32 @@ La solicitud queda confirmada o claramente pendiente de resolución, sin crear u
 
 ---
 
+## CU-17: Administrar categorías
+
+- Relaciones: RF-17 / HU-17. Actor: administrador con acceso vigente.
+- Implementación: js/categorias.js y guardar_categoria_segura; evidencia histórica en la Guía 22.
+- Flujo: abrir Administración; crear un nombre o elegir Editar; confirmar; el servidor valida el rol, el nombre y la versión anterior; se actualizan la tabla y el selector de Inventario.
+- Alternativas: nombre vacío, duplicado, conflicto concurrente o respuesta incierta. Actualizar antes de repetir un guardado incierto. El vendedor y el visitante no tienen autorización de escritura.
+- Postcondición: categoría guardada conservando su identificador y sus asociaciones. No se implementa eliminación de categorías.
+
+## CU-18: Recuperar el acceso con ayuda de un administrador
+
+- Relaciones: RF-18 / HU-18; complementa CU-08. No equivale a CU-16.
+- Actores: solicitante, administrador autorizado y WhatsApp.
+- Flujo: pulsar ¿Olvidaste tu contraseña?; escribir correo; elegir contacto publicado; preparar mensaje; abrir WhatsApp y enviarlo manualmente; el administrador verifica identidad por un medio conocido; busca la cuenta y establece una contraseña temporal; el solicitante entra, completa el cambio obligatorio y vuelve a iniciar sesión.
+- Servidor: gestionar-recuperacion, marcas de Auth e historial_recuperaciones_mueblex. Las claves privadas permanecen en el servidor.
+- Alternativas: no hay contactos publicados, sesión no autorizada, cuenta con MFA o restablecimiento sustituido por otro administrador. No se revela si un correo existe desde la solicitud pública. El personal no consulta la contraseña anterior.
+- Postcondición: contraseña personal actualizada e historial sin contraseñas. No se envían mensajes de WhatsApp automáticamente.
+- Evidencia y pendientes: docs/recuperacion-whatsapp.md; las comprobaciones de llamadas directas y varias cuentas no se consideran completas por ocultar botones.
+
+## CU-19: Consultar el resumen de Inicio
+
+- Relaciones: RF-19 / HU-19. Actores: administrador o vendedor autorizado.
+- Flujo: iniciar sesión; consultar los cuatro indicadores, acciones rápidas, últimas ventas, próximas entregas y gráfico semanal; actualizar el resumen cuando sea necesario; abrir la sección correspondiente para operar.
+- Reglas: ventas del día y gráfico usan valor de operaciones activas, no dinero cobrado ni ganancia; el saldo se calcula sobre operaciones activas; el aviso de existencias incluye 0 a 3 unidades; un pedido pendiente tiene al menos un mueble no entregado; se priorizan las fechas estimadas atrasadas en las entregas.
+- Alternativas: sin datos se muestran estados vacíos; un fallo se informa y no demuestra que el negocio tenga cero movimientos.
+- Postcondición: solo consulta. No cobra, entrega ni repone automáticamente. Pendiente cotejo integral con un conjunto de datos conocido según CP-19.
+
 ## 4. Ampliaciones futuras
 
 Estas funciones quedan fuera de la implementación inmediata:
@@ -651,7 +676,7 @@ No se consideran implementadas en la versión actual.
 
 ## 5. Reflexión
 
-Los casos de uso se actualizaron para representar Mueblex
+Los casos de uso se actualizaron para representar Melanova
 y las mejoras acordadas para el negocio.
 
 Se conservaron CU-01 a CU-15 y se agregó CU-16 para documentar la recuperación de solicitudes. RF-01 a RF-07 y HU-01 a HU-07 mantienen sus identificadores; las ampliaciones RF-08 a RF-16 y HU-08 a HU-16 se describen en los documentos 03 y 04.
@@ -664,4 +689,7 @@ El plan de pruebas utilizará estos identificadores para
 comprobar las funciones existentes e identificar los casos
 que dependen de desarrollos pendientes.
 
-La documentación registra las pruebas manuales disponibles y deja pendientes las comprobaciones formales de concurrencia, respuesta perdida después de confirmar el servidor y uso móvil real.
+La documentación registra las pruebas manuales disponibles y deja pendientes las comprobaciones formales de concurrencia, respuesta perdida después de confirmar el servidor y cobertura adicional de dispositivos reales después de los cambios de diseño.
+
+## Actualización documental del 11/11/2026
+Se conservan CU-01 a CU-16 y se incorporan CU-17 a CU-19. La marca visible es Melanova; nombres técnicos con mueblex se conservan por compatibilidad. Estado consolidado en [estado-actual-melanova.md](estado-actual-melanova.md).

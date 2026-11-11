@@ -24,3 +24,36 @@ async function leerListadoMelanova(tabla, columnaId, cliente = clientesupabase) 
     if (!data.length || filas.length > totalInicial) throw new Error("No se recibió el listado completo.");
   }
 }
+
+// Lee todo el detalle de operaciones activas, incluso con un límite por respuesta.
+// Ante cambios de cantidad o identificadores repetidos evita mostrar un total parcial.
+async function leerDetallesVendidosMelanova(cliente = clientesupabase) {
+  const filas = [];
+  const ids = new Set();
+  let totalInicial = null;
+  for (;;) {
+    const { data, error, count } = await cliente.from("detalle_ventas")
+      .select("id_detalle, id_producto, cantidad, productos(nombre), operacion:ventas!inner(estado_operacion)", { count: "exact" })
+      .eq("operacion.estado_operacion", "activa")
+      .order("id_detalle", { ascending: true })
+      .range(filas.length, filas.length + 499);
+    if (error) throw error;
+    if (!Array.isArray(data) || !Number.isSafeInteger(count) || count < 0) {
+      throw new Error("No se confirmó el tamaño del historial vendido.");
+    }
+    if (totalInicial === null) totalInicial = count;
+    if (count !== totalInicial) throw new Error("El historial cambió durante la consulta. Actualiza el reporte.");
+    for (const fila of data) {
+      const id = fila.id_detalle;
+      if (id === null || id === undefined || ids.has(String(id))) {
+        throw new Error("El historial cambió durante la consulta. Actualiza el reporte.");
+      }
+      ids.add(String(id));
+      filas.push(fila);
+    }
+    if (filas.length === totalInicial) return filas;
+    if (!data.length || filas.length > totalInicial) {
+      throw new Error("No se recibió el historial completo de muebles vendidos.");
+    }
+  }
+}

@@ -1,5 +1,8 @@
 # Guía 19 — Ejecución de pruebas y corrección de errores de Mueblex
 
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
+
 ## 1. Referencia de la ejecución
 
 - Plan utilizado: docs/18-plan-pruebas.md, versión subida con el commit 4a15a91.

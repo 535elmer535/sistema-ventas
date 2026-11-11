@@ -1,5 +1,8 @@
 # Recuperación de acceso de MUEBLEX
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](docs/estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 Paquete adaptado al proyecto enviado después de la Guía 22. No copies los archivos
 del ZIP antiguo `Administracion-y-WhatsApp-MUEBLEX.zip`.
 

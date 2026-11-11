@@ -723,17 +723,7 @@ document.querySelector("#btn-filtrar-ventas")
   contenedor.textContent = "Consultando muebles vendidos...";
 
   try {
-    const { data: detalles, error } = await clientesupabase
-  .from("detalle_ventas")
-  .select(`
-    id_producto,
-    cantidad,
-    productos(nombre),
-    operacion:ventas!inner(estado_operacion)
-  `)
-  .eq("operacion.estado_operacion", "activa");
-
-    if (error) throw error;
+    const detalles = await leerDetallesVendidosMelanova();
 
     const agrupados = new Map();
 

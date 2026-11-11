@@ -1,5 +1,8 @@
 # Estilo MUEBLEX en todo el sistema
 
+> Antecedente del desarrollo o instrucciones de su paquete original. No volver a instalarlo ni aplicar SQL para actualizar este ZIP. El estado vigente y los pendientes se indican en [Estado actual de Melanova](docs/estado-actual-melanova.md). Las descripciones del proceso manual inicial son contexto del planteamiento, no hechos verificables desde el código.
+
+
 Revisión sobre `sistema-ventas-mueblex.zip`. Extiende la identidad visual de Inicio a Inventario, Ventas, Pedidos, Clientes, Reportes y Administración, y hace más visible Cerrar sesión.
 
 ## Cambios por archivo

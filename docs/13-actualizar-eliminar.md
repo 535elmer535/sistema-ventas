@@ -1,4 +1,7 @@
 
+
+> Registro histórico de esta etapa. Las fechas, cantidades de pruebas y pendientes que aparecen abajo corresponden a su momento; no son una certificación de la versión actual. Consulta [estado-actual-melanova.md](estado-actual-melanova.md) para el estado consolidado.
+
 # Guía 13 — Actualizar y eliminar registros
 
 ## Editar producto
@@ -59,16 +62,16 @@ operación sin filtro.
 ## Capturas de las pruebas
 
 ### Edición en la página
-![Producto actualizado](/diagramas/guia13-editar.png)
+![Producto actualizado](/diagramas/guia13-editar.PNG)
 
 ### Edición comprobada en Supabase
-![Precio actualizado en Supabase](/diagramas/guia13-editar-supabase.png)
+![Precio actualizado en Supabase](/diagramas/guia13-editar-supabase.PNG)
 
 ### Confirmación antes de eliminar
-![Confirmación de eliminación](/diagramas/guia13-confirmar-eliminar.png)
+![Confirmación de eliminación](/diagramas/guia13-confirmar-eliminar.PNG)
 
 ### Eliminación en la página
-![Producto eliminado](/diagramas/guia13-eliminar.png)
+![Producto eliminado](/diagramas/guia13-eliminar.PNG)
 
 ### Eliminación comprobada en Supabase
 ![Tabla sin el producto de prueba](/diagramas/guia13-eliminar-supabase.PNG)
